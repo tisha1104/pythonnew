@@ -1,0 +1,302 @@
+===============================================Python – Collections, functions and Modules===============================
+<-----------------------------------------------Accessing List---------------------------------------------------------->
+
+Q-1.Understanding how to create and access elements in a list. 
+
+-->Ans.  ➢ CreatingCreating a list:-  
+        fruits = ["apple", "banana", "cherry"] 
+
+➢ Accessing elements in a list:-
+    • Use square brackets [] with the index of the item. 
+    print(fruits[0])      
+    print(fruits[1])     
+    # Output: apple 
+    # Output: banana 
+    print(fruits[2])    
+    # Output: cherry 
+
+
+Q-2.Indexing in lists (positive and negative indexing).
+
+-->Ans. • Positive indexing starts from 0 (left to right). 
+        • Negative indexing starts from -1 (right to left). 
+
+---->Example:-
+        fruits = ["apple", "banana", "cherry", "date"] 
+        # Positive indexing 
+        print(fruits[0])  # apple 
+        print(fruits[2])  # cherry 
+        # Negative indexing 
+        print(fruits[-1])  # date 
+        print(fruits[-3])  # banana 
+
+
+Q-3.Slicing a list: accessing a range of elements. 
+
+-->Ans. Syntax:- list[start:stop] 
+    • Includes elements from start to stop - 1. 
+---->Example:- 
+        fruits = ["apple", "banana", "cherry", "date", "elderberry"] 
+        # Slice from index 
+        print(fruits[1:4])      
+        # ['banana', 'cherry', 'date'] 
+        #Start or end to slice from/to beginning or end 
+        print(fruits[:3])         
+        print(fruits[2:])         
+        # ['apple', 'banana', 'cherry'] 
+        # ['cherry', 'date', 'elderberry'] 
+        # Slicing with negative indexes 
+        print(fruits[-4:-1])    # ['banana', 'cherry', 'date'] 
+
+    
+<----------------------------------------------- List Operations -------------------------------------------------------->
+
+Q-1.Common list operations: concatenation, repetition, membership.
+
+--->Ans. ➢ Following are operations you can perform on lists using simple syntax. 
+    i. Concatenation (+):-Join two or more lists together. 
+    list1 = [1, 2, 3] 
+    list2 = [3, 4,5] 
+    result = list1 + list2 
+    print(result)         
+    # [1, 2, 3, 3, 4, 5] 
+
+    ii. Repetition (*):-Repeat the elements of a list multiple times. 
+    nums = [0, 1] 
+    repeated = nums * 3 
+    print(repeated)       
+    # [0, 1, 0, 1, 0, 1] 
+
+    iii. Membership (in, not in):-Check if an element exists in a list. 
+    fruits = ["apple", "banana", "cherry"] 
+    print("banana" in fruits)     
+    # True 
+    print("grape" not in fruits)  # True
+
+
+Q-2.Understanding list methods like append(), insert(), remove(), pop(). 
+
+--->Ans. i. append(item):- Adds an item to the end of the list. 
+            colors = ["red", "blue"] 
+            colors.append("green") 
+            print(colors)               
+            # ['red', 'blue', 'green'] 
+
+ii. insert(index, item):- Inserts an item at a specific position. 
+            colors.insert(1, "yellow") 
+            print(colors)               
+            # ['red', 'yellow', 'blue', 'green'] 
+
+iii. remove(item):- Removes the first occurrence of the item. 
+            colors.remove("blue") 
+            print(colors)              
+            # ['red', 'yellow', 'green'] 
+
+iv. pop(index):- Removes and returns the item at the given index. If no index is given, removes the last item. 
+            last_color = colors.pop() 
+            print(last_color)           
+            print(colors)                 
+            # 'green' 
+            # ['red', 'yellow'] 
+            second_color = colors.pop(1) 
+            print(second_color)     
+            print(colors)                
+            # 'yellow' 
+            # ['red'] 
+
+
+<----------------------------------------------- Working with Lists  ---------------------------------------------------->
+
+Q-1.Iterating over a list using loops.
+
+--->Ans. i.Using for loop:-
+        fruits = ["apple", "banana", "cherry"] 
+        for fruit in fruits: 
+        print(fruit) 
+
+ii.Using for loop with index (range):-
+        for i in range(len(fruits)): 
+        print(f"{i}: {fruits[i]}") 
+
+iii.Using while loop:-
+        i = 0 
+        while i < len(fruits): 
+        print(fruits[i]) 
+        i += 1 
+
+
+Q-2.Sorting and reversing a list using sort(), sorted(), and reverse(). 
+
+--->Ans. i.sort() — Sorts the list in place. Modifies the original list. 
+                list = [4, 2, 7, 1] 
+                list.sort() 
+                print(list)        
+                # [1, 2, 4, 7] 
+
+ii. sorted() — Returns a new sorted list and the original list remains unchanged. 
+                list = [4, 2, 7, 1] 
+                sorted_list = sorted(list) 
+                print(sorted_list)      
+                print(list)                  
+                # [1, 2, 4, 7] 
+                # [4, 2, 7, 1] 
+
+iii.reverse() — reverses the list in place 
+                fruits = ["apple", "banana", "cherry"] 
+                fruits.reverse() 
+                print(fruits)      
+
+iv.Reverse using slicing:-
+                # ['cherry', 'banana', 'apple'] 
+                reversed_list = fruits[::-1] 
+                print(reversed_list)            
+                # ['apple', 'banana', 'cherry']
+
+
+Q-3.Basic list manipulations: addition, deletion, updating, and slicing. 
+
+--->Ans. i.Addition 
+• append(item) – Add to end 
+• insert(index, item) – Add at position 
+• + – Concatenate lists 
+---->Example:- 
+            colors = ["red", "green"] 
+            colors.append("blue") 
+            colors.insert(1, "yellow") 
+            print(colors)  # ['red', 'yellow', 'green', 'blue'] 
+
+ii.Deletion 
+• remove(item) – Delete by value 
+• pop(index) – Delete by index 
+• del list[index] – Delete by index 
+• clear() – Remove all items 
+---->Example:-
+            del colors[0]       
+            # removes 'red' 
+            colors.remove("green") 
+            print(colors)       
+            # ['yellow', 'blue'] 
+
+iii.Updating: Changes an item by assigning a new value using its index. 
+---->Example:-
+            colors[1] = "purple" 
+            print(colors)  # ['yellow', 'purple'] 
+
+iv.Slicing: Syntax  [start:stop:step] 
+---->Example:- 
+            numbers = [0, 1, 2, 3, 4, 5] 
+            print(numbers[1:4])              
+            print(numbers[:3])                
+            print(numbers[::2])               
+
+
+<---------------------------------------------------Tuple-------------------------------------------------------------->
+
+Q-1.Introduction to tuple, immutability. 
+
+--->Ans. ➢ What is a tuple? 
+        • A tuple is an ordered collection of items, just like a list. 
+        • Unlike lists, tuple cannot be changed (immutable). 
+
+➢ Why use tuple? 
+        • They're faster than lists. 
+        • They're useful for fixed data (e.g., coordinates, RGB values). 
+        • They're hashable and can be used as dictionary keys. 
+        my_tuple = (1, 2, 2, 3) 
+        print(my_tuple)       
+                #(1,2,2,3) 
+
+➢ Immutability using example 
+        my_tuple = (10, 20, 30) 
+        # my_tuple[0] = 100          
+        # This will raise a TypeError 
+
+
+Q-2.Creating and accessing elements in a tuple.
+
+--->Ans.i.Creating tuple:-
+            t1 = (1, 2, 3) 
+            t2 = ("apple", "banana", "cherry") 
+            t3 = ()                 
+            t4 = (5,)               
+            # Empty tuple 
+            # Single-element tuple (comma is required!) 
+
+ii.Accessing tuple elements:- It is same as lists  using indexing and slicing. 
+            colors = ("red", "green", "blue") 
+            print(colors[0])           
+            print(colors[-1])          
+            print(colors[1:3])        
+            # red 
+            # blue 
+            # ('green', 'blue')
+
+
+Q-3.Basic operations with tuple: concatenation, repetition, membership. 
+
+--->Ans. i. Concatenation (+):-
+            t1 = (1, 2) 
+            t2 = (3, 4) 
+            result = t1 + t2 
+            print(result)    
+
+ii. Repetition (*):- 
+            t = ("A",) 
+            print(t * 3)           
+            # (1, 2, 3, 4) 
+            # ('A', 'A', 'A') 
+
+iii. Membership (in, not in):-
+            colors = ("red", "green", "blue") 
+            print("green" in colors)               
+            print("yellow" not in colors)       
+
+
+<---------------------------------------------------TuAccessing Tuple --------------------------------------------------->
+
+Q-1.Accessing tuple elements using positive and negative indexing.
+
+--->Ans. i.Positive Indexing 
+• Starts from 0 (left to right) 
+---->Example:- 
+        fruits = ("apple", "banana", "cherry", "date") 
+        print(fruits[0])  # apple 
+        print(fruits[2])  # cherry 
+
+ii.Negative Indexing 
+• Starts from -1 (right to left) 
+---->Example:- 
+        print(fruits[-1])  # date 
+        print(fruits[-3])  # banana 
+        Diagram: 
+        Index:        
+        0         
+        1           
+        2         
+        3 
+        'apple' 'banana' 'cherry' 'date' -4   
+
+
+Q-2.Slicing a tuple to access ranges of elements.
+
+--->Ans. ➢ Syntax:-tuple[start:stop:step] 
+➢ Returns a new tuple from start to stop - 1. 
+---->Example:- 
+            colors = ("red", "green", "blue", "yellow", "purple") 
+            # Slice from index 1 to 3 
+            print(colors[1:4])  # ('green', 'blue', 'yellow') 
+            # Slice from start to index 2 
+            print(colors[:3])   # ('red', 'green', 'blue') 
+            # Slice from index 2 to end 
+            print(colors[2:])   # ('blue', 'yellow', 'purple') 
+            # Slice with step 
+            print(colors[::2])  # ('red', 'blue', 'purple') 
+            # Reverse the tuple 
+            print(colors[::-1])  # ('purple', 'yellow', 'blue', 'green', 'red') 
+
+
+<-----------------------------------------------------Dictionaries ------------------------------------------------------>
+
+Q-1.Introduction to dictionaries: key-value pairs.
+
+--->Ans. 

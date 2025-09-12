@@ -176,3 +176,39 @@ print(c)
 t1=("Python","Java","C","C++")
 print(t1[0])
 print(t1[1])
+
+
+#==================================================>Lab-5<================================================================
+# ==================================================>TAccessing Tuple<===================================================
+
+# Write a Python program to access values between index 1 and 5 in a tuple. 
+
+a=("Computer","Mouse","CPU","Key-Board","Hard-disk","Pen-drive","T.V")
+print(a[1:6])
+
+
+# Write a Python program to access alternate values between index 1 and 5 in a tuple.
+
+b=(10,20,30,40,50,60,70,80,90)
+print(b[1:6:2])
+
+
+# ----------------------------------------------------->Practical Examples:<--------------------------------------
+
+#Q-1. Write a Python program to access values between index 1 and 5 in a tuple.
+
+c=(100,200,300,400,500,600,700,800,900,1000)
+print(c[1:6])
+
+
+#Q-2. Write a Python program to access the value from the last index in a tuple. 
+
+A=(10,20,30,40,50,60,70,80,90,100)
+print(A[-1])
+
+
+#==================================================>Lab-5<================================================================
+# ==================================================>TAccessing Tuple<===================================================
+
+#Write a Python program to create a dictionary with 6 key-value pairs. 
+
