@@ -151,6 +151,28 @@ fruit=["Mango","Apple","Banana","Charry","Dragon Fruit","Lichi"]
 
 list=["Python","java","C","C++"]
 # print(type(list))
-print(tuple(list))
-# print(list)
-print(type(list))
+t=(tuple(list))
+print(t)
+print(type(t))
+
+
+#Q-2.Write a Python program to create a tuple with multiple data types. 
+
+t=(10,20,30,100,"Tisha","Rani",55.12,11.11,8.00,9.5,"5X","10Y","11Z",True,False,"Red","Black")
+print(t)
+
+
+#Q-3.Write a Python program to concatenate two tuples into one.
+
+a=("Red","Black","Yellow")
+b=("Greay","Pink","White")
+
+c=a+b
+print(c)
+
+
+#Q-4.Write a Python program to access the value of the first index in a tuple. 
+
+t1=("Python","Java","C","C++")
+print(t1[0])
+print(t1[1])
