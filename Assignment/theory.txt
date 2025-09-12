@@ -1,0 +1,784 @@
+Q-1. Introduction to Python
+Q1. Introduction to Python and its Features (simple, high-level, interpreted language).
+
+Ans. ====>Introduction to Python:-
+Python is a popular, powerful, and versatile programming language.
+ It was created by Guido van Rossum and first released in 1991. Python emphasizes code readability and simplicity, making it an excellent choice for beginners and professionals alike.
+
+====>Key Features of Python:-
+
+---->Simple and Easy to Learn:
+-Python has a clean and easy-to-read syntax.
+-Writing Python code is often compared to writing English sentences.
+-Example print("Hello, world!")
+
+---->High-Level Language:
+-Python abstracts away most of the complex details of the computer, such as memory management.
+-You focus on what to do, not how to do it at the hardware level.
+
+---->Interpreted Language:
+-Python code is executed line by line using an interpreter.
+-No need for separate compilation – just write and run.
+
+---->Dynamically Typed:
+-No need to declare variable types.
+-The interpreter automatically identifies the type at runtime.
+-Example
+        x = 10     # Integer
+        x = "Hi"   # Now a string
+
+---->Object-Oriented:
+-Supports object-oriented programming with classes and objects.
+-Also supports other paradigms like functional and procedural programming.
+
+---->Extensive Standard Library:
+-Comes with many built-in modules and functions.
+-For example, modules for math, file handling, regular expressions, etc.
+
+---->Cross-Platform:
+-Python runs on Windows, macOS, Linux, and more.
+-Write code once and run it anywhere.
+
+---->Large Community Support:
+-Python has a vast community of users.
+-Abundant libraries, frameworks, tutorials, and tools are available (e.g., NumPy, Pandas, Django, Flask, TensorFlow).
+
+Q2. History and evolution of Python.
+
+Ans.---->In the late 1980s, history was about to be written. It was that time when working on Python started.
+Soon after that, Guido Van Rossum began doing its application-based work in December of 1989 at Centrum Wiskunde & Informatica (CWI) which is situated in the Netherlands.
+-It was started as a hobby project because he was looking for an interesting project to keep him occupied during Christmas.
+-The programming language in which Python is said to have succeeded is ABC Programming Language, which had interfacing with 
+the Amoeba Operating System and had the feature of exception handling. He had already helped create ABC earlier in his career and had seen some issues with ABC but liked most of the features. 
+-After that what he did was very clever. He had taken the syntax of ABC, and some of its good features. It came with a lot 
+of complaints too, so he fixed those issues completely and created a good scripting language that had removed all the flaws.
+
+---->Evolution of Python:
+-The language was finally released in 1991. When it was released, it used a lot fewer codes to express the concepts, when 
+we compare it with Java , C++ & C .
+-Its design philosophy was quite good too. Its main objective is to provide code readability and advanced developer productivity.
+When it was released, it had more than enough capability to provide classes with inheritance, several core data types of exception handling and functions.
+
+
+Q3.Advantages of using Python over other programming languages.
+
+Ans. Python offers several advantages over other programming languages, making it a popular choice for various applications:
+
+---->Simplicity and Readability:
+-Python's syntax is designed to be clear and concise, resembling natural language. This leads to highly readable code, which 
+simplifies learning, development, and maintenance.
+
+---->Versatility and Wide Application:
+-Python is a general-purpose language used in diverse fields, including web development (Django, Flask), data science 
+(NumPy, Pandas, Scikit-learn), machine learning and AI (TensorFlow, PyTorch), automation, scripting, and more.
+
+---->Extensive Libraries and Frameworks:
+-Python boasts a vast ecosystem of pre-built libraries and frameworks that significantly accelerate development by providing
+readily available functionalities for common tasks, eliminating the need to write code from scratch.
+
+---->Improved Productivity:
+-The combination of simple syntax, extensive libraries, and rapid development capabilities allows developers to build and 
+deploy applications more quickly compared to languages requiring more verbose code or complex setups.
+
+---->Cross-platform Compatibility:
+-Python code can run on various operating systems (Windows, macOS, Linux) without modification, enhancing its portability.
+
+---->Large and Active Community:
+-Python benefits from a massive and supportive global community. This translates to abundant resources, tutorials, forums,
+and readily available assistance for developers.
+
+---->Open-Source Nature:
+-Python is free and open-source, promoting accessibility and fostering continuous improvement through community contributions.
+
+---->Support for Multiple Paradigms:
+-Python supports various programming paradigms, including object-oriented, procedural, and functional programming, offering
+flexibility in coding style and approach.
+
+
+Q4.Installing Python and setting up the development environment (Anaconda, PyCharm, or VSCode).
+
+Ans. Setting up a Python development environment involves installing Python and choosing
+an Integrated Development Environment (IDE) or code editor, such as Anaconda, PyCharm,
+or VS Code.
+
+-------->Installing Python:
+
+--->Download Python:
+Obtain the official Python installer from python.org/downloads. Choose the version 
+appropriate for your operating system (Windows, macOS, or Linux).
+
+--->Run the Installer:
+Execute the downloaded installer. Crucially, ensure you check the "Add Python to PATH" 
+option during installation to allow easy access to Python from your command line.
+
+--->Verify Installation:
+Open a terminal or command prompt and type python --version or python3 --version to
+confirm Python is installed and accessible.
+
+
+Q5.Writing and executing your first Python program.
+
+Ans. ---> Install Python: Download the latest version of Python from the official
+Python website (python.org).Run the installer and ensure you check the option 
+"Add Python to PATH" during installation, which allows you to run Python from your 
+command line or terminal.
+
+ --->Choose a Text Editor or IDE:
+For a simple first program, a basic text editor like Notepad (Windows), TextEdit (macOS), 
+or a more advanced one like Visual Studio Code, PyCharm, or Sublime Text can be used.
+
+ --->Write Your First Program: Open your chosen text editor and Type the following line
+of code.
+
+--->Python:
+    print("Hello, World!")
+This line uses the print() function to display the string "Hello, World!" on the console.
+
+--->Save the File:
+Save the file with a .py extension (e.g., hello.py). Choose a location that is easy 
+to navigate to in your terminal or command prompt.
+--->Execute the Program:
+Open your terminal or command prompt.
+Navigate to the directory where you saved your hello.py file using the cd command 
+(e.g., cd C:\Users\YourUser\Documents\PythonPrograms).
+Run the program by typing python hello.py and pressing Enter. 
+
+--->Expected Output:
+The terminal or command prompt will display:
+Code
+    Hello, World!
+
+
+
+Q-2.Programming Style
+
+
+Q1.Understanding Python’s PEP 8 guidelines.
+
+Ans.====>PEP 8, or Python Enhancement Proposal 8, is the official style guide for
+writing Python code. Its primary goal is to promote readability and consistency across
+Python projects, making code easier to understand and maintain, especially in collaborative 
+environments. 
+
+====>Key guidelines within PEP 8 include:
+
+--->Indentation:
+Use 4 spaces per indentation level. Avoid using tabs.
+
+--->Line Length:
+Limit all lines to a maximum of 79 characters (72 for docstrings and comments) to improve 
+readability and avoid horizontal scrolling.
+
+--->Blank Lines:
+Use blank lines to separate logical sections of code, such as function definitions, 
+class definitions, and blocks of related code within functions.
+
+--->Imports:
+Place import statements at the top of the file, immediately after any module comments 
+or docstrings. Group imports in the following order: standard library, third-party 
+libraries, and local imports. Use one import statement per module. 
+
+--->Naming Conventions:
+Variables and Functions: Use lowercase with words separated by underscores 
+(e.g., my_variable, calculate_total). 
+
+--->Classes: 
+Use capitalized words without underscores (e.g., MyClass, CustomerOrder).
+This is also known as CamelCase or PascalCase.
+
+--->Constants:
+Use all uppercase letters with words separated by underscores 
+(e.g., MAX_SPEED, PI_VALUE).
+
+--->Whitespace:
+Use consistent spacing around operators, commas, and colons. Avoid unnecessary
+whitespace within parentheses, brackets, or braces.
+
+--->Comments and Docstrings:
+Single-line comments should start with # followed by a space and a capitalized first
+word.Docstrings (multi-line comments for functions, classes, and modules) should
+provide a concise summary on the first line, followed by more detailed explanations if 
+needed.
+
+--->Comparisons:
+Use is or is not for comparisons with None, True, and False instead of == or !=.
+While not strictly enforced by the Python interpreter, adhering to PEP 8 is highly 
+recommended for creating clean, readable, and maintainable Python code. Tools like 
+linters (e.g., Ruff) can automatically check code for PEP 8 compliance.
+
+
+Q2.Indentation, comments, and naming conventions in Python
+
+Ans.===> Python coding standards, largely defined by PEP 8, include specific 
+guidelines for indentation, comments, and naming conventions to ensure code readability 
+and maintainability.
+
+===>Indentation:
+--->Python uses indentation to define code blocks, unlike other languages that use braces or
+keywords.
+--->The standard dictates using 4 spaces per indentation level.
+--->Mixing spaces and tabs for indentation within the same file is highly discouraged 
+and can lead to IndentationError in Python 3.
+
+===>Comments:
+
+--->Comments begin with a hash sign (#).
+Block comments: explain the code that follows and are indented at the same level as the
+code block. Each line starts with # and a single space.
+
+--->Inline comments: appear on the same line as a statement, separated by at least two 
+spaces from the code. They also start with # and a single space.Comments should explain 
+why something is done, rather than simply restating what the code does.\
+
+--->Docstrings: are multi-line strings enclosed in triple quotes ("""Docstring content""") 
+used to document modules, classes, and functions, explaining their purpose and usage.
+
+===>Naming Conventions:
+
+--->Modules: Short, lowercase names, potentially with underscores (e.g., my_module.py).
+
+--->Packages: Short, lowercase names, no underscores (e.g., my_package).
+
+--->Classes: CamelCase (e.g., MyClass).
+
+--->Functions and Variables: Lowercase with underscores (e.g., my_function, my_variable).
+
+--->Constants: All uppercase with underscores (e.g., MY_CONSTANT).
+
+--->Private variables/functions: Start with a single underscore (e.g., _private_variable).
+
+--->Name mangling for class-private attributes: Start with double 
+underscores (e.g., __private_attribute).
+
+--->Avoid single-letter names: unless they are loop counters or similar well-understood 
+conventions (e.g., i, j).Choose meaningful and descriptive names over short, cryptic 
+ones.
+
+
+Q3. Writing readable and maintainable code.
+
+Ans.===>Writing readable and maintainable Python code involves adhering to a set of 
+best practices and principles that enhance clarity, consistency, and ease of 
+modification.
+
+===>Key Principles and Practices:
+
+--->Follow PEP 8:
+Adhere to the official Python style guide, PEP 8, for consistent formatting, naming 
+conventions, and code layout. This includes using 4-space indentation, clear naming 
+conventions (e.g., snake_case for variables and functions, CamelCase for classes), 
+and limiting line length.
+
+--->Use Meaningful Names:
+Employ descriptive and concise names for variables, functions, and classes that clearly 
+convey their purpose and intent. Avoid abbreviations or single-letter names unless their 
+context is immediately obvious.
+
+--->Modularize Code:
+Break down large codebases into smaller, focused functions, classes, and modules. This 
+promotes reusability, improves organization, and makes individual components easier to 
+understand and test.
+
+--->Write Clear Comments and Docstrings:
+Use comments to explain complex logic or the "why" behind certain decisions, rather than 
+simply restating what the code does. Utilize docstrings for functions, classes, and modules 
+to provide comprehensive documentation on their purpose, arguments, and return values.
+
+--->Handle Errors Gracefully:
+Implement robust error handling using try-except blocks to prevent unexpected crashes
+and provide informative error messages.
+
+--->Employ Type Hints:
+Use type hints (introduced in PEP 484) to specify the expected types of function arguments 
+and return values. This enhances readability and allows static analysis tools to catch 
+potential type-related errors early.
+
+--->Write Unit Tests:
+Develop unit tests to verify the correctness of individual code components. This ensures 
+reliability, catches bugs early, and facilitates refactoring with confidence.
+
+--->Avoid Global Variables:
+Minimize the use of global variables, as they can lead to complex dependencies and make 
+code harder to reason about and test.
+
+--->Keep Functions Short and Focused:
+Design functions to perform a single, well-defined task. This improves readability and
+reusability.
+
+--->Leverage Pythonic Idioms:
+Utilize Python's built-in features and idioms, such as list comprehensions, generator
+expressions, and context managers, to write concise and expressive code.
+
+
+
+Q-3. Core Python Concepts
+
+
+Q1.Understanding data types: integers, floats,strings, lists, tuples, dictionaries,sets.
+
+Ans.====>Numeric Types:
+
+--->Integers (int):
+Represent whole numbers, positive or negative, without a decimal point
+(e.g., 5, -100, 0).
+
+--->Floats (float):
+Represent real numbers with a decimal point or in exponential form 
+(e.g., 3.14, -0.001, 2.5e2). 
+
+===>Text Type:
+
+--->Strings (str): Represent sequences of characters, enclosed in single or double
+quotes (e.g., "hello", 'Python'). Strings are immutable, meaning their content cannot 
+be changed after creation.
+
+===>Sequence Types:
+
+--->Lists (list):
+Ordered and mutable collections of items. They can contain items of different data types
+and are defined using square brackets (e.g., [1, "apple", 3.14]).
+
+--->Tuples (tuple):
+Ordered and immutable collections of items. Similar to lists but cannot be modified 
+after creation, defined using parentheses (e.g., (1, "banana", 5)).
+
+===>Mapping Type:
+
+--->Dictionaries (dict): Unordered collections of key-value pairs. Keys must be unique 
+and immutable, while values can be of any data type. Defined using curly braces 
+(e.g., {"name": "Alice", "age": 30}).
+
+--->Set Types:
+Sets (set): Unordered collections of unique items. They do not allow duplicate members 
+and are defined using curly braces (e.g., {1, 2, 3}). Sets are mutable, but their 
+elements must be immutable.
+
+
+Q2.Python variables and memory allocation
+
+Ans.1. What is a Variable? 
+     =  A variable is a name that refers to a value stored in memory.
+     =  In Python, you don’t declare types — the interpreter decides based on the value assigned.
+
+     2. Variable Assignment
+     =  Python uses dynamic typing → type is decided at runtime.
+     =   A variable can be reassigned to a different type.
+
+     3. Memory Allocation in Python
+     =  Python creates an object in memory.
+     =  The variable name acts as a reference (pointer) to that object.
+     =  Python does not create two separate objects for 10.
+     =  Both a and b point to the same memory location (object reusability / interning).
+
+     4. Garbage Collection
+     =  If no variable refers to an object, it becomes unreachable.
+     =  Python automatically frees this memory using Garbage Collector.
+
+     5. Variable Scope
+     =  Local Variable → defined inside a function.
+     =  Global Variable → defined outside all functions.
+
+
+Q3.Python operators: arithmetic, comparison, logical, bitwise.
+
+Ans.1. arithmetic operators:
+
+            | Operator | Meaning             | Example (a=10, b=3) | Result |
+            | -------- | ------------------- | --------------------| ------ |
+            | +        | Addition            | a + b               | 13     |
+            | -        | Subtraction         | a - b               | 7      |
+            | *        | Multiplication      | a * b               | 30     |
+            | /        | Division (float)    | a / b               | 3.333… |
+            | //       | Floor Division      | a // b              | 3      |
+            | %        | Modulus (remainder) | a % b               | 1      |
+            | **       | Exponent (power)    | a ** b              | 1000   |
+
+    2.  comparison operators:
+
+            |Operator| Meaning          | Example (a=10, b=3) | Result |
+            | -------| ---------------- | ------------------- | ------ |
+            | ==     | Equal to         | a == b              | False  |
+            | !=     | Not equal to     | a != b              | True   |
+            | >      | Greater than     | a > b               | True   |
+            | <      | Less than        | a < b               | False  |
+            | >=     | Greater or equal | a >= b              | True   |
+            | <=     | Less or equal    | a <= b              | False  |
+
+    3.  logical operators:
+
+            |Operator| Meaning                   | Example (a=10, b=3) | Result |
+            | ------ | ------------------------- | ------------------- | ------ |
+            | and    | True if both are True     | a > 5 and b < 5     | True   |
+            | or     | True if at least one True | a > 5 or b > 5      | True   |
+            | not    | Reverses condition        | not(a > b)          | False  |
+
+    4.  bitwise operators:
+
+            | Operator | Meaning              | Example (a=10, b=3) | Result |    
+            | -------- | -------------------- | --------------------| ------ |  
+            | &        | AND                  | a & b               | 2      |     
+            | \        | \                    | OR                  | `a     | 
+            | ^        | XOR                  | a ^ b               | 9      |     
+            | ~        | NOT (1’s complement) | ~a                  | -11    |     
+            | <<       | Left shift           | a << 1              | 20     |     
+            | >>       | Right shift          | a >> 1              | 5      |     
+
+
+
+Q-4. Conditional Statements 
+
+
+Q1.Introduction to conditional statements: if, else, elif. 
+
+Ans. ====> Introduction to Conditional Statements in Python:-
+    = Conditional statements are used to make decisions in a program based on conditions (True/False).
+    = They allow a program to execute different blocks of code depending on the situation.
+
+1. The if Statement:-
+=  Executes a block of code only if the condition is True.
+=  Example:
+            age = 18
+            if age >= 18:
+                    print("You are eligible to vote.")
+
+2. The if–else Statement:-
+= if → runs when condition is True.
+= else → runs when condition is False.
+= Example:
+            age = 16
+            if age >= 18:
+                print("You can vote.")
+            else:
+                print("You are not eligible to vote yet.")
+
+3. The if–elif–else Statement:-
+= elif (short for else if) checks multiple conditions.
+= Only the first True condition is executed.
+= If none are True, the else block runs.
+= Example:
+            marks = 72
+            if marks >= 90:
+                print("Grade: A+")
+            elif marks >= 75:
+                print("Grade: A")
+            elif marks >= 60:
+                print("Grade: B")
+            else:
+                print("Grade: C")
+
+
+Q2.Nested if-else conditions. 
+
+Ans. ====> A nested if means an if statement inside another if or else block.
+     It is used when decisions depend on multiple levels of conditions
+
+=>  syntax:
+            if condition1:
+                if condition2:
+                    # Code block if both condition1 and condition2 are True
+                 else:
+                    # Code block if condition1 is True but condition2 is False
+            else:
+                    # Code block if condition1 is False
+
+=> Example:
+            age = 20
+            citizen = True
+            if age >= 18:  # Outer if
+                    if citizen:  # Inner if
+                        print("You are eligible to vote.")
+                    else:
+                        print("You must be a citizen to vote.")
+             else:
+                    print("You are under 18, not eligible to vote.")
+
+
+
+Q-5.Looping (For, While)
+
+
+Q1.Introduction to for and while loops. 
+
+Ans. ====>Python offers two primary loop constructs for repetitive execution of code blocks: for loops and while loops.
+
+     1. for Loop:-
+    The for loop is designed for iterating over sequences (like lists, tuples, strings, or ranges) or other iterable
+    objects. It executes a block of code once for each item in the sequence.
+---> Example of a for loop iterating over a list:-
+    fruits = ["apple", "banana", "cherry"]
+    for fruit in fruits:
+        print(fruit)
+
+--->Example of a for loop using range():-
+    for i in range(5):  # Iterates from 0 to 4
+        print(i)
+
+    2. while Loop:
+    The while loop repeatedly executes a block of code as long as a specified condition remains True. It is suitable when 
+    the number of iterations is not known in advance and the loop's termination depends on a condition becoming False. 
+--->Example of a while loop:-
+    count = 0
+    while count < 5:
+        print("Count is:", count)
+        count += 1  # Increment count to eventually make the condition False
+
+    ====>Key Differences and Use Cases:-
+    --->for loop:-
+`               Best suited when you need to iterate over a known sequence or a fixed number of times.
+    --->while loop:-
+                Ideal when the number of iterations is uncertain, and the loop continues based on a dynamic condition.
+
+
+Q2.How loops work in Python. 
+
+Ans.====>Python utilizes two primary types of loops for repetitive execution of code blocks: for loops and while loops.
+    1. for loops:-
+    for loops in Python are designed for iterating over sequences (such as lists, tuples, strings, or ranges) or other 
+    iterable objects. The core mechanism involves:Iteration Variable: A variable is designated to temporarily hold each
+    item from the iterable during each pass (iteration) of the loop.Iterating through the sequence: The loop processes 
+    each item in the iterable one by one, from the beginning to the end.Executing the code block: For each item, the 
+    indented code block within the for loop is executed.
+---->Example:
+    fruits = ["apple", "banana", "cherry"]
+    for fruit in fruits:
+        print(fruit)
+
+    2. while loops:-
+    while loops are used to repeatedly execute a block of code as long as a specified condition remains true. 
+    The process involves:Condition Check: Before each iteration, the while loop evaluates a given boolean condition.
+    Executing the code block: If the condition evaluates to True, the indented code block within the while loop is 
+    executed.Re-evaluating the condition: After the code block executes, the condition is re-evaluated. The loop 
+    continues as long as the condition remains True.Termination: The loop terminates when the condition evaluates to False.
+---->Example:
+    count = 0
+    while count < 5:
+        print(count)
+        count += 1
+
+====>Control Flow Statements:-
+
+--->Both for and while loops can be managed further using control flow statements:
+
+---->break:-
+Terminates the loop entirely, regardless of the loop's condition or remaining iterations.
+
+---->continue:-
+Skips the current iteration and proceeds to the next iteration of the loop.
+
+---->else (with loops):-
+An optional else block can be included with both for and while loops. This else block executes only if the loop completes
+normally (i.e., not terminated by a break statement).
+
+
+Q3.Using loops with collections (lists, tuples, etc.).
+
+Ans.====>Using Loops with Collections in Python
+
+1. What are Collections?
+
+--->Collections are data structures in Python that store multiple items together.
+--->Examples:- list, tuple, set, dictionary, range.
+
+2. Why use Loops with Collections?
+
+--->To access each element in the collection.
+--->To perform operations like printing, modifying, or checking conditions.
+--->To avoid repeating code (automation).
+
+3. Loops used with Collections:-
+
+---->for loop:-
+            Most commonly used to iterate over collections.
+         --->Syntax:
+                for item in collection:
+                    # do something
+
+                Example with list:
+
+                    fruits = ["apple", "banana", "mango"]
+                    for fruit in fruits:
+                         print(fruit)
+
+---->while loop
+            Uses an index to access elements.
+            Useful when we don’t know the end in advance.
+            Example with list:
+            fruits = ["apple", "banana", "mango"]
+            i = 0
+            while i < len(fruits):
+                print(fruits[i])
+                i += 1
+
+4. Using Loops with range():-
+
+---->range() generates a sequence of numbers.
+---->Often used with for loops to repeat a block of code multiple times.
+---->Example:
+            for i in range(5):
+                print("Hello", i)
+
+====>Loops help us iterate collections like list, tuple, set, dictionary, and range.
+
+--->for loop → directly works with items.
+
+--->while loop → works with index.
+
+--->range() → generates numbers for controlled iteration.
+
+
+
+Q-8.Control Statements (Break, Continue, Pass) 
+
+Q1.Understanding the role of break, continue, and pass in Python loops. 
+
+Ans.====>In Python, break, continue, and pass are control flow statements used within loops to alter their execution. 
+
+----->break statement:-
+==>The break statement immediately terminates the loop in which it is encountered.
+==>Execution then proceeds to the statement immediately following the loop.
+==>break is often used when a specific condition is met, and further iterations of the loop are no longer necessary.
+   ==> for i in range(5):
+        if i == 3:
+            break
+        print(i)
+    -->Output:
+      0
+      1
+      2
+
+----->continue statement:
+==>The continue statement skips the rest of the current iteration of the loop. 
+==>Execution then proceeds to the next iteration of the loop.
+==>continue is used when a specific condition is met, and the remaining code within the current iteration should be 
+   bypassed, but the loop itself should continue.
+   ==> for i in range(5):
+        if i == 2:
+            continue
+        print(i)
+    -->Output:
+      0
+      1
+      3
+      4
+
+----->pass statement:
+==>The pass statement is a null operation; it does nothing.
+==>It is used as a placeholder where a statement is syntactically required but no action is desired.
+==>pass is useful when defining empty functions, classes, or as a temporary placeholder within conditional blocks or
+  loops that will be implemented later.
+  ==>for i in range(3):
+        if i == 1:
+            pass
+        print(i)
+    -->Output:
+       0
+       1
+       2
+
+
+
+Q-9.String Manipulation
+
+Q1.Understanding how to access and manipulate strings. 
+
+Ans.===> Textual data in Python is handled with ”str” objects, or strings. Strings are immutable(fixed/rigid) sequences of 
+Unicode code points.
+
+===>String literals are written in a variety of ways:-
+---->Single quotes: 'allows embedded "double" quotes'
+----> Double quotes: "allows embedded 'single' quotes".
+----> Triple quoted: '''Three single quotes''', """Three double quotes"""
+----> Triple quoted strings may span multiple lines - all associated whitespace will
+      be included in the string literal.
+
+
+Q2.Basic operations: concatenation, repetition, string methods (upper(), lower(), etc.). 
+
+Ans.====>str.capitalize():-
+ Return a copy of the string with its first character capitalized and the rest lowercased.
+
+====>str.casefold():-
+ Return a case folded copy of the string. Case folded strings may be used for caseless matching.
+
+====> str.center(width[, fillchar]):-
+ Return centered in a string of length width. Padding is done using the specified fillchar (default is an ASCII space).
+ The original string is returned ifwidth is less than or equal to len(s).
+
+====> str.count(sub[, start[, end]]):-
+ Return the number of non-overlapping occurrences of substring sub in the range [start, end]. Optional arguments start and 
+ end are interpreted as in slice notation.
+
+====>str.endswith(suffix[, start[, end]]):-
+ Return True if the string ends with the specified suffix, otherwise return False.Suffix can also be a tuple of suffixes 
+ to look for. With optional start, test beginning at that position. With optional end, stop comparing at that position.
+ str.find(sub[, start[, end]]) Return the lowest index in the string where substring sub is found within the slice 
+ s [start: end]. Optional arguments start and end are interpreted as in slice notation. Return -1 if sub is not found.
+
+ ====>str.format(*args, **kwargs):-
+ Perform a string formatting operation. The string on which this method is called can contain literal text or replacement
+ fields delimited by braces{}. Each replacement field contains either the numeric index of a positional argument, or the 
+ name of a keyword argument. Returns a copy of the string where each replacement field is replaced with the string value 
+ of the corresponding argument. str.index (sub [, start [, end]]) Like find (), but raise Value Error when the substring
+ is not found.
+====> str.isalnum():-
+ Return true if all characters in the string are alphanumeric and there is at least one character, false otherwise. A 
+ character c is alphanumeric if one of the following returns True: c.isalpha(), c.isdecimal(), c.isdigit(), or
+ c.isnumeric().
+
+====> str.isidentifier():-
+ Return true if the string is a valid identifier according to the language definition
+
+====> str.islower():-
+ Return true if all cased characters in the string are lowercase and there is at least one cased character, false 
+ otherwise.
+
+====> str.istitle():-
+ Return true if the string is a titlecased string and there is at least one character, for example uppercase characters 
+ may only follow uncased characters and lowercase characters only cased ones. Return false otherwise.
+
+====> str.isupper():-
+ Return true if all cased characters in the string are uppercase and there is at least one cased character, false 
+ otherwise.
+
+====> str.join(iterable):-
+  Return a string which is the concatenation of the strings in the iterable. A TypeError will be raised if there are 
+  any non-string values initerable, including bytes objects. The separator between elements is the string providing this
+  method.
+
+====>str.ljust(width[, fillchar]):-
+ Return the string left justified in a string of length width. Padding is done using the specified fillchar 
+ (default is an ASCII space). The original string is returned if width is less than or equal to len(s).
+
+====> str.lower():-
+ Return a copy of the string with all the cased characters converted to lowercase.
+ 
+====>str.replace(old, new[, count]):-
+ Return a copy of the string with all occurrences of substring old replaced by new. If the optional argument count is 
+ given, only the first countoccurrences are replaced.
+
+====> str.split(sep=None, maxsplit=-1):-
+ Return a list of the words in the string, using sep as the delimiter string. If maxsplit is given, at most maxsplit 
+ splits are done (thus, the list will have at most maxsplit+1 elements). If maxsplit is not specified or -1, then there
+ is no limit on the number of splits
+
+====>str.title():-
+ Return a titlecased version of the string where words start with an uppercase character and the remaining characters are
+ lowercase.
+
+ 
+ Q3.String slicing. 
+
+ Ans. ====>Slicing:-
+            ---->Like other programming languages, it’s possible to access individual characters of a string by using array-like 
+                indexing syntax. In this we can access each and every element of string through their index number and the indexing 
+                starts from 0. Python does index out of bound checking.
+                
+            ---->So, we can obtain the required character using syntax,string_name[index_position]:-
+            ---->The positive index_position denotes the element from the starting(0) and the negative index shows the 
+                 index from the end(-1).
+            ---->To extract substring from the whole string then then we use the syntax like
+            ---->string_name[beginning: end : step]beginning represents the starting index of string end denotes the end 
+                 index of string which is not inclusive steps denotes the distance between the two words.
+            ---->Example :print x[2:5] # Prints substring stepping up 2nd character
+            ---->Example : print [4:10:2] # from 4th to 10th character
+            ---->print x[-5:-3] # Prints 3rd character from rear from 3 to 5
