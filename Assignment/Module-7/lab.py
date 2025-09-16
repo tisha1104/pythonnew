@@ -179,7 +179,7 @@ print(t1[1])
 
 
 #==================================================>Lab-5<================================================================
-# ==================================================>TAccessing Tuple<===================================================
+# ==================================================>Accessing Tuple<===================================================
 
 # Write a Python program to access values between index 1 and 5 in a tuple. 
 
@@ -207,8 +207,86 @@ A=(10,20,30,40,50,60,70,80,90,100)
 print(A[-1])
 
 
-#==================================================>Lab-5<================================================================
-# ==================================================>TAccessing Tuple<===================================================
+#==================================================>Lab-6<================================================================
+#==================================================>Dictionaries<=========================================================
 
 #Write a Python program to create a dictionary with 6 key-value pairs. 
 
+T={"Name":"Tisha",
+    "email":"tishapatel@gmail.com",
+    "Phone":"8563239710",
+    "Age":"20",
+    "Subject":"Python",
+    "Duration":"1 Year"
+    }
+print(T)
+
+
+#Write a Python program to access values using dictionary keys. 
+
+T2={"Name":"Rani",
+    "email":"Ranipatel@gmail.com",
+    "Phone":"8113239710",
+    "Age":"20",
+    "Subject":"C,C++",
+    "Duration":"3 Month"
+    }
+print(T2["Name"])
+print(T2["email"])
+print(T2["Phone"])
+print(T2["Age"])
+print(T2["Subject"])
+print(T2["Duration"])
+
+
+# ----------------------------------------------------->Practical Examples:<--------------------------------------
+
+#Q-1.Write a Python program to create a dictionary of 6 key-value pairs. 
+
+a={"python":"Fees=90000",
+"java":"Fees=85000",
+"C":"Fees=25000",
+"C++":"Fees=30000",
+"Tally Prime":"Fees=5000",
+"CCC":"Fees=4000"}
+
+print(a)
+
+
+#Q-2. Write a Python program to access values using keys from a dictionary.
+
+a={"python":"Fees=90000",
+"java":"Fees=85000",
+"C":"Fees=25000",
+"C++":"Fees=30000",
+"Tally Prime":"Fees=5000",
+"CCC":"Fees=4000"}
+
+print(a["C"])
+print(a["C++"])
+print(a["CCC"])
+print(a["Tally Prime"])
+print(a["java"])
+print(a["python"])
+
+
+#==================================================>Lab-7<==============================================================
+# ==================================================> Working with Dictionaries<===================================================
+
+# Write a Python program to update a value in a dictionary. 
+
+a={"Name":"Rani","Email":"Rani@gmail.com","Phone":"1235456987"}
+print(a)
+a.update({"Name":"Tisha","Email":"Tisha@gmail.com","Phobne":"1265497784"})
+print(a)
+
+
+# Write a Python program to merge two lists into one dictionary using a loop. 
+
+# a=["Name","Email","Age"]
+# b=["Riddhi","Riddhi@gmail.com",20]
+# c={}
+
+# for i in range(len(a)):
+#     c[a[i]]=b[:]
+# print(c)

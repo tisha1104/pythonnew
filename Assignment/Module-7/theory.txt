@@ -252,7 +252,7 @@ iii. Membership (in, not in):-
             print("yellow" not in colors)       
 
 
-<---------------------------------------------------TuAccessing Tuple --------------------------------------------------->
+<---------------------------------------------------Accessing Tuple --------------------------------------------------->
 
 Q-1.Accessing tuple elements using positive and negative indexing.
 
@@ -299,4 +299,112 @@ Q-2.Slicing a tuple to access ranges of elements.
 
 Q-1.Introduction to dictionaries: key-value pairs.
 
---->Ans. 
+--->Ans. ➢ What is a dictionary? 
+➢ A dictionary is an unordered, mutable collection of items. Each item is stored as a key-value 
+pair. 
+➢ Keys must be unique and immutable (like strings, numbers, or tuples). 
+➢ Values can be of any data type. 
+---->Syntax:-
+my_dict = {   "name": "Alice", 
+"age": 25, 
+"city": "New York"} 
+
+
+Q-2.Accessing, adding, updating, and deleting dictionary elements. 
+
+--->Ans. i.Accessing values:-
+print(my_dict["name"])      
+# using get() method 
+print(my_dict.get("age"))     
+# Alice 
+# 25 
+
+ii.Adding a new key-value pair:-
+my_dict["email"] = alice@example.com 
+print (my_dict) 
+
+iii.Updating a value:-
+my_dict["age"] = 26
+
+iv.Deleting an item:-
+del my_dict["city"]           
+my_dict.pop("age")          
+my_dict.clear()                 
+# Removes the key 'city' 
+# Also removes and returns value of 'age' 
+# Removes all items from the dictionary
+
+
+Q-3. Dictionary methods like keys(), values(), and items(). 
+
+--->Ans. • These are useful for looping over dictionaries or inspecting their contents. These methods help 
+you access different parts of a dictionary. These views can be converted to lists if needed. 
+
+• keys():- Returns a view of all keys. 
+student = {"name": "Alex", "age": 20, "grade": "A"} 
+print(student.keys())          
+# dict_keys(['name', 'age', 'grade']) 
+
+• values():- Returns a view of all values. 
+print(student.values())      
+# dict_values(['Alex', 20, 'A']) 
+
+• items():- Returns a view of all key-value pairs (as tuples). 
+print(student.items())       
+# dict_items([('name', 'Alex'), ('age', 20), ('grade', 'A')]) 
+• Looping with items() 
+for key, value in my_dict.items(): 
+print(f"{key}: {value}")
+
+
+<-----------------------------------------------------Working with Dictionaries------------------------------------------->
+
+Q-1. Iterating over a dictionary using loops.
+
+--->Ans. You can iterate a dictionary through:-
+• Keys 
+• Values 
+• Key-value pairs 
+
+i. Iterating over keys (default):-
+person = {"name": "Alice", "age": 25, "city": "New York"} 
+for key in person: 
+print(key, "->", person[key]) 
+
+ii. Iterating over .items() (key-value pairs):- 
+for key, value in person.items(): 
+print(f"{key}: {value}") 
+
+iii. Iterating over values:-
+for value in person.values(): 
+print(value)
+
+
+Q-2. Merging two lists into a dictionary using loops or zip(). 
+
+--->Ans. Here, in both the methods the keys and values are of the same length. 
+
+i.Using zip():- 
+keys = ["name", "age", "city"] 
+values = ["Alice", 25, "Surat"] 
+merged = dict(zip(keys, values)) 
+print(merged) 
+# {'name': 'Alice', 'age': 25, 'city': 'Surat'} 
+
+ii.Using a loop:-
+merged = {} 
+for i in range(len(keys)): 
+merged[keys[i]] = values[i] 
+print(merged) 
+
+
+Q-3. Counting occurrences of characters in a string using dictionaries.
+
+--->Ans. text = "hello world" 
+         char_count = {} 
+for char in text: 
+        if char in char_count: 
+                char_count[char] += 1 
+        else: 
+                char_count[char] = 1 
+print(char_count)                               
