@@ -47,24 +47,24 @@
 
 k="hello python hello 11111 ddss 22225"
 
-# a=0
-# b=0
-# for i in k:
-#     if str(i).isalpha():
-#         a+=1
-#     elif str(i).isdigit():
-#         b+=1
-# print("alphabet:",a)
-# print("number:",b)
+a=0
+b=0
+for i in k:
+    if str(i).isalpha():
+        a+=1
+    elif str(i).isdigit():
+        b+=1
+print("alphabet:",a)
+print("number:",b)
 
 
 #Reverse string
 
-s=""
-for i in range(len(k)-1,-1,-1):
-    s+=k[i]
+# s=""
+# for i in range(len(k)-1,-1,-1):
+#     s+=k[i]
 
-print(s)
+# print(s)
 
 # print(k[5:])
 # print(k[:5])

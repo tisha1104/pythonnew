@@ -407,4 +407,46 @@ for char in text:
                 char_count[char] += 1 
         else: 
                 char_count[char] = 1 
-print(char_count)                               
+print(char_count)   
+
+
+<-----------------------------------------------------Functions---------------------------------------------------------->
+
+Q-1.Defining functions in Python. 
+
+--->Ans. • A function is a reusable block of code that can performs a specific task. 
+        --->Syntax:-
+                def greet(): 
+                        print("Hello!") 
+                #Calling the function: 
+                greet() 
+
+
+Q-2.Different types of functions: with/without parameters, with/without return values. 
+
+--->Ans. i. Without parameters, no return type:- 
+        def say_hello(): 
+                print("Hello!") 
+
+ii. With parameters, no return type:- 
+        def greet_user(name): 
+                print(f"Hello, {name}!") 
+
+iii. With parameters, with return value:- 
+        def add(a, b): 
+                return a + b 
+
+iv. Without parameters, with return:- 
+        def get_name(): 
+                return "Alice" 
+
+
+Q-3.Anonymous functions (lambda functions). 
+
+--->Ans. ➢ Lambda functions are small, one-line anonymous functions. 
+➢ Syntax:- lambda arguments: expression. 
+➢ Use them when a short function is needed for a short time (e.g. with map(), filter(), or 
+sorted()). 
+---->Example:- 
+        add = lambda x, y: x + y 
+        print(add(3, 4))          

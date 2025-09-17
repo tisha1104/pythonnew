@@ -283,10 +283,65 @@ print(a)
 
 # Write a Python program to merge two lists into one dictionary using a loop. 
 
-# a=["Name","Email","Age"]
-# b=["Riddhi","Riddhi@gmail.com",20]
-# c={}
+a=["Name","Email","Age"]
+b=["Riddhi","Riddhi@gmail.com",20]
+c={}
 
-# for i in range(len(a)):
-#     c[a[i]]=b[:]
-# print(c)
+for i in range(len(a)):
+    c[a[i]]=b[i]
+print(c)
+
+
+# ----------------------------------------------------->Practical Examples:<--------------------------------------
+
+#Q-1. Write a Python program to update a value at a particular key in a dictionary. 
+
+a={"Name":"Ishika","Email":"Ishika@gmail.com","Phone":"145236987"}
+print(a)
+a.update({"Name":"Aastha"})
+print(a)
+
+
+#Q-2.Write a Python program to separate keys and values from a dictionary using keys() and values() methods.
+
+
+a={"Name":"Hency","Email":"Hency@gmail.com","Phone":"1235869","Gradution":"BCA"}
+print(a.keys())
+print(a.values())
+print(a.items())
+
+
+#Q-3.Write a Python program to convert two lists into one dictionary using a for loop. 
+
+List1=["A","B","C","D"]
+List2=[10,20,30,40,50]
+
+result={}
+for i in range(len(List1)):
+    result[List1[i]]=List2[i]
+print(result)
+
+
+#Q-4.Write a Python program to count how many times each character appears in a string. 
+
+a="My Name Is Tisha"
+count=0
+for i in a:
+    if str(i).isalpha():
+        count+=1
+print("total character appears in a string:" ,count)
+
+
+
+#==================================================>Lab-8<==============================================================
+# ==================================================> Functions <=======================================================
+
+# Write a Python program to create a function that takes a string as input and prints it.
+
+def person(Name):
+    print(Name)
+
+person("MY NAME IS TISHA")    
+
+
+# Write a Python program to create a calculator using functions.
