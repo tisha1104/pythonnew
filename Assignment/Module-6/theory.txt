@@ -1,3 +1,4 @@
+<=====================================================================================================================>
 Q-1. Introduction to Python
 Q1. Introduction to Python and its Features (simple, high-level, interpreted language).
 
@@ -149,9 +150,8 @@ Code
     Hello, World!
 
 
-
+<=====================================================================================================================>
 Q-2.Programming Style
-
 
 Q1.Understanding Python’s PEP 8 guidelines.
 
@@ -310,9 +310,8 @@ Utilize Python's built-in features and idioms, such as list comprehensions, gene
 expressions, and context managers, to write concise and expressive code.
 
 
-
+<=====================================================================================================================>
 Q-3. Core Python Concepts
-
 
 Q1.Understanding data types: integers, floats,strings, lists, tuples, dictionaries,sets.
 
@@ -424,9 +423,8 @@ Ans.1. arithmetic operators:
             | >>       | Right shift          | a >> 1              | 5      |     
 
 
-
+<=====================================================================================================================>
 Q-4. Conditional Statements 
-
 
 Q1.Introduction to conditional statements: if, else, elif. 
 
@@ -494,8 +492,8 @@ Ans. ====> A nested if means an if statement inside another if or else block.
 
 
 
+<=====================================================================================================================>
 Q-5.Looping (For, While)
-
 
 Q1.Introduction to for and while loops. 
 
@@ -626,7 +624,7 @@ Ans.====>Using Loops with Collections in Python
 --->range() → generates numbers for controlled iteration.
 
 
-
+<=====================================================================================================================>
 Q-8.Control Statements (Break, Continue, Pass) 
 
 Q1.Understanding the role of break, continue, and pass in Python loops. 
@@ -676,7 +674,7 @@ Ans.====>In Python, break, continue, and pass are control flow statements used w
        2
 
 
-
+<=====================================================================================================================>
 Q-9.String Manipulation
 
 Q1.Understanding how to access and manipulate strings. 
@@ -782,3 +780,255 @@ Ans.====>str.capitalize():-
             ---->Example :print x[2:5] # Prints substring stepping up 2nd character
             ---->Example : print [4:10:2] # from 4th to 10th character
             ---->print x[-5:-3] # Prints 3rd character from rear from 3 to 5
+
+
+<=====================================================================================================================>
+Q-6.Generators and Iterators 
+
+Q1.Understanding how generators work in Python. 
+
+Ans.===>What is a generator?
+
+--->A generator is a special type of function that returns an iterator.
+
+--->Instead of using return, it uses the yield keyword to produce values one at a time.
+
+===>How does it work?
+
+--->When a generator function is called, it doesn’t run immediately. It returns a generator object.
+
+--->Each time you call next() on that object, the function resumes from where it last yielded a value.
+
+--->This allows the function to pause and resume, maintaining its internal state.
+
+====>Why use generators?
+
+--->They are memory-efficient: ideal for large datasets or infinite sequences.
+
+--->They support lazy evaluation: values are computed only when needed.
+
+--->They simplify code: no need to manually implement __iter__() and __next__() as you would with custom iterators.
+
+
+Q2.Difference between yield and return. 
+
+Ans.===> Difference Between yield and return in Python
+
+===>Function Type:-
+--->return is used in regular functions.
+--->yield is used in generator functions.
+
+===>Execution Behavior:-
+--->return ends the function and sends back a single value.
+--->yield pauses the function and sends back a value, but retains the function’s state for future execution.
+
+===>State Retention:-
+--->return discards all local variables after execution.
+--->yield preserves local variables and resumes from where it left off.
+
+===>Output:-
+--->return gives a single result.
+--->yield produces a sequence of results over time (one per call).
+
+===>Memory Efficiency:-
+--->return may require storing all results in memory if returning a list.
+--->yield is more memory-efficient, ideal for large or infinite sequences.
+
+===>Use Case:-
+--->Use return when you need a final result.
+--->Use yield when you want to iterate over a stream of values.
+
+
+Q3.Understanding iterators and creating custom iterators. 
+
+Ans.===>What Are Iterators?
+   An iterator is an object that allows you to traverse through a sequence of elements one at a time.
+
+--->It must implement two special methods:-
+__iter__() → returns the iterator object itself.
+__next__() → returns the next value in the sequence or raises StopIteration when done.
+
+===>Iterators 
+• Objects with __iter__() and __next__() methods. 
+it = iter([1, 2, 3]) 
+print(next(it))  # 1
+
+
+<=====================================================================================================================>
+Q-7. Functions and Methods
+
+Q1.Defining and calling functions in Python.
+
+Ans.===>Function Definition:-
+
+-->Use the def keyword followed by the function name and parentheses.
+--->Inside the parentheses, you can include parameters (optional inputs).
+--->The function body is indented and contains the logic to execute.
+
+--->Example:-
+    def greet():
+        print("Hello, welcome to Python!")
+
+===>Function Calling:-
+
+--->To execute a function, write its name followed by parentheses.
+--->If the function requires arguments, pass them inside the parentheses.
+
+--->Example:-
+    greet()  # Calls the function and prints the message
+
+===>Parameterized Functions:-
+--->Functions can accept inputs to make them dynamic.
+
+--->Example:-
+    def greet_user(name):
+        print("Hello,", name)
+
+    greet_user("Tisha")  # Output: Hello, Tisha
+
+===>Return Values:-
+--->Functions can return results using the return keyword.
+
+--->Example:-
+    def add(a, b):
+        return a + b
+
+result = add(5, 3)
+print(result)  # Output: 8
+
+
+Q2.Function arguments (positional, keyword, default). 
+
+Ans.===>• Positional:- def add(a, b) 
+• Keyword:- add(a=1, b=2) 
+• Default:- def add(a, b=5)
+
+
+Q3. Scope of variables in Python.
+
+Ans.===>1. Local Scope:-
+--->A variable defined inside a function is local to that function.
+--->It can only be accessed within that function and disappears once the function ends.
+
+--->Example:-
+    def greet():
+        message = "Hello"
+        print(message)  # Accessible here
+
+# print(message)  # Error: message is not defined outside the function
+
+2. Global Scope:-
+--->A variable defined outside any function is global.
+--->It can be accessed from anywhere in the program, including inside functions (unless shadowed).
+
+--->Example:-
+message = "Hello"
+
+def greet():
+    print(message)  # Accesses global variable
+
+greet()
+
+
+Q4.Built-in methods for strings, lists, etc. 
+
+Ans.===>Built-in Methods for Strings:-
+
+--->upper() – Converts all characters to uppercase → "hello".upper() → "HELLO"
+--->lower() – Converts all characters to lowercase → "HELLO".lower() → "hello"
+--->split() – Splits a string into a list based on a delimiter → "a,b,c".split(",") → ['a', 'b', 'c']
+--->strip() – Removes leading and trailing whitespace → " text ".strip() → "text"
+--->replace() – Replaces part of the string with another → "cat".replace("c", "b") → "bat"
+
+===>Built-in Methods for Lists:-
+
+--->append() – Adds an item to the end of the list → my_list.append(5)
+--->pop() – Removes and returns the last item (or item at a given index) → my_list.pop() or my_list.pop(2)
+--->sort() – Sorts the list in ascending order → my_list.sort()
+
+===>Built-in Methods for Dictionaries:-
+
+--->keys() – Returns a view of all keys → my_dict.keys()
+--->values() – Returns a view of all values → my_dict.values()
+--->get() – Retrieves the value for a given key → my_dict.get('name')
+
+
+<=====================================================================================================================>
+Q-10. Advanced Python (map(), reduce(), filter(), Closures and Decorators) 
+
+Q1.How functional programming works in Python. 
+
+Ans.===>map():-Applies a function to each item in an iterable.
+--->Example:-
+    numbers = [1, 2, 3]
+    squared = list(map(lambda x: x**2, numbers))
+
+===>filter():-Filters items based on a condition.
+--->Example:-
+    even = list(filter(lambda x: x % 2 == 0, numbers))
+
+===>reduce():-Applies a function cumulatively to reduce a sequence to a single value.
+--->Example:-
+    from functools import reduce
+    product = reduce(lambda x, y: x * y, numbers)
+
+
+Q2.Using map(), reduce(), and filter() functions for processing data. 
+
+Ans.===> 1. map():- 
+--->Syntax:- map(func, iterable[, ...]) 
+• Applies a function to each element of iterable(s), returning an iterator of transformed 
+values. 
+• In Python 3, map() returns an iterator, not a list—so wrap with list() to inspect it  
+• Can accept multiple iterables, applying the function element-wise until the shortest 
+iterable is exhausted. 
+• Example:-
+numbers = [1, 2, 3, 4, 5] 
+squared = list(map(lambda x: x**2, numbers)) 
+print(squared)  # [1, 4, 9, 16, 25] 
+
+2. filter():- 
+--->Syntax:- filter(func, iterable) 
+• Keeps only those elements in the iterable for which func(element) returns True. 
+• Also returns an iterator, so use list() to materialize results. 
+• Example:-
+numbers = [1, 2, 3, 4, 5, 6] 
+evens = list(filter(lambda x: x % 2 == 0, numbers)) 
+print(evens)  # [2, 4, 6] 
+
+3. reduce():-
+--->Syntax:- reduce(func, iterable[, initializer]) 
+• Applies a binary function cumulatively to elements of the iterable to produce a single 
+value. 
+• Not a built-in in Python 3 anymore—you must import it from functools. 
+• Example:-
+from functools import reduce 
+result = reduce(lambda x, y: x + y, [1, 2, 3, 4, 5]) 
+print(result)  # 15 
+
+
+Q3.Introduction to closures and decorators. 
+
+Ans.===>Closure:- A closure is a nested function that remembers variables from its enclosing scope, 
+even after that outer function has finished executing. 
+• Define a function inside another function. 
+• The inner function uses a variable defined in the outer function. 
+• Return the inner function to the caller. 
+--->Example:- 
+def outer(x): 
+def inner(): 
+print(x) 
+return inner 
+
+===>Decorator:- A decorator is a callable that takes a function, modifies or wraps it, and returns a 
+new function. Internally decorators are implemented using closures. 
+--->Example:- 
+def decorator(func): 
+def wrapper(): 
+print("Before") 
+func() 
+print("After") 
+return wrapper 
+@decorator 
+def greet(): 
+print("Hello")

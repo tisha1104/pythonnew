@@ -1,4 +1,6 @@
-#===================================================Lab-1============================================
+#===================================================Lab-1==========================================================
+#==================================================>Introduction to Python<========================================
+
 # Q1.Write a Python program that prints "Hello, World!".
 
 print("Hello, World!")
@@ -9,7 +11,9 @@ name= "Patel Tisha"
 
 print(f"My name is {name}")
 
-#===================================================Lab-2============================================
+#===================================================Lab-2====================================================
+#==================================================>Programming Style<========================================
+
 #Q1.Write a Python program that demonstrates the correct use of indentation, comments, and variables following PEP 8 guidelines.
 
 a=10
@@ -41,23 +45,25 @@ Floor_division=(a//b)
 print(f"floor_division of a//b={Floor_division}")
 
 
-#===================================================Lab-3============================================
+#===================================================Lab-3=========================================================
+#==================================================> Core Python Concepts<========================================
+
 #Q1.Write a Python program to demonstrate the creation of variables and different data types. 
 
-# a=10  int
-# print(a)
+a=10  #int
+print(a)
 
-# b= "Tisha" string
-# print(b)
+b= "Tisha" #string
+print(b)
 
-# c=15.50 float
-# print(c)
+c=15.50 #float
+print(c)
 
-# Subject=["Python","c","c++"] list
-# print(Subject)
+Subject=["Python","c","c++"] #list
+print(Subject)
 
-# for i in range(5): range
-#     print(b)
+for i in range(5): #range
+    print(b)
 
 
 #Q2.Practical Example 1: How does the Python code structure work? 
@@ -93,7 +99,9 @@ print(type(Name))
 print(type(c))
 
 
-#===================================================Lab-4============================================
+#===================================================Lab-4==========================================================
+#==================================================>Conditional Statements<========================================
+
 #Q1.Practical Example 5: Write a Python program to find greater and less than a number using if_else. 
 
 Number1=int(input("Enter the Number1 "))
@@ -152,7 +160,9 @@ else:
     print("You are not eligible to donate blood")
 
 
-#===================================================Lab-5============================================
+#===================================================Lab-5========================================================
+#==================================================>Looping (For, While)<========================================
+
 #Q1.Practical Example 1: Write a Python program to print each fruit in a list using a simple for loop. List1 = ['apple', 'banana', 'mango'].
 
 List1 = ['apple', 'banana', 'mango']
@@ -193,7 +203,87 @@ for i in range(5):
     print("*"*(i+1))
 
 
-#===================================================Lab-8============================================
+#===================================================Lab-6===========================================================
+#==================================================>Generators and Iterators<========================================
+
+#Q-1.Write a generator function that generates the first 10 even numbers. 
+
+def generate_even_numbers():
+    num = 2
+    count = 0
+    while count < 10:
+        yield num
+        num += 2
+        count += 1
+
+
+for even in generate_even_numbers():
+    print(even)
+
+
+#Q-2.Write a Python program that uses a custom iterator to iterate over a list of integers.
+
+
+#===================================================Lab-7=========================================================
+#==================================================>Functions and Methods<========================================
+
+#Q-1. Practical Example: 1) Write a Python program to print "Hello" using a string. 
+
+print("Hello")
+
+
+#Q-2.Practical Example: 2) Write a Python program to allocate a string to a variable and print it
+
+Details="Hello Pyhton!"
+print(Details)
+
+
+#Q-3. Practical Example: 3) Write a Python program to print a string using triple quotes. 
+
+print(""" My Name is Tisha
+    I am 20 Year Old
+    Currently Learning Python""")
+
+
+#Q-4.Practical Example: 4) Write a Python program to access the first character of a string using index value.
+
+st=("Hello World!")
+print(st[0]) 
+
+
+#Q-5.Practical Example: 5) Write a Python program to access the string from the second position onwards using slicing.
+
+t=("Hell World! Hello Python!") 
+print(t[1:])
+
+
+#Q-6.Practical Example: 6) Write a Python program to access a string up to the fifth character. 
+
+T=("Hello World!")
+print(T[:5])
+
+
+#Q-7.Practical Example: 7) Write a Python program to print the substring between index values 1 and 4.
+
+T1=("Hello World! Hello Pyhton!")
+print(T1[1:5]) 
+
+
+#Q-8.Practical Example: 8) Write a Python program to print a string from the last character. 
+
+A=("Hello World")
+print(A[-1])
+
+
+#Q-9.Practical Example: 9) Write a Python program to print every alternate character from the string starting from index 1.
+
+b=("Hello World! Hello Pyhton!") 
+print(b[1::2])
+
+
+#===================================================Lab-8==============================================================
+#=========================================>Control Statements (Break, Continue, Pass)<==================================
+
 #Q1.Practical Example: 1) Write a Python program to skip 'banana' in a list using the continue statement. List1 = ['apple', 'banana', 'mango'] 
 
 List1 = ['apple', 'banana', 'mango']
@@ -214,7 +304,9 @@ for i in List1:
     print(i)
 
 
-#===================================================Lab-9============================================
+#===================================================Lab-9=======================================================
+#==================================================>String Manipulation<========================================
+
 #Q1.Write a Python program to demonstrate string slicing. 
 
 str="Hello Python!"
@@ -273,3 +365,39 @@ print("Tisha2004".isalnum())
 print("Rani".zfill(50))
 
 print("Rani".center(50,"*"))
+
+
+#===================================================Lab-10=============================================================
+#=========================>Advanced Python (map(), reduce(), filter(), Closures and Decorators) ======================
+
+#Q-1.Write a Python program to apply the map() function to square a list of numbers. 
+
+l=[1,2,3,4,5,6,7,8,9]
+
+s=map(lambda a:a*a,l)
+print(list(s))
+
+
+#Q-2.Write a Python program that uses reduce() to find the product of a list of numbers.
+ 
+t=[1,2,3,4,5,6,7,8,9,10]
+
+from functools import reduce
+
+product=reduce(lambda a,b: a*b,t)
+print(product)
+
+
+#Q-3.Write a Python program that filters out even numbers using the filter() function.
+
+l=[1,2,3,4,5,6,7,8,9]
+
+def evennumber(a):
+    if a%2==0:
+        return True
+    else:
+        return False
+    
+s=filter(evennumber,l)
+s=filter(lambda a: a%2==0,l)
+print(list(s))

@@ -450,3 +450,49 @@ sorted()).
 ---->Example:- 
         add = lambda x, y: x + y 
         print(add(3, 4))          
+
+
+<-----------------------------------------------------Modules------------------------------------------------------------>
+
+Q-1.Introduction to Python modules and importing modules.
+
+--->Ans. ➢ A module is a file containing Python code (functions, variables, classes). 
+        i.Importing a module:-
+                import math 
+                import random 
+
+        ii.Importing a specific item:-
+                from math import sqrt
+
+
+Q-2.Standard library modules: math, random. 
+
+--->Ans.  i. math module:- 
+                import math 
+                print(math.sqrt(25))            
+                print(math.pi)                     
+                print(math.factorial(5))   
+
+        ii. random module:-
+                import random 
+                # 5.0 
+                # 3.141592653589793 
+                # 120 
+                print(random.randint(1, 10))           
+                print(random.choice(['a', 'b']))         
+
+
+Q-3.Creating custom modules. 
+
+--->Ans. ➢ You can create your own module by saving a .py file with functions. Ie. Here math_utils.py. 
+➢ Then use it in another file. 
+➢ Make sure both files are in the same directory or properly configured in your project. 
+        Example:- 
+                def add(a, b): 
+                        return a + b 
+                def multiply(a, b): 
+                        return a * b 
+                import math_utils 
+                print(math_utils.add(2, 3))      
+                # 5 
+                print(math_utils.multiply(4, 5)) # 20

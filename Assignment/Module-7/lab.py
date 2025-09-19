@@ -1,7 +1,7 @@
 # ==================================================>Lab-1<==============================================================
 # ==================================================>Accessing List<=====================================================
 
-#Write a Python program to create a list with elements of multiple data types (integers, strings, floats, etc.).
+#Q-1.Write a Python program to create a list with elements of multiple data types (integers, strings, floats, etc.).
 
 l=["Tisha","Rani",10,20,30,40,50,10.5,11.11,12.58,"5x","11y"]
 # print(l)
@@ -13,7 +13,7 @@ l=["Tisha","Rani",10,20,30,40,50,10.5,11.11,12.58,"5x","11y"]
 #     print(l[i])
 
 
-#Write a Python program to access elements at different index positions. 
+#Q-2.Write a Python program to access elements at different index positions. 
 
 # print(l[0])
 # print(l[2:6])
@@ -47,7 +47,7 @@ l=["Tisha","Rani",10,20,30,40,50,10.5,11.11,12.58,"5x","11y"]
 # ==================================================>Lab-2<==============================================================
 # ==================================================>List Operations<=====================================================
 
-#Write a Python program to add elements to a list using insert() and append(). 
+#Q-1.Write a Python program to add elements to a list using insert() and append(). 
 
 # list1=["Python","java","C"]
 # list1.insert(1,"C++")
@@ -56,7 +56,7 @@ l=["Tisha","Rani",10,20,30,40,50,10.5,11.11,12.58,"5x","11y"]
 # print(list1)
 
 
-#Write a Python program to remove elements from a list using pop() and remove(). 
+#Q-2.Write a Python program to remove elements from a list using pop() and remove(). 
 
 # list2=["Tisha","Rani","Rddhi","Nidhi","Ishika"]
 # list2.remove("Rddhi")
@@ -88,7 +88,7 @@ l=["Tisha","Rani",10,20,30,40,50,10.5,11.11,12.58,"5x","11y"]
 # ==================================================>Lab-3<==============================================================
 # ==================================================> Working with Lists <=====================================================
 
-#Write a Python program to iterate over a list using a for loop. 
+#Q-1.Write a Python program to iterate over a list using a for loop. 
 
 # fruit=["Mango","Apple","Banana","Charry","Dragon Fruit","Lichi"]
 
@@ -96,7 +96,7 @@ l=["Tisha","Rani",10,20,30,40,50,10.5,11.11,12.58,"5x","11y"]
 #     print(fruit)
 
 
-#Write a Python program to sort a list using both sort() and sorted(). 
+#Q-2.Write a Python program to sort a list using both sort() and sorted(). 
 
 fruit=["Mango","Apple","Banana","Charry","Dragon Fruit","Lichi"]
 
@@ -130,13 +130,13 @@ fruit=["Mango","Apple","Banana","Charry","Dragon Fruit","Lichi"]
 #==================================================>Lab-4<==============================================================
 # ==================================================>  Tuple  <========================================================
 
-#Write a Python program to create a tuple with multiple data types.
+#Q-1.Write a Python program to create a tuple with multiple data types.
 
 # t=(10,20,30,40,50,50,60,710,"Tisha","Rani",False,True,11.11,10.96,8.1,"5J","10X","11Y")
 # print(t)
 
 
-#Write a Python program to concatenate two tuples. 
+#Q-2.Write a Python program to concatenate two tuples. 
 
 # t1=(10,20,30,40,50,60,70,100)
 # t2=(110,120,230,140,14.52,11.11)
@@ -181,13 +181,13 @@ print(t1[1])
 #==================================================>Lab-5<================================================================
 # ==================================================>Accessing Tuple<===================================================
 
-# Write a Python program to access values between index 1 and 5 in a tuple. 
+#Q-1.Write a Python program to access values between index 1 and 5 in a tuple. 
 
 a=("Computer","Mouse","CPU","Key-Board","Hard-disk","Pen-drive","T.V")
 print(a[1:6])
 
 
-# Write a Python program to access alternate values between index 1 and 5 in a tuple.
+#Q-2.Write a Python program to access alternate values between index 1 and 5 in a tuple.
 
 b=(10,20,30,40,50,60,70,80,90)
 print(b[1:6:2])
@@ -210,7 +210,7 @@ print(A[-1])
 #==================================================>Lab-6<================================================================
 #==================================================>Dictionaries<=========================================================
 
-#Write a Python program to create a dictionary with 6 key-value pairs. 
+#Q-1.Write a Python program to create a dictionary with 6 key-value pairs. 
 
 T={"Name":"Tisha",
     "email":"tishapatel@gmail.com",
@@ -222,7 +222,7 @@ T={"Name":"Tisha",
 print(T)
 
 
-#Write a Python program to access values using dictionary keys. 
+#Q-2.Write a Python program to access values using dictionary keys. 
 
 T2={"Name":"Rani",
     "email":"Ranipatel@gmail.com",
@@ -273,7 +273,7 @@ print(a["python"])
 #==================================================>Lab-7<==============================================================
 # ==================================================> Working with Dictionaries<===================================================
 
-# Write a Python program to update a value in a dictionary. 
+#Q-1.Write a Python program to update a value in a dictionary. 
 
 a={"Name":"Rani","Email":"Rani@gmail.com","Phone":"1235456987"}
 print(a)
@@ -281,7 +281,7 @@ a.update({"Name":"Tisha","Email":"Tisha@gmail.com","Phobne":"1265497784"})
 print(a)
 
 
-# Write a Python program to merge two lists into one dictionary using a loop. 
+#Q-2.Write a Python program to merge two lists into one dictionary using a loop. 
 
 a=["Name","Email","Age"]
 b=["Riddhi","Riddhi@gmail.com",20]
@@ -336,7 +336,7 @@ print("total character appears in a string:" ,count)
 #==================================================>Lab-8<==============================================================
 # ==================================================> Functions <=======================================================
 
-# Write a Python program to create a function that takes a string as input and prints it.
+#Q-1.Write a Python program to create a function that takes a string as input and prints it.
 
 def person(Name):
     print(Name)
@@ -344,5 +344,129 @@ def person(Name):
 person("MY NAME IS TISHA")    
 
 
-# Write a Python program to create a calculator using functions.
+#Q-2.Write a Python program to create a calculator using functions.
 
+def add(num1,num2):
+    return num1+num2
+
+def subtraction(num1,num2):
+    return num1-num2
+
+def Multipection(num1,num2):
+    return num1*num2
+
+def divide(num1,num2):
+    return num1/num2
+
+def Moduls(num1,num2):
+    return num1%num2
+
+def Exponentiation(num1,num2):
+    return num1**num2
+
+def Floor_division(num1,num2):
+    return num1//num2
+
+print("Select Operation:")
+print("1. add")
+print("2. subtraction")
+print("3. Multipection")
+print("4. divide")
+print("5. Moduls")
+print("6. Exponentiation")
+print("7. Floor_division")
+
+choice=input("Enter Your Choice:")
+num1=float(input("Enetr the value of num1:"))
+num2=float(input("Enetr the value of num2:"))
+
+if choice=="1":
+    print("Result:",add(num1,num2))
+elif choice=="2":
+    print("Result:",subtraction(num1,num2))
+elif choice=="3":
+    print("Result:",Multipection(num1,num2))
+elif choice=="4":
+    print("Result:",divide(num1,num2))
+elif choice=="5":
+    print("Result:",Moduls(num1,num2))
+elif choice=="6":
+    print("Result:",Exponentiation(num1,num2))
+elif choice=="7":
+    print("Result:",Floor_division(num1,num2))
+else:
+    print("Sorry! Invalid Choice")
+
+
+# ----------------------------------------------------->Practical Examples:<--------------------------------------
+
+#Q-1.Write a Python program to print a string using a function. 
+
+def Person_details(Name,Email,Age,Course):
+    print(Name,Email,Age,Course)
+
+Person_details("Tisha","T@gmail.com",20,"Python")
+
+
+#Q-2. Write a Python program to create a parameterized function that takes two arguments and prints their sum.
+
+def Addition(Num1,Num2):
+    print(f"Sum Of {Num1} & {Num2}:{Num1+Num2}")
+
+Addition(10,10)
+
+
+#Q-3.Write a Python program to create a lambda function with one expression.
+
+A=lambda a: a*a
+print(A(10))
+
+
+#Q-4.Write a Python program to create a lambda function with two expressions.
+
+B=lambda a,b:a**b
+print(B(5,2))
+
+
+#==================================================>Lab-9<==============================================================
+# ==================================================>Modules<===========================================================
+
+#Q-1.Write a Python program to import the math module and use functions like sqrt(), ceil(), floor(). 
+
+import math
+
+print(math.sqrt(144))
+print(math.ceil(11.11))
+print(math.floor(10.1))
+print(math.pow(5,2))
+print(round(10.2))
+
+
+#Q-2.
+# Write a Python program to generate random numbers using the random module.
+
+import random
+A=random.randint(10,20)
+print(A)
+
+
+# ----------------------------------------------------->Practical Examples:<--------------------------------------
+
+#Q-1.Write a Python program to demonstrate the use of functions from the math module.
+
+
+import math
+
+print(math.sqrt(121))
+print(math.ceil(55.69))
+print(math.floor(8.5))
+print(math.pow(10,3))
+print(round(25.69))
+
+
+#Q-2.Write a Python program to generate random numbers between 1 and 100 using the random module.
+ 
+import random
+
+B=random.randint(1,100)
+print(B)
