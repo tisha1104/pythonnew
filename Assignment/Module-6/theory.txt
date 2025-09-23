@@ -1007,28 +1007,3 @@ result = reduce(lambda x, y: x + y, [1, 2, 3, 4, 5])
 print(result)  # 15 
 
 
-Q3.Introduction to closures and decorators. 
-
-Ans.===>Closure:- A closure is a nested function that remembers variables from its enclosing scope, 
-even after that outer function has finished executing. 
-• Define a function inside another function. 
-• The inner function uses a variable defined in the outer function. 
-• Return the inner function to the caller. 
---->Example:- 
-def outer(x): 
-def inner(): 
-print(x) 
-return inner 
-
-===>Decorator:- A decorator is a callable that takes a function, modifies or wraps it, and returns a 
-new function. Internally decorators are implemented using closures. 
---->Example:- 
-def decorator(func): 
-def wrapper(): 
-print("Before") 
-func() 
-print("After") 
-return wrapper 
-@decorator 
-def greet(): 
-print("Hello")

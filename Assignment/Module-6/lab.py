@@ -223,6 +223,12 @@ for even in generate_even_numbers():
 
 #Q-2.Write a Python program that uses a custom iterator to iterate over a list of integers.
 
+l=[10,20,30,40,50,60,70,80,90]
+k=iter(l)
+print(next(k))
+print(next(k))
+print(next(k))
+
 
 #===================================================Lab-7=========================================================
 #==================================================>Functions and Methods<========================================
@@ -320,51 +326,51 @@ print(str[::-1])
 
 #Q2.Write a Python program that manipulates and prints strings using various string methods.
 
-st= "my name is tisha"
-print(len(st))
+# st= "my name is tisha"
+# print(len(st))
 
-st= "MY NAME IS TISHA"
-print(str.lower(st))
+# st= "MY NAME IS TISHA"
+# print(str.lower(st))
 
-st= "my name is tisha"
-print(str.upper(st))
+# st= "my name is tisha"
+# print(str.upper(st))
 
-st= "my name is tisha"
-print(str.capitalize(st))
+# st= "my name is tisha"
+# print(str.capitalize(st))
 
-st= "my name is tisha"
-print(str.title(st))
+# st= "my name is tisha"
+# print(str.title(st))
 
-st= "  my name is tisha   "
-print(st)
-print(st.strip())
+# st= "  my name is tisha   "
+# print(st)
+# print(st.strip())
 
-st= "my name is tisha"
-print(st.replace('i','r',1))
+# st= "my name is tisha"
+# print(st.replace('i','r',1))
 
-st= "my name is tisha"
-print(st.find("tisha"))
+# st= "my name is tisha"
+# print(st.find("tisha"))
 
-st= "my name is tisha"
-print(st.startswith("M"))
+# st= "my name is tisha"
+# print(st.startswith("M"))
 
-st= "my name is tisha"
-print(st.endswith("a"))
+# st= "my name is tisha"
+# print(st.endswith("a"))
 
-st= "my name is tisha"
-print(st.split(" ",2))
+# st= "my name is tisha"
+# print(st.split(" ",2))
 
-print("XYZ".join("abc"))
+# print("XYZ".join("abc"))
 
-print("Tisha".isalpha())
+# print("Tisha".isalpha())
 
-print("2004".isdigit())
+# print("2004".isdigit())
 
-print("Tisha2004".isalnum())
+# print("Tisha2004".isalnum())
 
-print("Rani".zfill(50))
+# print("Rani".zfill(50))
 
-print("Rani".center(50,"*"))
+# print("Rani".center(50,"*"))
 
 
 #===================================================Lab-10=============================================================
@@ -401,3 +407,85 @@ def evennumber(a):
 s=filter(evennumber,l)
 s=filter(lambda a: a%2==0,l)
 print(list(s))
+
+
+#==================================================><====================================================================
+# ----------------------------------------------------->Assessment:<----------------------------------------------------
+#==================================================><====================================================================
+
+# Create a mini-project where students combine conditional statements, loops, and functions 
+# to create a basic Python application, such as a simple calculator or a grade management system.
+
+
+#---------------> a simple calculator:-
+
+def add(num1,num2):
+    return num1+num2
+
+def subtraction(num1,num2):
+    return num1-num2
+
+def Multipection(num1,num2):
+    return num1*num2
+
+def divide(num1,num2):
+    return num1/num2
+
+def Moduls(num1,num2):
+    return num1%num2
+
+def Exponentiation(num1,num2):
+    return num1**num2
+
+def Floor_division(num1,num2):
+    return num1//num2
+
+print("Select Operation:")
+print("1. add")
+print("2. subtraction")
+print("3. Multipection")
+print("4. divide")
+print("5. Moduls")
+print("6. Exponentiation")
+print("7. Floor_division")
+
+choice=input("Enter Your Choice:")
+num1=float(input("Enetr the value of num1:"))
+num2=float(input("Enetr the value of num2:"))
+
+if choice=="1":
+    print("Result:",add(num1,num2))
+elif choice=="2":
+    print("Result:",subtraction(num1,num2))
+elif choice=="3":
+    print("Result:",Multipection(num1,num2))
+elif choice=="4":
+    print("Result:",divide(num1,num2))
+elif choice=="5":
+    print("Result:",Moduls(num1,num2))
+elif choice=="6":
+    print("Result:",Exponentiation(num1,num2))
+elif choice=="7":
+    print("Result:",Floor_division(num1,num2))
+else:
+    print("Sorry! Invalid Choice")
+
+
+#---------------> a simple calculator:-
+
+choice="y"
+while choice != "n" :
+    marks=int(input("Enter the Marks"))
+
+    if marks>=91 and marks<=100:
+        print("your grade is A")
+    elif marks>=71 and marks<=90:
+        print("your grade is B")
+    elif marks>=51 and marks<=70:
+        print("your grade is C")
+    elif marks>=35 and marks<=50:
+        print("your grade is D")
+    else:
+        print("invalid input if out of range(0-100)")
+
+    choice=input("do you want to continue? yes or no ")
