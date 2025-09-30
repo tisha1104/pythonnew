@@ -471,7 +471,7 @@ else:
     print("Sorry! Invalid Choice")
 
 
-#---------------> a simple calculator:-
+#---------------> a grade management system:-
 
 choice="y"
 while choice != "n" :
