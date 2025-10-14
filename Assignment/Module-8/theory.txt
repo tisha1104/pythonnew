@@ -1,0 +1,330 @@
+=============================================== Advance Python Programming===============================
+<-----------------------------------------------Printing on Screen--------------------------------------->
+
+Q-1. Introduction to the print() function in Python. 
+
+--->Ans. The function print() is used for Output.
+        ===>Example:-
+                    print("Hello, World!")
+            -->This line tells Python to display the string "Hello, World!" on the screen. 
+             Output:- Hello, World!
+
+
+Q-2. Formatting outputs using f-strings and format().
+
+--->Ans.  ➢ Python provides multiple ways to format strings for cleaner output, especially when inserting 
+variables. 
+
+1. f-strings:- 
+        • Use ‘f’ before the string and insert variables or expressions in {}. 
+        • Example: 
+        name = "Alice" 
+        age = 30 
+        print(f"My name is {name} and I am {age} years old.") 
+        • You can also perform operations inside the placeholders: 
+        print(f" In 5 years, I will be {age + 5} years old.")
+        
+2. str.format() method:-
+        • Use {} as placeholders and call .format() with the variables. 
+        fname = "Alice" 
+        lname=”John” 
+        age = 30 
+        print("My name is {} and I am {} years old.".format(name,lname, age)) 
+        • You can also use index numbers or named arguments: 
+        print("My name is {0} and I am {1} years old.".format(name, lname, age)) 
+        print("My name is {n} and I am {a} years old.".format(n=name, a=age))
+
+
+<------------------------------------------- Reading Data from Keyboard--------------------------------->
+
+Q-1.  Using the input() function to read user input from the keyboard.
+
+--->Ans. ➢ The input() function is used in Python to get input from the user via the keyboard. It always 
+returns the input as a string (text), even if the user types a number. 
+➢ Syntax:- variable = input("Prompt message") 
+➢ Example:- 
+        name = input("Enter your name: ") 
+        print("Hello,", name) 
+
+
+Q-2. Converting user input into different data types (e.g., int, float, etc.).
+
+--->Ans. ➢ Since input() returns a string, you often need to convert it into another data type like int, float, etc., 
+for calculations or logic. 
+➢ Examples:-
+        ==>Integer input 
+        age = int(input("Enter your age: ")) 
+        print("Next year, you will be", age + 1) 
+
+        ==>Float input 
+        price = float(input("Enter the price: ")) 
+        print("Price with tax:", price * 1.1) 
+
+        ==>Boolean input (basic) 
+        is_student = input("Are you a student? (yes/no): ") 
+        if is_student.lower() == "yes": 
+        print("You are eligible for a discount.")
+
+
+<-------------------------------------------  Opening and Closing Files--------------------------------->
+
+Q-1.Opening files in different modes ('r', 'w', 'a', 'r+', 'w+').
+
+--->Ans. ➢ When working with files in Python, the open() function is used along with a mode that tells 
+Python what you want to do with the file. 
+--->Mode Description:-
+        'r' 
+        'w' 
+        'a' 
+        'r+' 
+==>Read mode (default). Opens the file for reading. File must exist. 
+==>Write mode. Creates a new file or overwrites the file if it exists. 
+==>Append mode. Opens the file for writing, adds content at the end. Creates the file if it doesn’t 
+exist. 
+==>Read and write. File must exist. Allows both reading and writing. 
+==>'w+' Write and read. Overwrites existing file or creates a new one. 
+
+==>Examples:- 
+        -->'r' - read only 
+        f = open('file.txt', 'r') 
+
+        -->'w' - write only, creates or overwrites 
+        f = open('file.txt', 'w') 
+
+        -->'a' - append only 
+        f = open('file.txt', 'a') 
+        
+        -->'r+' - read and write (no overwrite) 
+        f = open('file.txt', 'r+') 
+
+        -->'w+' - write and read (with overwrite) 
+        f = open('file.txt', 'w+')
+
+
+Q-2. Using the open() function to create and access files. 
+
+--->Ans. ➢ The open() function in Python is used to create, read, write, or append to a file. Its basic syntax is: 
+➢ file = open('filename', 'mode') 
+➢ After opening a file, you can use:-
+• .read() – to read content, 
+• .write() – to write to the file, 
+• .close() – to close the file.
+
+Example:-  
+        # Create and write to a file 
+        file = open('example.txt', 'w') 
+        file.write("Hello, this is a test file.") 
+        file.close() 
+
+Example:-  
+        file = open('example.txt', 'r') 
+        content = file.read() 
+        print(content) 
+        file.close() 
+
+Example:- 
+        with open('example.txt', 'r') as file: 
+        print(file.read()) 
+        # Automatically closes the file
+
+
+Q-3. Closing files using close(). 
+
+--->Ans. • When working with files in Python, it's important to close the file after you're done using it. 
+This ensures that: 
+• Resources are released properly. 
+• Data is saved (especially in write/append modes). 
+• No file corruption or memory leaks occur. 
+➢ Why is close() important? 
+When a file is open: 
+• It uses system resources. 
+• If you’re writing to it, data may be held in a buffer (not saved yet). 
+• If you don’t close it, changes might not be written properly, and the file may become locked. 
+➢ Syntax: 
+file = open("example.txt", "r") 
+# do something with the file 
+file.close() 
+➢ Use with Statement (Auto-Close) 
+• Instead of manually calling close(), you can use a with block, which automatically closes the 
+file, even if an error occurs. 
+Example:-
+        with open("example.txt", "r") as file: 
+        data = file.read() 
+        # file is automatically closed here
+
+
+<-------------------------------------------Reading and Writing Files----------------------------------->
+
+Q-1. Reading from a file using read(), readline(), readlines().
+
+--->Ans. ➢ In Python, files can be in read from or written to using the built-in open() function along with 
+various methods:-
+• To read: Use modes 'r', 'r+' 
+• To write: Use modes 'w', 'a', 'w+', 'r+' 
+➢ After opening a file in read mode ('r'), you can use these methods: 
+➢ read(), readline(), readlines(). 
+➢ Use readline() in loops for line-by-line processing. 
+Use readlines() when you want all lines at once, e.g., for iteration. 
+
+1. read() – Reads the entire file as a single string. 
+        with open('sample.txt', 'r') as f: 
+        data = f.read() 
+        print(data) 
+
+2. readline() – Reads one line at a time. 
+        with open('sample.txt', 'r') as f: 
+        line1 = f.readline() 
+        line2 = f.readline() 
+        print(line1) 
+        print(line2) 
+
+3. readlines() – Reads all lines and returns them as a list of strings. 
+        with open('sample.txt', 'r') as f: 
+        lines = f.readlines() 
+        print(lines) 
+
+
+Q-2. Writing to a file using write() and writelines().
+
+--->Ans. ➢ To write to a file, open it in 'w', 'a', or 'w+' mode. 
+1. write() – Writes a single string to the file. 
+with open('output.txt', 'w') as f: 
+f.write("This is the first line.\n") 
+f.write("This is the second line.\n") 
+
+2. writelines() – Writes a list of strings.  It does not add newline characters automatically — you 
+must include them (\n) in your strings. 
+Example: 
+lines = ["Line 1\n", "Line 2\n", "Line 3\n"] 
+with open('output.txt', 'w') as f: 
+f.writelines(lines) 
+
+===>SUMMARY TABLE:-
+Method             Purpose                      Returns 
+read()         Read whole file                    str
+readline()     Read next line                     str
+readlines()    Read all lines                list of str 
+write()        Write one string              int (chars written)
+writelines()   Write list of strings None 
+ 
+ 
+ <------------------------------------------- Exception Handling------------------------------------->
+
+Q-1. Introduction to exceptions and how to handle them using try, except, and finally.
+
+--->Ans. Syntax: 
+        try:-
+                # risky code 
+                except ErrorType: 
+                # handle error 
+        finally:- 
+                # always runs 
+                Example: 
+                try: 
+                x = 5 / 0 
+        except ZeroDivisionError:- 
+                print("Can't divide by zero!") 
+                finally: 
+                print("Done!")
+
+
+Q-2. Understanding multiple exceptions and custom exceptions. 
+
+--->Ans. ➢ Handling Multiple Exceptions: 
+        try: 
+        value = int("abc") 
+        except ValueError: 
+        print("Value error!") 
+        except TypeError: 
+        print("Type error!") 
+        ➢ Catching Multiple Errors Together: 
+        except (ValueError, TypeError): 
+        print("Either a ValueError or TypeError occurred.") 
+        ➢ Custom Exception: 
+        class TooSmallError(Exception): 
+        pass 
+        def check(n): 
+        if n < 10: 
+        raise TooSmallError("Number too small") 
+        try: 
+        check(5) 
+        except TooSmallError as e: 
+        print("Error:", e)   
+
+
+  <------------------------------------------- Class and Object (OOP Concepts)-------------------------->
+
+Q-1. Understanding the concepts of classes, objects, attributes, and methods in Python. 
+
+--->Ans. (I) Class:- 
+➢ A class is a blueprint or template for creating objects. It defines attributes (variables) and 
+methods (functions). 
+==>Example:- 
+        class Car: 
+        color = "prusian blue"    #attribute 
+        def drive(self):       
+        #method 
+        print("The car is driving.") 
+
+(II) Object:-
+➢ An object is an instance of a class. It is created using the class and can access its attributes and 
+methods. 
+==>Example:- 
+        my_car = Car()       
+        # object created from class Car 
+        print(my_car.color)  # accessing attribute 
+        my_car.drive()      # calling method
+
+ (III) Attributes:-
+➢ Attributes are variables inside a class. They store the state or data of an object. 
+• You can have class attributes (shared by all objects) 
+• Or instance attributes (unique to each object) 
+==>Example:- 
+        class Dog: 
+        def __init__(self, name): 
+        self.name = name              
+        my_dog = Dog("Buddy") 
+        print(my_dog.name)    
+
+(IV) Methods:-
+# instance attribute 
+# Output: Buddy 
+Methods are functions defined inside a class. They can use and modify attributes and define object 
+behavior. 
+==>Example:-
+        class Calculator: 
+        def add(self, a, b): 
+        return a + b 
+        calc = Calculator() 
+        print(calc.add(3, 5))              
+        # Output: 8 
+
+
+Q-2. Difference between local and global variables. 
+
+--->Ans. (I)Local Variable 
+• Defined inside a function 
+• Accessible only within that function 
+Example: 
+        def greet(): 
+        name = "Alice"  # local variable 
+        print(name)
+
+(II)  Global Variable 
+• Defined outside any function 
+• Can be accessed anywhere in the program 
+Example: 
+        name = "Bob"  # global variable           
+        def greet(): 
+        print(name)   # can access global variable           
+        greet()
+
+➢ Modifying Global Variables Inside Functions 
+• If you want to change a global variable inside a function, use the global keyword. 
+x = 10 
+def update(): 
+        global x 
+        x = 20 
+        update() 
+        print(x)          
+# Output: 20

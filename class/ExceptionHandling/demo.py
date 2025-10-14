@@ -20,16 +20,16 @@
 #     print("Always executable")
 # print("Program ended")
 
-# f=""
-# try:
-#     f=open("test.txt","r")
-#     data=f.read()
-#     print(data)
-# except Exception as a:
-#     print(a)
-# finally:
-#     if(f is not None):
-#         f.close()
+f=""
+try:
+    f=open("test.txt","r")
+    data=f.read()
+    print(data)
+except Exception as a:
+    print(a)
+finally:
+    if(f is not None):
+        f.close()
 
 def test():
     try:
