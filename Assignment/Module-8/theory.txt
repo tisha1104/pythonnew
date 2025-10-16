@@ -328,3 +328,81 @@ def update():
         update() 
         print(x)          
 # Output: 20
+
+
+<------------------------------------------- Class and Object (OOP Concepts)-------------------------->
+
+Q-1. Single, Multilevel, Multiple, Hierarchical, and Hybrid inheritance in Python. 
+
+--->Ans.  Inheritance allows a class (child) to inherit properties and methods from another class (parent). 
+(1) Single Inheritance 
+➢ One child class inherits from one parent class. 
+class Animal: 
+def sound(self): 
+print("Animal sound") 
+class Dog(Animal): 
+def bark(self): 
+print("Dog barks") 
+d = Dog() 
+d.sound()   # Inherited 
+d.bark()    # Own method 
+(2) Multilevel Inheritance 
+➢ A class inherits from a class, which in turn inherits from another class. 
+Example: 
+class Animal: 
+def sound(self): 
+print("Animal sound") 
+class Dog(Animal): 
+def bark(self): 
+print("Dog barks") 
+class Puppy(Dog): 
+def weep(self): 
+print("Puppy weeps") 
+p = Puppy() 
+p.sound()            
+p.bark()               
+p.weep()             
+# From Animal 
+# From Dog 
+# Own 
+(3) Multiple Inheritance 
+➢ A child class inherits from more than one parent class. 
+Example: 
+class Father: 
+def skills(self): 
+print("Gardening") 
+class Mother: 
+def traits(self): 
+print("Cooking") 
+class Child(Father, Mother): 
+pass 
+c = Child() 
+c.skills() 
+c.traits() 
+(4) Hierarchical Inheritance 
+➢ Multiple child classes inherit from the same parent class. 
+Example: 
+class Vehicle: 
+def engine(self): 
+print("Engine started") 
+class Car(Vehicle): 
+pass 
+class Bike(Vehicle): 
+pass 
+c = Car() 
+b = Bike() 
+c.engine() 
+b.engine() 
+(5) Hybrid Inheritance 
+➢ A combination of two or more types of inheritance. 
+class A: 
+def show(self): 
+print("Class A") 
+class B(A): 
+pass 
+class C(A): 
+pass 
+class D(B, C):  # Inherits from both B and C (multilevel + multiple) 
+pass 
+d = D() 
+d.show() 

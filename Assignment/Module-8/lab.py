@@ -226,3 +226,102 @@ finally:
 
 #Q-10. Write a Python program to print custom exceptions. 
 
+print("program Start...")
+try:
+    num=int(input("Enter The Positive Number: "))
+    if num<0:
+        raise Exception("custom Exception: Negative number are not allowed!")
+    else:
+        print("You Enter Valid Number: ",num)
+except Exception as e:
+    print(e)
+finally:
+    print("Program Ended...")
+
+
+#========================================>Lab-6<=======================================================
+#========================================>Exception Handling<==========================================
+
+# Q-1. Write a Python program to create a class and access its properties using an object.
+
+class Student:
+
+    id=11
+    Name="Tisha"
+    email="Tisha@gmail.com"
+    Phone=8866068695
+
+    def display(self):
+        print("id=",self.id)
+        print("Name=",self.Name)
+        print("email=",self.email)
+        print("Phone=",self.Phone)
+
+Recoerd=Student()
+Recoerd.display()
+
+print("*********************************************")
+
+Recoerd1=Student()
+Recoerd1.id=12
+Recoerd1.Name="Rani"
+Recoerd1.email="Rani@gmail.com"
+Recoerd1.Phone=8569632785
+Recoerd1.display()
+
+
+# ------------------------------------------------->Practical Examples:<-------------------------------
+
+# Q-11. Write a Python program to create a class and access the properties of the class using an object.
+
+class Pen:
+    id=101
+    color="Black"
+    company="S.S"
+
+    def display(self):
+        print("id=",self.id)
+        print("color=",self.color)
+        print("company=",self.company)
+
+P=Pen()
+P.display()
+
+print("**************************************")
+P1=Pen()
+P1.id=102
+P1.color="Blue"
+P1.company="Cello"
+P1.display()
+
+
+# Q-12.  Write a Python program to demonstrate the use of local and global variables in a class.
+
+company="Tech_Word"               #global varibale
+
+class Employee:
+    
+    def __init__(self,name,slary):
+        self.name=name
+        self.slary=slary
+
+    def Show_Details(self):
+        bonus=2500                    #local varibale
+        print("Company Name=",company)
+        print("Employee Name=",self.name)
+        print("Slary=",self.slary)
+        print("Bonus=",bonus)
+      
+
+E=Employee("Tisha",25000)
+E.Show_Details()
+
+E1=Employee("Rani",22000)
+E1.Show_Details()
+
+
+#========================================>Lab-7<=====================================================
+#========================================>Inheritance<===============================================
+
+#Q-1.Write Python programs to demonstrate different types of inheritance (single, multiple, multilevel, etc.). 
+
