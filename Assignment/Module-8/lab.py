@@ -325,3 +325,170 @@ E1.Show_Details()
 
 #Q-1.Write Python programs to demonstrate different types of inheritance (single, multiple, multilevel, etc.). 
 
+# ====>Single inheritance :-
+
+class pen:
+    price=100
+    color="Red"
+    company="Cello"
+
+    def display(self):
+        print(self.price,self.color,self.company)
+
+class Notebook(pen):
+    Pages=100
+
+    def show(self):
+        self.price=50
+        print(self.price,self.color,self.company,self.Pages)
+
+p=pen()
+p.display()
+n=Notebook()
+n.show()
+
+
+#====>Hierarchical Inheritance:-
+
+# class Animal ():
+#     def details(self):
+#         self.Name=input("Enter The Animal Name: ")
+
+# class Eating(Animal):
+#     def eat(slef):
+#         print(f"{slef.Name} is Eating")
+
+# class slepping(Animal):
+#     def sleep(self):
+#         print(f"{self.Name} is Sleeping")
+
+# e=Eating()
+# e.details()
+# e.eat()
+
+# s=slepping()
+# s.details()
+# s.sleep()
+
+
+#====>Multilevel inheritance:-
+
+# class Animal:
+#     def details(self):
+#         self.Name=input("Enter The Animal Name: ")
+
+# class Eating(Animal):
+#     def eat(slef):
+#         print(f"{slef.Name} is Eating")
+
+# class slepping(Eating):
+#     def sleep(self):
+#         print(f"{self.Name} is Sleeping")
+
+# a=slepping()
+# a.details()
+# a.eat()
+# a.sleep()
+
+
+#====>Multiple Inheritance :-
+
+class Animal ():
+    def details(self):
+        self.Name=input("Enter The Animal Name: ")
+
+class Eating:
+    def eat(slef):
+        print(f"{slef.Name} is Eating")
+
+class slepping:
+    def sleep(self):
+        print(f"{self.Name} is Sleeping")
+
+class Animale_Activity(Animal,Eating,slepping):
+    pass
+
+A1=Animale_Activity()
+A1.details()
+A1.eat()
+A1.sleep()
+
+
+# ------------------------------------------------->Practical Examples:<-------------------------------
+
+# Q-13.Write a Python program to show single inheritance. 
+
+class person:
+    def details(self):
+        self.name=input("Enter person name: ")
+
+class Infoermation(person):
+    def show(self):
+        print(f"This Infoermation is about {self.name}")
+
+i=Infoermation()
+i.details()
+i.show()
+
+
+# Q-14.Write a Python program to show multilevel inheritance.
+
+class person:
+    def details(self):
+        self.name=input("Enter person name: ")
+
+class Infoermation(person):
+    def show(self):
+        print(f"This Infoermation is about {self.name}")
+
+class chek_identiy(Infoermation):
+    def chek(self):
+        print(f"{self.name} is Student")
+
+
+c=chek_identiy()
+c.details()
+c.show()
+c.chek()
+
+
+# Q-15. Write a Python program to show multiple inheritance. 
+
+class person:
+    def details(self):
+        self.name=input("Enter person name: ")
+
+class Infoermation:
+    def show(self):
+        print(f"This Infoermation is about {self.name}")
+
+class chek_identiy:
+    def chek(self):
+        print(f"{self.name} is Student")
+
+class clg(person,Infoermation,chek_identiy):
+    def clg_details(self):
+        print(f"{self.name} is study in clg")
+
+c1=clg()
+c1.details()
+c1.show()
+c1.chek()
+c1.clg_details()
+
+
+# Q-16. Write a Python program to show hierarchical inheritance.
+
+class person:
+    def details(self):
+        self.name=input("Enter person name: ")
+
+class Infoermation(person):
+    def show(self):
+        print(f"This Infoermation is about {self.name}")
+
+class clg()
+
+i=Infoermation()
+i.details()
+i.show()
