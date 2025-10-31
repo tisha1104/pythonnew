@@ -330,7 +330,7 @@ def update():
 # Output: 20
 
 
-<------------------------------------------- Class and Object (OOP Concepts)-------------------------->
+<---------------------------------- Class and Object (OOP Concepts)-------------------------->
 
 Q-1. Single, Multilevel, Multiple, Hierarchical, and Hybrid inheritance in Python. 
 
@@ -410,3 +410,54 @@ class D(B, C):  # Inherits from both B and C (multilevel + multiple)
         pass 
 d = D() 
 d.show() 
+
+
+<---------------------------------- Class and Object (OOP Concepts)-------------------------->
+
+Q-1. Method overloading: defining multiple methods with the same name but different parameters.
+
+---> Ans. (I)Method Overloading:- 
+==>Method Overloading means defining multiple methods with the same name but different parameters.
+
+==>In some languages like Java, this is done by changing the number/type of arguments. 
+==>But in Python, true method overloading is not directly supported because Python methods can 
+accept any number of arguments using *args and **kwargs.
+==>This works because Python uses default arguments or *args to mimic overloading.
+
+===>Simulating Method Overloading in Python:-
+class Greet: 
+        def hello(self, name=None): 
+                if name: 
+                        print(f"Hello, {name}!") 
+                else: 
+                        print("Hello!") 
+
+g = Greet() 
+g.hello() # Output: Hello!                  
+g.hello("Alice") # Output: Hello, Alice!    
+
+
+Q-2. Method overriding: redefining a parent class method in the child class.
+
+---> Ans. Method Overridding:-
+➢ Method Overriding means redefining a method from the parent class in the child class to provide a 
+different implementation. 
+===>Example:- 
+class Animal: 
+        def speak(self): 
+                print("Animal makes a sound") 
+class Dog(Animal): 
+        def speak(self):  # overriding the method 
+                print("Dog barks") 
+d = Dog() 
+d.speak()  # Output: Dog barks 
+
+➢ Using super() with Overriding:-
+You can still call the parent version of the overridden method using super(): 
+===>Example:- 
+class Dog(Animal): 
+        def speak(self): 
+                super().speak() 
+                print("Dog barks") 
+d = Dog() 
+d.speak() 

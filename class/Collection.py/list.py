@@ -7,7 +7,7 @@
 # print(type(l1))
 # print(len(l1))
 
-l=["Tisha","Hency","Aastha","Ishika","Prinshu"]
+# l=["Tisha","Hency","Aastha","Ishika","Prinshu"]
 # print(l[3])
 # print(l[1:3])
 # print(l[-1])
@@ -56,9 +56,9 @@ l=["Tisha","Hency","Aastha","Ishika","Prinshu"]
 # print(k)
 
 # l.sort()
-l.sort(reverse=True)
+# l.sort(reverse=True)
 # l.reverse()
-print(l)
+# print(l)
 
 # k=sorted(l)
 # print(k)
@@ -75,9 +75,9 @@ b=[100,200,300,400]
 # c=a+b
 # print(c)
 
-a.extend(b)
-print(a)
+# a.extend(b)
+# print(a)
 
 print(a.count(50))
 
-print(a.index(50))
+print(a.index(40))

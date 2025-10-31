@@ -414,7 +414,7 @@ A1.eat()
 A1.sleep()
 
 
-# ------------------------------------------------->Practical Examples:<-------------------------------
+# ---------------------------------->Practical Examples:<-------------------------------
 
 # Q-13.Write a Python program to show single inheritance. 
 
@@ -487,8 +487,128 @@ class Infoermation(person):
     def show(self):
         print(f"This Infoermation is about {self.name}")
 
-class clg()
+class clg(Infoermation):
+    def clg_details(self):
+        print(f"{self.name} is study in this clg")
 
-i=Infoermation()
-i.details()
-i.show()
+i1=Infoermation()
+i1.details()
+i1.show()
+
+c1=clg()
+c1.details()
+c1.clg_details()
+
+
+# Q-17. Write a Python program to show hybrid inheritance.
+
+class Animal:
+    def details(self):
+        self.Name=input("Enter The Animal Name: ")
+
+class Eating(Animal):
+    def eat(slef):
+        print(f"{slef.Name} is Eating")
+
+class slepping(Animal):
+    def sleep(self):
+        print(f"{self.Name} is Sleeping")
+
+class Animale_Activity(Eating,slepping):
+    def Activity(self):
+        print(f"{self.Name} can eat and sleep both")
+
+a1=Animale_Activity()
+a1.details()
+a1.eat()
+a1.sleep()
+a1.Activity()
+
+# Q-18.  Write a Python program to demonstrate the use of super() in inheritance.
+
+class Animal:
+    def __init__(self,name):
+        self.name=name 
+        print("Animal constructor called....")
+
+class Dog(Animal):
+    def __init__(self, name,breed):
+        super().__init__(name)
+        self.breed=breed
+        print("Dog constructor called....")
+
+    def show(self):
+        print(f"{self.name} is a {self.breed}")
+
+d1= Dog("Lily","Bulldog")
+d1.show()
+
+
+#========================================>Lab-8<===========================================
+#===========================> Method Overloading and Overriding<===========================
+
+
+# Q-1. Write Python programs to demonstrate method overloading and method overriding. 
+
+# ==>Overloading
+
+class Calculator:
+    def add(self,a=0,b=0,c=0):
+        return a+b+c
+
+calc = Calculator()
+print(calc.add(2))       
+print(calc.add(2,3))     
+print(calc.add(2,3,4))
+
+# ==>Overriding
+
+class Animal:
+    def sound(self):
+        print("Animal makes different sounds")
+
+class Dog:
+    def sound(self):
+        print("Dog barks")
+
+a= Animal()
+d= Dog()
+
+a.sound()
+d.sound()
+
+
+# ---------------------------------->Practical Examples:<-------------------------------
+
+# Q-19.  Write a Python program to show method overloading. 
+
+class AreaCalculator:
+    def area(self,a=0,b=0):
+        if a!=0 and b!=0:
+            print("Area of Rectangle: ",a*b)
+        elif a!=0:
+            print("Area of Square: ",a*a)
+        else:
+            print("No value given")
+
+a11=AreaCalculator()
+a11.area(11)
+a11.area(5,10)
+a11.area()
+
+
+# Q-20. Write a Python program to show method overriding.
+
+class Vehicle:
+    def show(self):
+        print("this is a vehicle") 
+
+class car(Vehicle):
+    def show(self):
+        print("this is a car")
+
+v1= Vehicle()
+v2=car()
+
+v1.show()
+v2.show()
