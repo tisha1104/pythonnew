@@ -1,4 +1,4 @@
-# t=(10,20,30,40,50,50,60,710,"ABC",True,11.11)
+t=(10,20,30,40,50,50,60,710,"ABC",True,11.11)
 # t1=tuple((10,20,30,40,50,550,55.55))
 # t2=(11,)
 # print(t)
@@ -26,10 +26,15 @@
 # print(type(t))
 # print(t)
 # print(l)
+l=list(t)
+l.append("Yellow")
+print(tuple(l))
+print(t.count(50))
+print(t.index(11.11))
 
 t1=(10,20,30,40,50)
 (a,*b,c,d)=t1
 # print(a)
 # print(b)
 
-print(t1*2)
+# print(t1*2)

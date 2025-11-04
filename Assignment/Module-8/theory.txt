@@ -330,7 +330,7 @@ def update():
 # Output: 20
 
 
-<---------------------------------- Class and Object (OOP Concepts)-------------------------->
+<------------------------------------------- Inheritance---------------------------------->
 
 Q-1. Single, Multilevel, Multiple, Hierarchical, and Hybrid inheritance in Python. 
 
@@ -412,7 +412,7 @@ d = D()
 d.show() 
 
 
-<---------------------------------- Class and Object (OOP Concepts)-------------------------->
+<----------------------------------Method Overloading and Overriding----------------------->
 
 Q-1. Method overloading: defining multiple methods with the same name but different parameters.
 
@@ -461,3 +461,37 @@ class Dog(Animal):
                 print("Dog barks") 
 d = Dog() 
 d.speak() 
+
+
+<----------------------------------Search and Match Functions------------------------------->
+
+Q-1. Using re.search() and re.match() functions in Python’s re module for pattern matching.
+
+--->Ans. ➢ The re module provides support for regular expressions in Python. 
+==>re.search():- 
+• Searches the entire string for a match. 
+• Returns a match object if found; otherwise, returns None. 
+==>re.match():- 
+• Checks for a match only at the beginning of the string. 
+==>Example:- 
+import re 
+text = "Hello, welcome to Python!" 
+# re.search 
+result1 = re.search("welcome", text) 
+print(result1.group())                   
+# re.match 
+result2 = re.match("Hello", text) 
+print(result2.group())                  
+# Output: welcome 
+# Output: Hello 
+result3 = re.match("welcome", text) 
+print(result3)                  
+# Output: None (because it doesn't start the string)
+
+
+Q-2. Difference between search and match.
+
+--->Ans. Feature        re.search()                                      re.match()                            
+          Scope       Scans the entire string                    Matches only at the beginning 
+          Use Case    Useful when pattern can appear anywhere    Useful when pattern must be at start 
+          Return      Match object or None                       Match object or None

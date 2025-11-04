@@ -69,8 +69,8 @@
 # k=l
 # print(k)
 
-a=[10,20,30,40,50,50]
-b=[100,200,300,400]
+# a=[10,20,30,40,50,50]
+# b=[100,200,300,400]
 
 # c=a+b
 # print(c)
@@ -78,6 +78,53 @@ b=[100,200,300,400]
 # a.extend(b)
 # print(a)
 
-print(a.count(50))
+# print(a.count(50))
 
-print(a.index(40))
+# print(a.index(40))
+
+l=["tisha","red","yellow",1,11,2,True]
+print(l[0])
+print(l[2:5])
+l[0]="black"
+print(l)
+print(len(l))
+l.insert(0,"green")
+print(l)
+l.append("White")
+print(l)
+l2=[5,2,9,1]
+l2.extend(l)
+print(l2)
+l.reverse()
+print(l)
+# l2.sort()
+# print(l2)
+l3=[5,10,10,2,9,1,8,10,15,10]
+l3.sort()
+print(l3)
+l3.sort(reverse=True)
+print(l3)
+print(l3.count(10))
+print(l3.index(10))
+# l4=l3.copy()
+# l4=l3
+l4=l3[:]
+# l4=list(l3)
+print(l4)
+l4.remove(15)
+print(l4)
+l.pop(1)
+print(l)
+l.clear()
+print(l)
+# del l()
+list=["a","b","c"]
+list2=[1,2,3,4]
+list3=list+list2
+print(list3)
+for i in list:
+    print(i)
+t=("red",)
+print(type(t))
+t1=(1,2,3,4,5,6,788,98,9)
+l11=list(t1)
