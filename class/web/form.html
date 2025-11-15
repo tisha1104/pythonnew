@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    
+    <fieldset>
+        <legend>Registration Form</legend>
+        <form action="" method="post">
+
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name">
+            
+            <br>
+            <br>
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email">
+
+            <br>
+            <br>
+            <label for="pass">Password</label>
+            <input type="password" name="pass" id="pass">
+
+            <br>
+            <br>
+            <label for="Gender">Gender</label>
+            <input type="radio" name="Gender" value="Male" id="Gender1" checked>Male
+            <input type="radio" name="Gender" value="Female" id="Gender2" checked>Female
+
+            <br><br>
+            <label for="">Languages</label>
+            <input type="checkbox" value="guj" name="lang" id="l1">Gujrati 
+            <input type="checkbox" value="hin" name="lang" id="l1">hindi
+            <input type="checkbox" value="eng" name="lang" id="l1">English
+
+            <br>
+            <br>
+            <label for="">Country</label>
+            <select name="Country" id="Country">
+                <option value="1">India</option>
+                <option value="2">USA</option>
+                <option value="3">UK</option>
+            </select>
+
+            <br>
+            <br>
+            <label for="">Address</label>
+            <textarea name="adr" id="adr"></textarea>
+
+            <br><br>
+
+            <input type="submit">
+            <input type="reset">
+        </form>
+    </fieldset>
+</body>
+</html>
