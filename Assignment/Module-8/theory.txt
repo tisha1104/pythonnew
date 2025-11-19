@@ -463,6 +463,79 @@ d = Dog()
 d.speak() 
 
 
+<----------------------------SQLite3 and PyMySQL (Database Connectors)------------------->
+
+Q-1. Introduction to SQLite3 and PyMySQL for database connectivity.
+
+---> Ans. ===>(I)SQLite3:-
+• SQLite is a lightweight, serverless, self-contained SQL database engine.
+• It stores the entire database in a single file on the disk.
+• Ideal for small to medium applications, prototyping, or embedded systems.
+• Python has a built-in module sqlite3 for connecting and interacting with SQLite databases.
+==>Example:-
+import sqlite3
+# Connect to a database (or create one if it doesn't exist)
+conn = sqlite3.connect('example.db')
+cursor = conn.cursor()
+# Create a table
+cursor.execute('CREATE TABLE IF NOT EXISTS users (id INTEGER, name TEXT)')
+# Commit and close
+conn.commit()
+conn.close()
+
+===>(II) PyMySQL:-
+• PyMySQL is a third-party library used to connect Python with MySQL databases.
+• Suitable for web applications, large datasets, and multi-user environments.
+• Requires the MySQL server to be installed and running.
+==>Example:-
+import pymysql
+# Connect to MySQL
+conn = pymysql.connect ( host='localhost',
+ user='root',
+ password='yourpassword',
+ database='testdb' )
+ cursor = conn.cursor()
+# Create a table
+cursor.execute('CREATE TABLE IF NOT EXISTS users (id INT, name VARCHAR(100))')
+# Commit and close
+conn.commit()
+conn.close()
+
+
+Q-2. Creating and executing SQL queries from Python using these connectors.
+
+---> Ans. ➢ With SQLite3:-
+import sqlite3
+conn = sqlite3.connect('example.db')
+cursor = conn.cursor()
+# Insert data
+cursor.execute("INSERT INTO users (id, name) VALUES (?, ?)", (1, 'Alice'))
+# Select data
+cursor.execute("SELECT * FROM users")
+rows = cursor.fetchall()
+for row in rows:
+        print(row)
+        conn.commit()
+        conn.close()
+
+➢ With PyMySQL:-
+import pymysql
+conn = pymysql.connect ( host='localhost',
+ user='root',
+ password='yourpassword',
+ database='testdb' )
+cursor = conn.cursor()
+# Insert data
+cursor.execute("INSERT INTO users (id, name) VALUES (%s, %s)", (1, 'Alice'))
+# Select data
+cursor.execute("SELECT * FROM users")
+rows = cursor.fetchall()
+for row in rows:
+        print(row)
+        conn.commit()
+        conn.close()
+
+
 <----------------------------------Search and Match Functions------------------------------->
 
 Q-1. Using re.search() and re.match() functions in Python’s re module for pattern matching.

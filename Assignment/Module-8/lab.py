@@ -612,3 +612,45 @@ v2=car()
 
 v1.show()
 v2.show()
+
+
+#========================================>Lab-9<===========================================
+#===========================>SQLite3 and PyMySQL (Database Connectors)<===========================
+
+# Q-1. Write a Python program to connect to an SQLite3 database, create a table, insert data, and fetch data.
+
+import sqlite3
+
+db= sqlite3.connect("data.db")
+
+# db.execute("create table emp(id int primary key,name varchar(20),email varchar(50))")
+db.execute("insert into emp values(1,'Tisha','Tisha@gmail.com')")
+db.commit()
+data=db.execute("select * from emp").fetchall()
+
+
+# ---------------------------------->Practical Examples:<-------------------------------
+
+# Q-21. Write a Python program to create a database and a table usingSQLite3.
+
+import sqlite3
+
+data=sqlite3.connect("Student.db")
+
+# data.execute("create table student_details(id int primary key,name varchar(20),email varchar(50))")
+
+
+# Q-22. Write a Python program to insert data into an SQLite3 database and fetch it.
+
+data.execute("insert into student_details values(1,'Rani','Rani@gmail.com')")
+data.execute("insert into student_details values(2,'Riddhi','Riddhi@gmail.com')")
+data.execute("insert into student_details values(3,'Hency','Hency@gmail.com')")
+data.commit()
+
+# detials=data.execute("select * form student_details").fetchall()
+
+
+#=============================================>Lab-10<=====================================
+#===========================>Search and Match Functions<===================================
+
+# Q-1. Write a Python program to search for a word in a string using re.search().
