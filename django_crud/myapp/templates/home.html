@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+     <form action="{% url 'registraion'%}" method="post">
+        {% csrf_token %}
+        <h1>Welcome to the Home Page</h1>
+        <span>{{success}}</span>
+        <br>
+        <input type="hidden" name="id" value="{{st.id}}">
+        <br>
+        <br>
+        <input type="text" name="name" placeholder="Enter your name" value="{{st.name}}">
+        <br>
+        <br>
+        <input type="text" name="email" placeholder="Enter your email" value="{{st.email}}">
+        <br>
+        <br>
+        <input type="text" name="age" placeholder="Enter your age" value="{{st.age}}">
+        <br>
+        <br>
+        <input type="submit" value="submit">
+        <br>
+        <br>
+        <h1 align="center"><a href="{%url 'display'%}">view data</a></h1>
+     </form>
+</body>
+</html>
