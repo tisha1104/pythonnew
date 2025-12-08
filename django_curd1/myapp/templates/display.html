@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 align="center">Product Details</h1>
+    <table border="1" align="center" cellspacing="10" cellpadding="10">
+        <tr>
+            <th>id</th>
+            <th>product_name</th>
+            <th>product_price</th>
+            <th>product_qty</th>
+            <th colspan="2">Action</th>
+        </tr>
+        {%for p in product%}
+        <tr>
+            <!-- <td>{{p.id}}</td> -->
+            <td>{{forloop.counter}}</td>
+            <td>{{p.product_name}}</td>
+            <td>{{p.product_price}}</td>
+            <td>{{p.product_qty}}</td>
+            <td><a href="{%url 'delete'%}?id={{p.id}}">delete</a></td>
+            <td><a href="{%url 'edit'%}?id={{p.id}}">edit</a></td>
+        </tr>
+        {%endfor%}
+    </table>
+    <!-- {{prod}} -->
+    <h1 align="center"><a href="{%url 'home'%}">Back To Register</a></h1>
+</body>
+</html>

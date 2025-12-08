@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <form action="{% url 'register' %}" method="POST">
+        {% csrf_token %}
+        <h1>Welcome to home page</h1>
+        {{success}}
+        <br>
+        <br>
+        <input type="hidden" name="pid" value="{{pr.id}}">
+        <br>
+        <br>
+        <input type="text" name="product_name" placeholder="Enter product name" value="{{pr.product_name}}">
+        <br>
+        <br>
+        <input type="text" name="product_price" placeholder="Enter product price" value="{{pr.product_price}}">
+        <br>
+        <br>
+        <input type="text" name="product_qty" placeholder="Enter product qty" value="{{pr.product_qty}}">
+        <br>
+        <br>
+        <input type="submit" value="submit">
+    </form>
+    <br>
+    <br>
+    <h1><a href="{%url 'display'%}">view all data</a></h1>
+</body>
+</html>
