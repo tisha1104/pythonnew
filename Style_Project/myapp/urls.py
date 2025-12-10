@@ -4,5 +4,9 @@ urlpatterns=[
     path('',index,name='index'),
     path('jewellery/',jewellery,name='jewellery'),
     path('fashion/',fashion,name='fashion'),
-    path('electronic/',electronic,name='electronic')
+    path('electronic/',electronic,name='electronic'),
+    path("user-login",login_register,name='login_register'),
+    path('user-regierstation',user_regierstation,name='user-regierstation'),
+    path('user-logout',user_logout,name="user-logout"),
+    path('cart/',cart_view, name='cart')
 ]
