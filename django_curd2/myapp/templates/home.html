@@ -12,14 +12,23 @@
             <div class="col-5 card p-3">
                 <h2>Product Registration</h2>
                 <hr>
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     {%csrf_token%}
+                    <!-- <label for="Category"> 
+                        <option value="{{prod.Category}}"></option>
+                    </label> -->
                     <input type="hidden" name="id" value="{{prod.id}}">
                     <input type="text" name="name" placeholder="Enter Product Name" class="form-control" value="{{prod.name}}">
                     <br>
                     <input type="text" name="price" placeholder="Enter Product Price" class="form-control" value="{{prod.price}}">
                     <br>
                     <input type="text" name="qty" placeholder="Enter Product Qty" class="form-control" value="{{prod.qty}}">
+                    <br>
+                    {%if prod%}
+                    <img src="media/{{prod.image}}" alt="" width="50px" height="50px">
+                    <span>{{prod.image}}</span>
+                    {%endif%}
+                    <input type="file" name="image" class="form-control" value="{{prod.image}}">
                     <br>
                     <input type="submit" class="btn btn-success">
                     <input type="reset" class="btn btn-primary">
@@ -37,6 +46,7 @@
                         <th>Name</th>
                         <th>Price</th>
                         <th>Qty</th>
+                        <th>Image</th>
                         <th colspan="2">Action</th>
                     </tr>
                     {%for prod in Products%}
@@ -45,6 +55,7 @@
                         <td>{{prod.name}}</td>
                         <td>{{prod.price}}</td>
                         <td>{{prod.qty}}</td>
+                        <td><img src="media/{{prod.image}}" alt="{{prod.image}}" height="50px" width="50px"></td>
                         <td><a href="{%url 'edit'%}?id={{prod.id}}" class="btn btn-primary">Edit</a></td>
                         <td><a href="{%url 'delete'%}?id={{prod.id}}" class="btn btn-danger">delete</a></td>
                     </tr>

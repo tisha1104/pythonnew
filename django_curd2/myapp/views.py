@@ -8,7 +8,8 @@ def home(request):
         name = request.POST['name']
         price = request.POST['price']
         qty = request.POST['qty']
-        product.objects.create(name=name,price=price,qty=qty)
+        image = request.FILES['image']
+        product.objects.create(name=name,price=price,qty=qty,image=image)
         return render(request,"home.html",{"Products":Products})
     else:
         return render(request,"home.html",{"Products":Products})
@@ -31,6 +32,8 @@ def edit_product(request):
         prod.name=name
         prod.price=price
         prod.qty=qty
+        if request.FILES:
+            prod.image = request.FILES['image']
         prod.save()
         return render(request,"home.html",{"Products":Products})
     else:
