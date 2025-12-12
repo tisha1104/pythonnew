@@ -350,45 +350,45 @@ n.show()
 
 #====>Hierarchical Inheritance:-
 
-# class Animal ():
-#     def details(self):
-#         self.Name=input("Enter The Animal Name: ")
+class Animal ():
+    def details(self):
+        self.Name=input("Enter The Animal Name: ")
 
-# class Eating(Animal):
-#     def eat(slef):
-#         print(f"{slef.Name} is Eating")
+class Eating(Animal):
+    def eat(slef):
+        print(f"{slef.Name} is Eating")
 
-# class slepping(Animal):
-#     def sleep(self):
-#         print(f"{self.Name} is Sleeping")
+class slepping(Animal):
+    def sleep(self):
+        print(f"{self.Name} is Sleeping")
 
-# e=Eating()
-# e.details()
-# e.eat()
+e=Eating()
+e.details()
+e.eat()
 
-# s=slepping()
-# s.details()
-# s.sleep()
+s=slepping()
+s.details()
+s.sleep()
 
 
 #====>Multilevel inheritance:-
 
-# class Animal:
-#     def details(self):
-#         self.Name=input("Enter The Animal Name: ")
+class Animal:
+    def details(self):
+        self.Name=input("Enter The Animal Name: ")
 
-# class Eating(Animal):
-#     def eat(slef):
-#         print(f"{slef.Name} is Eating")
+class Eating(Animal):
+    def eat(slef):
+        print(f"{slef.Name} is Eating")
 
-# class slepping(Eating):
-#     def sleep(self):
-#         print(f"{self.Name} is Sleeping")
+class slepping(Eating):
+    def sleep(self):
+        print(f"{self.Name} is Sleeping")
 
-# a=slepping()
-# a.details()
-# a.eat()
-# a.sleep()
+a=slepping()
+a.details()
+a.eat()
+a.sleep()
 
 
 #====>Multiple Inheritance :-
@@ -623,7 +623,7 @@ import sqlite3
 
 db= sqlite3.connect("data.db")
 
-# db.execute("create table emp(id int primary key,name varchar(20),email varchar(50))")
+db.execute("create table emp(id int primary key,name varchar(20),email varchar(50))")
 db.execute("insert into emp values(1,'Tisha','Tisha@gmail.com')")
 db.commit()
 data=db.execute("select * from emp").fetchall()
@@ -654,3 +654,28 @@ data.commit()
 #===========================>Search and Match Functions<===================================
 
 # Q-1. Write a Python program to search for a word in a string using re.search().
+
+import re
+k = re.search("h.","hello world")
+print(k)
+
+# Q-2. Write a Python program to match a word in a string using re.match().
+
+import re
+k = re.match('h.',"hello world")
+print(k)
+
+
+# ---------------------------------->Practical Examples:<-------------------------------
+
+# Q-23. Write a Python program to search for a word in a string using re.search().
+
+import re
+k = re.search('h',"hello heery")
+print(k)
+
+# Q-24. Write a Python program to match a word in a string using re.match().
+
+import re
+k = re.match('h',"hello harry")
+print(k)
