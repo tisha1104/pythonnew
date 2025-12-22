@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTER</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+    <h1 align="center">Welcome To Home Page</h1>
+    <hr>
+    <form action="{%url 'register'%}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <h1 align="center">STUDENT REGISTER HERE</h1>
+        <hr>
+        {{success}}
+        <br>
+        <br>
+
+        <input type="hidden" name="id" value="{{st.id}}">
+        <input type="text" name="name" placeholder="Enter your Name" value="{{st.name}}">
+        <br>
+        <br>
+        <input type="text" name="email" placeholder="Enter your Email" value="{{st.email}}" >
+        <br>
+        <br>
+        <input type="text" name="age" placeholder="Enter your age" value="{{st.age}}">
+        <br>
+        {%if st %}
+        <img src="media/{{st.image}}" alt="" height="50px" width="50px">
+        <span>{{st.image}}</span>
+        {%endif%}
+        <br>
+        <br>
+        <input type="file" name="image" class="form-control">
+        <br>
+        <br>
+        <input type="submit" class="btn btn-success">
+        <input type="reset" class="btn btn-primary">
+        <br>
+        <br>
+        <h1 align="center"><a href="{%url 'display'%}">VIEW ALL DATA</a></h1>
+    </form>
+</body>
+</html>

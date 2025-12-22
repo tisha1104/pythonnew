@@ -14,9 +14,12 @@
                 <hr>
                 <form action="" method="post" enctype="multipart/form-data">
                     {%csrf_token%}
-                    <!-- <label for="Category"> 
-                        <option value="{{prod.Category}}"></option>
-                    </label> -->
+                    <select name="cat" id="cat" class="form-control">
+                        {%for cat in category%}
+                        <option value="{{cat.id}}" {% if prod.Category_id == cat.id %}selected{% endif %}>{{cat.name}}</option>
+                        {%endfor%}
+                    </select>
+                    <br>
                     <input type="hidden" name="id" value="{{prod.id}}">
                     <input type="text" name="name" placeholder="Enter Product Name" class="form-control" value="{{prod.name}}">
                     <br>
@@ -46,6 +49,7 @@
                         <th>Name</th>
                         <th>Price</th>
                         <th>Qty</th>
+                        <th>Category</th>
                         <th>Image</th>
                         <th colspan="2">Action</th>
                     </tr>
@@ -55,6 +59,7 @@
                         <td>{{prod.name}}</td>
                         <td>{{prod.price}}</td>
                         <td>{{prod.qty}}</td>
+                        <td>{{prod.Category.name}}</td>
                         <td><img src="media/{{prod.image}}" alt="{{prod.image}}" height="50px" width="50px"></td>
                         <td><a href="{%url 'edit'%}?id={{prod.id}}" class="btn btn-primary">Edit</a></td>
                         <td><a href="{%url 'delete'%}?id={{prod.id}}" class="btn btn-danger">delete</a></td>

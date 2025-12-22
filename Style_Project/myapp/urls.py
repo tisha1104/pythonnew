@@ -1,5 +1,7 @@
 from django.urls import path
 from myapp.views import *
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns=[
     path('',index,name='index'),
     path('jewellery/',jewellery,name='jewellery'),
@@ -10,3 +12,6 @@ urlpatterns=[
     path('user-logout',user_logout,name="user-logout"),
     path('cart/',cart_view, name='cart')
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

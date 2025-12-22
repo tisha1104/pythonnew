@@ -24,9 +24,9 @@ def delete_product(request):
 def edit_product(request):
     products = Product.objects.all()
     if request.method =='POST':
-        id= request.POST['id']
-        name= request.POST['name']
-        qty= request.POST['qty']
+        id= request.POST.get('id')
+        name= request.POST.get('name')
+        qty= request.POST.get('qty')
 
         p= Product.objects.get(pk=id)
         p.name=name

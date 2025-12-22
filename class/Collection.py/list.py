@@ -7,11 +7,12 @@
 # print(type(l1))
 # print(len(l1))
 
-# l=["Tisha","Hency","Aastha","Ishika","Prinshu"]
+l=["Tisha","Hency","Aastha","Ishika","Prinshu"]
 # print(l[3])
 # print(l[1:3])
 # print(l[-1])
 # print(l[::-1])
+print(l[::1])
 
 # l[1]="Rani"
 # print(l)

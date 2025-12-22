@@ -15,7 +15,7 @@
             <form action="" method="post" enctype="multipart/form-data">
                 <span>{{success}}</span>
                 {%csrf_token%}
-                <input type="hidden" name="id" value="{{Product_id}}">
+                <input type="hidden" name="id" value="{{p.id}}">
                 <br>
                 <input type="text" name="name" placeholder="Enter Product Name" class="form-control" value="{{p.name}}">
                 <br>
@@ -37,8 +37,7 @@
                 <input type="reset" class="btn btn-primary">
             </form>
         </div>
-    </div>
-    </div> 
+   
     <div class="col-1" >
 
     </div>
@@ -68,5 +67,7 @@
             {%endfor%}
         </table>
     </div>
+     </div>
+    </div> 
 </body>
 </html>
