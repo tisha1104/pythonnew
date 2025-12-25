@@ -15,3 +15,13 @@ def view(request):
 def countries(request):
     countries= country.objects.all()
     return JsonResponse({"countries":list(countries.values())})
+
+def states(request):
+    cid = request.GET['cid']
+    states= state.objects.filter(country_id=cid)
+    return JsonResponse({"states":list(states.values())})
+
+def cities(request):
+    sid = request.GET['sid']
+    cities= city.objects.filter(state_id=sid)
+    return JsonResponse({"cities":list(cities.values())})
