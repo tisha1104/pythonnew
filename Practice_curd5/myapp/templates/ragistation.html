@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="contener">
+        <div class="row">
+            <div class="col-5 mx-auto card p-3">
+                <h1>REGISTARTION</h1>
+                <hr>
+                {{err}}
+                {{mesges}}
+                <form action="" method="post">
+                    {%csrf_token%}
+                    <input type="text" name="fname" placeholder="enter your fisrt name" class="form-control">
+                    <br>
+                    <br>
+                    <input type="text" name="lname" placeholder="enter your last name " class="form-control">
+                    <br>
+                    <br>
+                    <input type="text" name="username" placeholder="enter your username" class="form-control">
+                    <br>
+                    <br>
+                    <input type="password" name="password" placeholder="enter your password" class="form-control">
+                    <br>
+                    <br>
+                    <input type="submit" class="btn btn-success">
+                    <input type="reset" class="btn btn-primary">
+                    <a href="{%url 'login'%}" class="btn btn-warning">login</a>
+                    </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

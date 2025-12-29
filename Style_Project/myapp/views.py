@@ -2,11 +2,13 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
-
+from myapp.models import *
 # Create your views here.
 
 def index(request):
-    return render(request,'index.html')
+    products=Product.objects.all()
+    categories= Category.objects.all()
+    return render(request,'index.html',{"products":products,"categories":categories})
 
 @login_required(login_url="login_register")
 def jewellery(request):
@@ -25,9 +27,14 @@ def user_regierstation(request):
         data = request.POST
         fname =data.get('fname')
         lname= data.get('lname')
+        username=data.get('username')
         password=data.get('password')
 
-        u= User(first_name=fname,last_name=lname)
+
+        if User.objects.filter(username=username).exists():
+            return render (request,"login_register.html",{"title":"User alredy exits!"})
+
+        u= User(first_name=fname,last_name=lname,username=username)
         u.set_password(password)
         u.save()
         return render(request,"login_register.html",{"msg":"Regierstation Successfully Done!"})

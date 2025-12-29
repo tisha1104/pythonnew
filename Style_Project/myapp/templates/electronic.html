@@ -3,6 +3,7 @@
 {% block body %}
 
 <!-- electronic section start -->
+ {%for products in p%}
 <div class="fashion_section">
     <div id="electronic_main_slider" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -182,5 +183,5 @@
     </div>
 </div>
 <!-- electronic section end -->
-
+{%endfor%}
 {% endblock %}

@@ -20,7 +20,9 @@
                 {% if msg %}
                     <div class="alert alert-success">{{msg}}</div>
                 {% endif %}
-
+              
+                    <div class="alert alert-success">{{title}}</div>
+                
                 <form action="{% url 'user-regierstation' %}" method="post">
                     {% csrf_token %}
 

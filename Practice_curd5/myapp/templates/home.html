@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+    <h1>WELCOME HOME {{user}}</h1>
+    <div class="contener">
+        <div class="row mt-3">
+            <div class="col-5 card p-3">
+                <h1>PRODUCT REGISTER</h1>
+                <hr>
+                <span>{{msg}}</span>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {%csrf_token%}
+                    <input type="hidden" name="id" value="{{p.id}}">
+                    <input type="text" name="name" placeholder="enter your name" class="form-control" value="{{p.name}}">
+                    <br>
+                    <br>
+                    <input type="text" name="price" placeholder="enter your price" class="form-control" value="{{p.price}}">
+                    <br>
+                    <br>
+                    <input type="text" name="qty" placeholder="enter your qty" class="form-control" value="{{p.qty}}">
+                    <br>
+                    <br>
+                    {%if p%}
+                    <img src="media/{{p.image}}" alt="" height="50px" width="50px">
+                    <span>{{p.image}}</span>
+                    {%endif%}
+                    <br>
+                    <input type="file" name="image" class="form-control">
+                    <br>
+                    <br>
+                    <input type="submit" class="btn btn-success">
+                    <input type="reset" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+        <div class="col-1">
+
+        </div>
+        <div class="col-6 card p-3">
+            <h1>PRODUCT DETAILS</h1>
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>PRICE</th>
+                    <th>QTY</th>
+                    <th>IMAGE</th>
+                    <th colspan="2">ACTION</th>
+                </tr>
+                {%for p in productes%}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{p.name}}</td>
+                    <td>{{p.price}}</td>
+                    <td>{{p.qty}}</td>
+                    <td><img src="media/{{p.image}}" alt="{{p.image}}" height="50px" width="50px"></td>
+                    <td><a href="{%url 'edit'%}?id={{p.id}}" class="btn btn-primary">EDIT</a></td>
+                    <td><a href="{%url 'delete'%}?id={{p.id}}" class="btn btn-danger"></a>>DELETE</a></td>
+                </tr>
+                {%endfor%}
+            </table>
+            <h1 align="center"><a href="{%url 'logout'%}">LOGOUT</a></h1>
+        </div>
+    </div>
+</body>
+</html>

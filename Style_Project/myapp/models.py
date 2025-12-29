@@ -16,3 +16,6 @@ class Product(models.Model):
     qty = models.IntegerField()
     desc = models.TextField()
     image = models.ImageField(upload_to="pro_image")
+    
+    def __str__(self):
+        return self.name
