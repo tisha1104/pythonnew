@@ -3,40 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Student Registration</title>
+
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+    <style>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffb3b3, #ffd6d6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        table th {
+            background-color: #f15b5b;
+            color: white;
+        }
+    </style>
 
     <script>
-        $(document).ready()(function(){
+        $(document).ready(function () {
+            viewstudent()
+        });
 
-        })
+
+        function addstudent(){
+                var name= $("#name").val()
+                var email= $("#email").val()
+                var phone= $("#phone").val()
+                var csrfmiddlewaretoken=$('input[name="csrfmiddlewaretoken"]').val()
+
+                $.post('register',{csrfmiddlewaretoken,name,email,phone},function(rt){
+                    alert(rt)
+
+                    $("#name").val("")
+                    $("#email").val("")
+                    $("#phone").val("")
+
+                    viewstudent()
+                })
+        }
+
+        function viewstudent(){
+            $.get("display",{},function(rt){
+                var rows=""
+                rt.studentes.map(ele =>{
+                    rows+= `<tr><td>${ele.id}</td><td>${ele.name}</td><td>${ele.email}</td><td>${ele.phone}</td></tr>`
+                })
+                $("#tdata").html(rows)
+            })
+        }
+
+
     </script>
-
-
 </head>
 <body>
-    
-        <input type="text" name="name" id="name" placeholder="Enter Your Name">
-        <input type="text" name="email" id="email" placeholder="Enter Your Email">
-        <input type="text" name="phone" id="phone" placeholder="Enter Your Phone no.">
-        <input type="submit">
-        <input type="reset">
 
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-            </tbody>
-        </table>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+
+                <div class="card p-4">
+                    <h3 class="text-center text-danger mb-4">Student Registration</h3>
+
+                    <form>
+                        {%csrf_token%}
+                        <!-- Student Name -->
+                        <div class="mb-3">
+                            <label class="form-label">Student Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter student name">
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email">
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="phone" placeholder="Enter phone number">
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-danger px-4" onclick="addstudent()">Register</button>
+                            <button type="reset" class="btn btn-outline-secondary px-4 ms-2">Reset</button>
+                        </div>
+                    </form>
+
+                    <hr class="my-4">
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tdata">
+                                <!-- Student data here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
