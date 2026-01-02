@@ -33,6 +33,7 @@
     <script>
         $(document).ready(function () {
                 viewstudent()
+                $("#upbtn").hide()
         });
 
 
@@ -54,16 +55,84 @@
 
                     viewstudent()
                 })
+
         }
 
         function viewstudent(){
                 $.get("display",{},function(rt){
                     var rows = ""
                     rt.studentes.map(ele =>{
-                       rows+=`<tr><td>${ele.id}</td><td>${ele.name}</td><td>${ele.email}</td><td>${ele.phone}</td></tr>`
+                       rows+=`<tr>
+                       <td>${ele.id}</td>
+                       <td>${ele.name}</td>
+                       <td>${ele.email}</td>
+                       <td>${ele.phone}</td>
+                       <td><button class='btn btn-danger' onclick='deletestudent(${ele.id})'>Delete</button></td>
+                       <td><button class='btn btn-primary' onclick='getbyid(${ele.id})'>Edit</button></td>
+                       </tr>`
                     })
                     $("#tdata").html(rows)
                 })
+        }
+
+    
+        function deletestudent(sid){
+            $.get('delete',{sid},function(rt){
+                alert(rt)
+                viewstudent()
+            })
+        }
+
+        function getbyid(sid){
+            $.get('getbyid',{sid},function(rt){
+                $("#id").val(rt.studentes[0].id)
+                $("#name").val(rt.studentes[0].name)
+                $("#email").val(rt.studentes[0].email)
+                $("#phone").val(rt.studentes[0].phone)
+                $("#upbtn").show()
+                $("smbtn").hide()
+            })
+        }
+
+        function updatestudent(){
+            
+                var id= $("#id").val()
+                var name = $("#name").val()
+                var email = $("#email").val()
+                var phone = $("#phone").val()
+                var csrfmiddlewaretoken=$('input[name="csrfmiddlewaretoken"]').val()
+
+                
+
+                $.post('update',{csrfmiddlewaretoken,id,name,email,phone},function(rt){
+                    alert(rt)
+
+                    $("#id").val("")
+                    $("#name").val("")
+                    $("#email").val("")
+                    $("#phone").val("")
+
+                    viewstudent()
+                    $("#upbtn").hide()
+                    $("#smbtn").show()
+                })
+        }
+
+        function search(value){
+            $.get('search',{value},function(rt){
+                var rows = ""
+                    rt.studentes.map(ele =>{
+                       rows+=`<tr>
+                       <td>${ele.id}</td>
+                       <td>${ele.name}</td>
+                       <td>${ele.email}</td>
+                       <td>${ele.phone}</td>
+                       <td><button class='btn btn-danger' onclick='deletestudent(${ele.id})'>Delete</button></td>
+                       <td><button class='btn btn-primary' onclick='getbyid(${ele.id})'>Edit</button></td>
+                       </tr>`
+                    })
+                    $("#tdata").html(rows)
+            })
         }
 
     </script>
@@ -84,6 +153,7 @@
                 <div class="card-body bg-white rounded-bottom">
                     {%csrf_token%}
                     <form id="studentForm">
+                        <input type="hidden" id="id">
                         <div class="mb-3">
                             <label class="form-label">Name</label>
                             <input type="text" id="name" class="form-control" placeholder="Enter your name">
@@ -100,7 +170,8 @@
                         </div>
 
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-success" onclick="addstudent()">Submit</button>
+                            <button type="submit" class="btn btn-success" id="smbtn" onclick="addstudent()">Submit</button>
+                             <button type="button" class="btn btn-success" id="upbtn" onclick="updatestudent()">Update</button>
                             <button type="reset" class="btn btn-secondary">Reset</button>
                         </div>
 
@@ -114,6 +185,8 @@
                     Registered Students
                 </div>
 
+                <input type="text" class="form-control" placeholder="search" onkeyup="search(value)">
+
                 <div class="card-body table-responsive bg-white">
                     <table class="table table-bordered table-hover text-center">
                         <thead class="pink-gradient-table">
@@ -122,6 +195,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
+                                <th colspan="2">Action</th>
                             </tr>
                         </thead>
                         <tbody id="tdata">
