@@ -21,3 +21,14 @@ def register(request):
 def display(request):
     studentes=student.objects.all()
     return JsonResponse({"studentes":list(studentes.values())})
+
+def delete_student(request):
+    sid=request.GET['sid']
+    st=student.objects.get(pk=sid)
+    st.delete()
+    return HttpResponse("Student Recoerd Delete Suceecssfully!")
+
+def getbyid(request):
+    sid=request.GET['sid']
+    st=student.objects.filter(id=sid)
+    return JsonResponse({"studentes":list(st.values())})

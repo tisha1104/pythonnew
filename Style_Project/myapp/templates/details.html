@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="fashion_section">
+   <div class="container">
+
+      <h1 class="fashion_taital" style="color:#2c3e50 !important;">{{ product.name }}</h1>
+
+      <div class="row">
+
+         
+         <div class="col-lg-6 col-sm-6">
+            <div class="tshirt_img">
+               <img src="{{ product.image.url }}" style="max-width:100%;">
+            </div>
+         </div>
+
+         
+         <div class="col-lg-6 col-sm-6">
+
+            
+            <h2 class="price_text" style="color:#e74c3c !important;">Price : ₹ {{ product.price }}</h2>
+
+            
+            <p class="shirt_text" style="color:#2c3e50 !important;"><strong>Category :</strong> {{ product.category.name }}</p>
+
+            
+            <p class="shirt_text" style="color:#2c3e50 !important;"><strong>Description :</strong></p>
+            <p class="shirt_text" style="color:#2c3e50 !important;">{{ product.desc}}</p>
+
+            <div class="btn_main" style="margin-top:20px;">
+
+               
+               <div class="buy_bt" style="margin-bottom:10px;">
+                  <a href="#">Buy Now</a>
+               </div>
+
+               
+               <div class="seemore_bt">
+                  <a href="{% url 'index' %}">Back</a>
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+</div>
+
+{% endblock %}

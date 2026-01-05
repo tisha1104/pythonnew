@@ -3,10 +3,15 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from myapp.models import *
+from django.http import JsonResponse 
 # Create your views here.
 
 def index(request):
-    products=Product.objects.all()
+    if request.GET:
+        cid=request.GET['cid']
+        products=Product.objects.filter(category_id=cid)
+    else:
+        products=Product.objects.all()
     categories= Category.objects.all()
     return render(request,'index.html',{"products":products,"categories":categories})
 
@@ -82,3 +87,16 @@ def cart_view(request):
         'cart_total': cart_total,
     }
     return render(request, 'cart.html', context)
+
+def details(request):
+    pid=request.GET.get('pid')
+    product= Product.objects.get(pk=pid)
+    return render(request,'details.html',{"product":product})
+
+def get_products(request):
+    products=Product.objects.all()
+    return JsonResponse({"products":list(products.values())})
+
+def get_categories(request):
+    categories=Category.objects.all()
+    return JsonResponse({"categories":list(categories.values())})

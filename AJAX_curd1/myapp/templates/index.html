@@ -58,14 +58,38 @@
             $.get("display",{},function(rt){
                 var rows=""
                 rt.studentes.map(ele =>{
-                    rows+= `<tr><td>${ele.id}</td><td>${ele.name}</td><td>${ele.email}</td><td>${ele.phone}</td></tr>`
+                    rows+= `<tr>
+                        <td>${ele.id}</td>
+                        <td>${ele.name}</td>
+                        <td>${ele.email}</td>
+                        <td>${ele.phone}</td>
+                        <td><button class="btn btn-danger btn-sm me-2" onclick='deletestudent(${ele.id})'>Delete</button></td>
+                        <td><button class="btn btn-primary btn-sm" onclick='getbyid(${ele.id})'>Edit</button></td>
+                        </tr>`
                 })
                 $("#tdata").html(rows)
             })
         }
 
+        function deletestudent(sid){
+            $.get('delete',{sid},function(rt){
+                alert(rt)
+                viewstudent()
+            })
+        }
+
+        function getbyid(sid){
+            $.get('getbyid',{sid},function(rt){
+                $("#id").val(rt.studentes[0].id)
+                $("#name").val(rt.studentes[0].name)
+                $("#email").val(rt.studentes[0].email)
+                $("#phone").val(rt.studentes[0].phone)
+
+            })
+        }
 
     </script>
+
 </head>
 <body>
 
@@ -113,6 +137,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
+                                    <th colspan="2">Action</th>
                                 </tr>
                             </thead>
                             <tbody id="tdata">

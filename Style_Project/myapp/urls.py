@@ -10,7 +10,10 @@ urlpatterns=[
     path("user-login",login_register,name='login_register'),
     path('user-regierstation',user_regierstation,name='user-regierstation'),
     path('user-logout',user_logout,name="user-logout"),
-    path('cart/',cart_view, name='cart')
+    path('cart/',cart_view, name='cart'),
+    path('details',details,name="details"),
+    path('getproducts',get_products,name="getproducts"),
+    path('getcategories',get_categories,name="getcategories")
 ]
 
 if settings.DEBUG:
