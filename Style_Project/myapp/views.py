@@ -94,7 +94,12 @@ def details(request):
     return render(request,'details.html',{"product":product})
 
 def get_products(request):
-    products=Product.objects.all()
+    catid=request.GET['catid']
+    if int(catid)>0:
+       products=Product.objects.filter(category_id=catid)
+    else:
+        products=Product.objects.all()
+        
     return JsonResponse({"products":list(products.values())})
 
 def get_categories(request):

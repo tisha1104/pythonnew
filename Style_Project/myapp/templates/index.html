@@ -12,51 +12,15 @@
                <div class="fashion_section_2">
 
                   <div class="row" style="margin-bottom:30px;" id="catdata" >
-                     {% for cat in categories %}
-                     <div class="col-lg-4 col-sm-4 text-center">
-
-                        <h2 class="shirt_text">{{ cat.name }}</h2>
-
-                        <div class="category_img">
-                           <a href="{% url 'index' %}?cid={{ cat.id }}">
-                              <img src="{{ cat.image.url }}" class="img-fluid">
-                           </a>
-                        </div>
-
-                     </div>
-                     {% endfor %}
+                     <!-- {% for cat in categories %}
+                     
+                     {% endfor %} -->
                   </div>
 
-                  <div class="row">
-                     {% for prod in products %}
-                     <div class="col-lg-4 col-sm-4">
-                        <div class="box_main">
-
-                           <div class="tshirt_img">
-                              <img src="{{ prod.image.url }}">
-                           </div>
-
-                           <h4 class="shirt_text">{{ prod.name }}</h4>
-                           <h1 class="price_text">₹ {{ prod.price }}</h1>
-
-                           <div class="btn_main">
-                              <div class="buy_bt">
-                                 <a href="#">Buy Now</a>
-                              </div>
-                              <div class="seemore_bt">
-                                 <a href="{% url 'details' %}?pid={{ prod.id }}">
-                                    See More
-                                 </a>
-                              </div>
-                           </div>
-
-                        </div>
-                     </div>
-                     {% empty %}
-                     <p style="text-align:center;width:100%;">
-                        No products found in this category.
-                     </p>
-                     {% endfor %}
+                  <div class="row" id="prodata">
+                     <!-- {% for prod in products %}
+                    
+                     {% endfor %} -->
                   </div>
 
                </div>
@@ -72,21 +36,64 @@
       getcategories()
    })
 
-   function getproducts(){
-      $.get("getproducts",{},function(rt){
-         alert(rt)
+   function getproducts(catid){
+      if (catid == undefined){
+         catid=0
+      }
+      $.get("getproducts",{catid},function(rt){
+         
+         var pro=""
+         rt.products.map(ele=>{
+            pro+= `<div class="col-lg-4 col-sm-4">
+                        <div class="box_main">
+
+                           <div class="tshirt_img">
+                              <img src="media/${ele.image}">
+                           </div>
+
+                           <h4 class="shirt_text">${ ele.name}</h4>
+                           <h1 class="price_text">₹ ${ ele.price }</h1>
+
+                           <div class="btn_main">
+                              <div class="buy_bt">
+                                 <a href="#">Buy Now</a>
+                              </div>
+                              <div class="seemore_bt">
+                                 <a href="{% url 'details' %}?pid=${ele.id}">
+                                    See More
+                                 </a>
+                              </div>
+                           </div>
+
+                        </div>
+                     </div>`
+         })
+         $("#prodata").html(pro)
       })
+      }
 
    function getcategories(){
       $.get("getcategories",{},function(rt){
 
+         var cats= ""
          rt.categories.map(ele=>{
+             cats+= `<div class="col-lg-4 col-sm-4 text-center">
+
+                        <h2 class="shirt_text">${ele.name}</h2>
+
+                        <div class="category_img">
+                           <a href="javascript:void(0)" onclick="getproducts(${ele.id})">
+                              <img src="media/${ele.image}" class="img-fluid">
+                           </a>
+                        </div>
+
+                     </div>`
 
          })
-
+         $("#catdata").html(cats)
       })
    }
-   }
+  
 </script>
 
 {% endblock %}
