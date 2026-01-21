@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from myapp.models import *
-from django.http import JsonResponse 
+from django.http import JsonResponse ,HttpResponse
 # Create your views here.
 
 def index(request):
@@ -66,27 +66,26 @@ def user_logout(request):
 
 @login_required(login_url="login_register")
 def cart_view(request):
-    # Dummy cart data for demonstration
-    cart_items = [
-        {
-            'product': {'name': 'Product 1', 'image': '/static/images/product1.jpg', 'price': 25},
-            'quantity': 2,
-            'get_total_price': 50
-        },
-        {
-            'product': {'name': 'Product 2', 'image': '/static/images/product2.jpg', 'price': 15},
-            'quantity': 1,
-            'get_total_price': 15
-        },
-    ]
+    carts=Cart.objects.filter(user=request.user)
+    return render(request, 'cart.html',{"carts":carts})
 
-    cart_total = sum(item['get_total_price'] for item in cart_items)
+def addtocart(request):
+    pid = request.GET['pid']
+    product=Product.objects.get(pk=pid)
+    user = request.user
 
-    context = {
-        'cart_items': cart_items,
-        'cart_total': cart_total,
-    }
-    return render(request, 'cart.html', context)
+    if user.is_anonymous:
+        return HttpResponse(user)
+    else:
+        isexist=Cart.objects.filter(user=user,product=product)
+        if(len(isexist)>=1):
+            isexist[0].qty=isexist[0].qty+1
+            isexist[0].save()
+            return HttpResponse("Your Product Succesfully Added Into Cart!")
+
+        else:
+            Cart.objects.create(product=product,user=user,qty=1)
+            return HttpResponse("Your Product Succesfully Added Into Cart!")
 
 def details(request):
     pid=request.GET.get('pid')
@@ -105,3 +104,8 @@ def get_products(request):
 def get_categories(request):
     categories=Category.objects.all()
     return JsonResponse({"categories":list(categories.values())})
+
+def search_product(request):
+    q=request.GET['q']
+    products=Product.objects.filter(name__startswith=q)
+    return JsonResponse({"products":list(products.values())})

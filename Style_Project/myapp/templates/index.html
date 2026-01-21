@@ -56,7 +56,7 @@
 
                            <div class="btn_main">
                               <div class="buy_bt">
-                                 <a href="#">Buy Now</a>
+                                 <a onclick='addtocart(${ele.id})'>Buy Now</a>
                               </div>
                               <div class="seemore_bt">
                                  <a href="{% url 'details' %}?pid=${ele.id}">
@@ -93,7 +93,53 @@
          $("#catdata").html(cats)
       })
    }
-  
+
+
+   function search(q){
+            $.get("searchproduct",{q},function(rt){
+         
+         var pro=""
+         rt.products.map(ele=>{
+            pro+= `<div class="col-lg-4 col-sm-4">
+                        <div class="box_main">
+
+                           <div class="tshirt_img">
+                              <img src="media/${ele.image}">
+                           </div>
+
+                           <h4 class="shirt_text">${ ele.name}</h4>
+                           <h1 class="price_text">₹ ${ ele.price }</h1>
+
+                           <div class="btn_main">
+                              <div class="buy_bt">
+                                 <a href="#">Buy Now</a>
+                              </div>
+                              <div class="seemore_bt">
+                                 <a href="{% url 'details' %}?pid=${ele.id}">
+                                    See More
+                                 </a>
+                              </div>
+                           </div>
+
+                        </div>
+                     </div>`
+         })
+         $("#prodata").html(pro)
+      })
+   }
+
+
+   function addtocart(pid){
+      $.get('addtocart',{pid},function(rt){
+         if (rt=='AnonymousUser'){
+            location.href="user-login"
+         }
+         else{
+            alert(rt)
+         }
+      })
+   }
+
 </script>
 
 {% endblock %}

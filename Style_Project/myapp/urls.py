@@ -13,7 +13,9 @@ urlpatterns=[
     path('cart/',cart_view, name='cart'),
     path('details',details,name="details"),
     path('getproducts',get_products,name="getproducts"),
-    path('getcategories',get_categories,name="getcategories")
+    path('getcategories',get_categories,name="getcategories"),
+    path('searchproduct',search_product,name="searchproduct"),
+    path('addtocart',addtocart,name='addtocart')
 ]
 
 if settings.DEBUG:
