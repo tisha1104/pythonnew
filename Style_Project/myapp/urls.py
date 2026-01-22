@@ -15,7 +15,11 @@ urlpatterns=[
     path('getproducts',get_products,name="getproducts"),
     path('getcategories',get_categories,name="getcategories"),
     path('searchproduct',search_product,name="searchproduct"),
-    path('addtocart',addtocart,name='addtocart')
+    path('addtocart',addtocart,name='addtocart'),
+    path('removecart',removecart,name='removecart'),
+    path('changeqty',changeqty,name='changeqty'),
+    path("payment",payment,name="payment"),
+    path('makeorder',makeorder,name='makeorder')
 ]
 
 if settings.DEBUG:

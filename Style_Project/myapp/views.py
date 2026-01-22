@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from myapp.models import *
 from django.http import JsonResponse ,HttpResponse
+import razorpay
+import datetime
 # Create your views here.
 
 def index(request):
@@ -67,7 +69,10 @@ def user_logout(request):
 @login_required(login_url="login_register")
 def cart_view(request):
     carts=Cart.objects.filter(user=request.user)
-    return render(request, 'cart.html',{"carts":carts})
+    sum=0
+    for c in carts:
+        sum+=c.get_total_price()
+    return render(request, 'cart.html',{"carts":carts,"total":int(sum)})
 
 def addtocart(request):
     pid = request.GET['pid']
@@ -86,6 +91,24 @@ def addtocart(request):
         else:
             Cart.objects.create(product=product,user=user,qty=1)
             return HttpResponse("Your Product Succesfully Added Into Cart!")
+        
+def removecart(request):
+    cid =request.GET['cid']
+    cart= Cart.objects.get(pk=cid)
+    cart.delete()
+    return HttpResponse("Your item in Cart Deleted Succesfully!")
+
+
+def changeqty(request):
+    cid =request.GET['cid']
+    qty =request.GET['qty']
+    cart= Cart.objects.get(pk=cid)
+    if int(qty)<=0:
+        cart.delete()
+    else:
+        cart.qty =qty
+        cart.save()
+    return HttpResponse("cart updated!")
 
 def details(request):
     pid=request.GET.get('pid')
@@ -109,3 +132,32 @@ def search_product(request):
     q=request.GET['q']
     products=Product.objects.filter(name__startswith=q)
     return JsonResponse({"products":list(products.values())})
+
+
+def payment(request):
+    amt = request.GET['amt']
+    client = razorpay.Client(auth=("rzp_test_S1Hsg7YN8MlwDU", "ZKs1rK1XnjRDNd4uxjP2NcRJ"))
+
+    
+    data = { "amount": int(amt)*100, "currency": "INR", "receipt": "order_rcptid_11" }
+    payment = client.order.create(data=data) # Amount is in currency subunits.
+    
+    return JsonResponse(payment)
+
+def makeorder(request):
+    payid=request.GET['payid']
+    date = datetime.datetime.now()
+    user=request.user
+
+    carts= Cart.objects.filter(user=user)
+    sum=0
+    for i in carts:
+        sum += i.get_total_price()
+
+    order=Order.objects.create(user=user,data=date,total=sum,payid=payid)
+
+    for c in carts:
+        OrderDetials.objects.create(order=order,product=c.product,qty=c.qty,price=c.product.price)
+        c.delete()
+
+    return HttpResponse("order placed successfully!")
