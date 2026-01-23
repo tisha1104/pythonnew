@@ -38,8 +38,12 @@ class Order(models.Model):
     payid = models.CharField(max_length=50)
 
 class OrderDetials(models.Model):
-    order=models.ForeignKey(Order,on_delete=models.CASCADE)
+    order=models.ForeignKey(Order,on_delete=models.CASCADE, related_name="details")
     product=models.ForeignKey(Product,on_delete=models.CASCADE)
     qty=models.IntegerField()
     price=models.FloatField()
+    
+
+    def total_price(self):
+        return self.price*self.qty
     

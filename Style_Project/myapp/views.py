@@ -6,6 +6,8 @@ from myapp.models import *
 from django.http import JsonResponse ,HttpResponse
 import razorpay
 import datetime
+from django.core.mail import send_mail
+from django.conf import settings
 # Create your views here.
 
 def index(request):
@@ -155,9 +157,29 @@ def makeorder(request):
         sum += i.get_total_price()
 
     order=Order.objects.create(user=user,data=date,total=sum,payid=payid)
-
+    rows=""
+    count=0
     for c in carts:
         OrderDetials.objects.create(order=order,product=c.product,qty=c.qty,price=c.product.price)
+        rows+="<tr><td>{count}</td><td>{i.product.name}</td><td>{i.product.price}</td><td>{i.qty}</td><td>{i.get_total_price()}</td></tr>"
         c.delete()
+        count+=1
+        
+    tbl=f"<table border='1'><thead><tr><th>PayID:{order.payid}</th></tr><tr><th>PayType:{order.paytype}</th></tr><tr><th>Order Date:{order.data}</th></tr><tr><th>Status:{order.status}</th></tr><tr><th>Total:{order.total}</th></tr><tr><th>ID</th><th>Name</th><th>Price</th><th>QTY</th><th>total</th></tr></thead><tbody>{rows}</tbody></table>"
+    
+                   
+                    
+                    
+                
+    
+    try:
+        send_mail("Order Conformation", "Your Order Placed successfully", settings.EMAIL_HOST_USER, [user.email],html_message=tbl)
 
+    except Exception as e:
+                print(e)
     return HttpResponse("order placed successfully!")
+
+def my_orders(request):
+    orders =Order.objects.filter(user=request.user)
+    return render(request, 'my_orders.html',{"orders":orders})
+

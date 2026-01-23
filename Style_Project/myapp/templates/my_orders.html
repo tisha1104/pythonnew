@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container mt-5 mb-5">
+    <h3><i class="fa fa-list-alt"></i> My Orders</h3>
+
+    {% for od in orders%}
+    <div class="card mt-4">
+        <div class="card-body">
+            <table class="placed_order-table">
+                <thead>
+                    <tr>
+                        <th>PayID:{{od.payid}}</th>
+                    </tr>
+                    <tr>
+                        <th>PayType:{{od.paytype}}</th>
+                    </tr>
+                    <tr>
+                        <th>Order Date:{{od.data}}</th>
+                    </tr>
+                    <tr>
+                        <th>Status:{{od.status}}</th>
+                    </tr>
+                    <tr>
+                        <th>Total:{{od.total}}</th>
+                    </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>QTY</th>
+                        <th>total</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {%for i in od.details.all%}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{i.product.name}}</td>
+                        <td>{{i.price}}</td>
+                        <td>{{i.qty}}</td>
+                        <td>{{i.total_price}}</td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+            <hr>
+
+            <a href="{% url 'cart' %}" class="btn btn-sm btn-outline-primary">
+                View Details
+            </a>
+        </div>
+    </div>
+    {%endfor%}
+</div>
+{% endblock %}
