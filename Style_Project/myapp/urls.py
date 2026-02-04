@@ -20,7 +20,13 @@ urlpatterns=[
     path('changeqty',changeqty,name='changeqty'),
     path("payment",payment,name="payment"),
     path('makeorder',makeorder,name='makeorder'),
-    path('my-orders',my_orders, name='my_orders')
+    path('my-orders',my_orders, name='my_orders'),
+    path('address',address,name="address"),
+    path('add_address',add_address,name="add_address"),
+    path('get_address',get_addresses,name="get_address"),
+    path('forgotpass',forgotpass,name="forgotpass"),
+    path("password-sendemail",password_sendemail,name="password-sendemail"),
+    path('resetpass',resetpass,name="resetpass")
 ]
 
 if settings.DEBUG:

@@ -148,6 +148,7 @@ def payment(request):
 
 def makeorder(request):
     payid=request.GET['payid']
+    adr=Address.objects.get(pk=request.GET['adr'])
     date = datetime.datetime.now()
     user=request.user
 
@@ -156,7 +157,7 @@ def makeorder(request):
     for i in carts:
         sum += i.get_total_price()
 
-    order=Order.objects.create(user=user,data=date,total=sum,payid=payid)
+    order=Order.objects.create(user=user,data=date,total=sum,payid=payid,address=adr)
     rows=""
     count=0
     for c in carts:
@@ -179,7 +180,38 @@ def makeorder(request):
                 print(e)
     return HttpResponse("order placed successfully!")
 
+
+@login_required(login_url="login_register")
 def my_orders(request):
     orders =Order.objects.filter(user=request.user)
     return render(request, 'my_orders.html',{"orders":orders})
 
+def address(request):
+    return render(request,"address.html")
+
+def add_address(request):
+    user=request.user
+    adr=request.GET.get('address')
+    Adr=Address.objects.create(user=user,address=adr)
+    return HttpResponse("Successfully added Address!")
+
+def get_addresses(request):
+    address=Address.objects.filter(user=request.user)
+    return JsonResponse({'adr':list(address.values())})
+
+def forgotpass(request):
+    return render(request,"forgot.html")
+
+def password_sendemail(request):
+    email=request.POST['email']
+    try:
+        user= User.objects.get(email=email)
+        send_mail("Password Recovery", f"http://127.0.0.1:8000/resetpass?email={email}",
+        settings.EMAIL_HOST_USER, [email])
+
+        return render(request,"forgot.html",{"err":"Email Sent Successfully!"})
+    except Exception as e:
+        return render(request,"forgot.html",{"err":"Something Went Wrong!"})
+    
+def resetpass(request):
+    return render(request,"resetpass.html")

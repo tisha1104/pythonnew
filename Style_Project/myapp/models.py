@@ -29,6 +29,12 @@ class Cart(models.Model):
     def get_total_price(self):
         return self.qty*self.product.price
     
+
+class Address(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    address=models.TextField()
+
+    
 class Order(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     data = models.DateField()
@@ -36,6 +42,7 @@ class Order(models.Model):
     status = models.CharField(max_length=20,default="pending")
     paytype= models.CharField(max_length=20,default="online")
     payid = models.CharField(max_length=50)
+    address=models.ForeignKey(Address,on_delete=models.CASCADE,null=True)
 
 class OrderDetials(models.Model):
     order=models.ForeignKey(Order,on_delete=models.CASCADE, related_name="details")

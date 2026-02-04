@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+            <!-- Login Form -->
+            <div class="col-lg-5 col-md-6 col-sm-12 mx-auto card p-4 shadow mt-4 mt-md-0">
+                <h3 class="text-center mb-3">Reset Password</h3>
+                <span>{{err}}</span>
+                <form action="{% url 'password-sendemail' %}" method="post">
+                    {% csrf_token %}
+
+                    <input type="text" name="pass" placeholder="Enter Your Password" class="form-control mb-2" required>
+                     <input type="text" name="cpass" placeholder="Enter Your Confirm Password" class="form-control mb-2" required>
+                    <br>
+                    <button class="btn btn-primary w-100">Submit</button>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

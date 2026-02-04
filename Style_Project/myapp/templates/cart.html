@@ -63,6 +63,28 @@
     </div>
     {% endif %}
 </div>
+<div class="card mt-4">
+    <div class="card-header bg-secondary text-white">
+        <h5 class="mb-0">Shipping Address</h5>
+    </div>
+    <div class="card-body">
+
+        <div class="mb-3">
+            <input type="text" id="adr" placeholder="Address" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <button class="btn btn-primary" onclick="addaddress()">Add Address</button>
+        </div>
+
+        <hr>
+
+        <div id="alladr">
+            <!-- Addresses added via AJAX will appear here -->
+        </div>
+    </div>
+</div>
+
 
 <script>
     const removecart = (cid)=>{
@@ -102,7 +124,8 @@
           // alert(response.razorpay_payment_id);
           // alert(response.razorpay_order_id);
           // alert(response.razorpay_signature)
-          $.get("{% url 'makeorder'%}", { "payid": response.razorpay_payment_id }, function (rt) {
+            var adr= $('input[name="adr"]:checked').val()
+          $.get("{% url 'makeorder'%}", { "payid": response.razorpay_payment_id,adr }, function (rt) {
             alert(rt)
             location.reload()
           })
@@ -136,5 +159,30 @@
 
 
   }
+  $(document).ready(function(){
+    get_address()
+})
+
+function addaddress(){
+    var address=$('#adr').val()
+    $.get("{% url 'add_address' %}",{address},function(rt){
+        
+    })
+}
+
+function get_address(){
+    $.get("{% url 'get_address' %}",{},function(rt){
+
+        var adr=""
+        rt.adr.map(ele=>{
+            adr+=` <div class="border rounded p-3 mb-3">
+                    <input type="radio" name="adr" value='${ele.id}'>
+                                <p class="mb-1">${ele.address}</p>
+                                
+                            </div>`
+        })
+        $("#alladr").html(adr)
+    })
+}
 </script>
 {% endblock %}
