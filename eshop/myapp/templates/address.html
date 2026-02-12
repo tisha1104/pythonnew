@@ -1,15 +1,10 @@
-{% extends 'base.html' %}
-
-{% block body %}
+{% extends "base.html" %}
 {% load static %}
 
+{% block body %}
 
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
-
-
-<body class="bg-light">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <div class="container mt-5 mb-5">
     <div class="row justify-content-center">
@@ -22,9 +17,8 @@
                 </div>
 
                 <div class="card-body">
-                    <form method="post">
+                    <form id="addressForm">
                         {% csrf_token %}
-
                         <div class="mb-3">
                             <label class="form-label">Address</label>
                             <textarea id="adr"
@@ -36,9 +30,7 @@
                         </div>
 
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary"onclick="addaddress()">
-                                Save Address
-                            </button>
+                            <button type="submit" class="btn btn-primary">Save Address</button>
                         </div>
                     </form>
                 </div>
@@ -51,20 +43,7 @@
                 </div>
 
                 <div class="card-body" id="alladr">
-
-                    <!-- {% if addresses %}
-                        {% for address in addresses %}
-                            <div class="border rounded p-3 mb-3">
-                                <p class="mb-1">{{ address }}</p>
-                                <small class="text-muted">Saved Address</small>
-                            </div>
-                        {% endfor %}
-                    {% else %} -->
-                        <!-- <p class="text-muted text-center mb-0">
-                            No address added yet.
-                        </p>
-                    {% endif %} -->
-
+                    <!-- Addresses will load here via AJAX -->
                 </div>
             </div>
 
@@ -72,36 +51,79 @@
     </div>
 </div>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
 <script>
-
 $(document).ready(function(){
-    get_address()
-})
+    get_address();
+});
 
-function addaddress(){
-    var address=$('#adr').val()
-    $.get('add_address',{address},function(rt){
-        
-    })
+// Add new address
+$('#addressForm').submit(function(e){
+    e.preventDefault();
+    var address = $('#adr').val().trim();
+    if(address === "") return;
+
+    $.get('add_address', {address: address}, function(rt){
+        $('#adr').val(''); 
+        get_address();
+    });
+});
+
+// Fetch and render addresses
+function get_address(){
+    $.get('get_address', {}, function(rt){
+        var adr = "";
+        rt.adr.map(ele => {
+            adr += `
+            <div class="border rounded p-3 mb-3 d-flex justify-content-between align-items-center flex-wrap gap-2" id="adr-box-${ele.id}">
+                <div class="d-flex align-items-center w-75 gap-2">
+                    <input type="radio" name="selectedAddress" value="${ele.id}" class="form-check-input">
+
+                    <input type="text" 
+                           id="adr_${ele.id}" 
+                           class="form-control border-0 bg-light" 
+                           value="${ele.address}" 
+                           readonly>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-warning" onclick="editAddress(${ele.id}, this)">
+                        Update
+                    </button>
+                    <button class="btn btn-sm btn-danger" onclick="delete_address(${ele.id})">
+                        Delete
+                    </button>
+                </div>
+            </div>`;
+        });
+
+        $("#alladr").html(adr);
+    });
 }
 
-function get_address(){
-    $.get('get_address',{},function(rt){
+// Edit/update address
+function editAddress(aid, btn){
+    let input = $("#adr_" + aid);
 
-        var adr=""
-        rt.adr.map(ele=>{
-            adr+=` <div class="border rounded p-3 mb-3">
-                                <p class="mb-1">${ele.address}</p>
-                                
-                            </div>`
-        })
-        $("#alladr").html(adr)
-    })
+    if(input.prop("readonly")){
+        input.prop("readonly", false).focus();
+        $(btn).text("Save");
+    } else {
+        $.get("{% url 'update_address' %}", {id: aid, address: input.val()}, function(rt){
+            alert(rt);
+            input.prop("readonly", true);
+            $(btn).text("Update");
+            get_address();
+        });
+    }
+}
+
+// Delete address 
+function delete_address(id){
+    $.get("{% url 'delete_address' %}", {id:id}, function(rt){
+        alert(rt);
+        get_address();
+    });
 }
 </script>
+
 {% endblock %}

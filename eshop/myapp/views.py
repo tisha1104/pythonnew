@@ -250,3 +250,16 @@ def resetpass(request):
 
     return render(request,"resetpass.html",{"email":email})
 
+def delete_address(request):
+    id=request.GET['id']
+    adr=Address.objects.get(pk=id)
+    adr.delete()
+    return HttpResponse("Your Address Deleted uccesfully!")
+
+def update_address(request):
+     id=request.GET.get('id')
+     address=request.GET.get('address')
+     adr=Address.objects.get(pk=id)
+     adr.address=address
+     adr.save()
+     return HttpResponse("Your Address Update Successfully!")

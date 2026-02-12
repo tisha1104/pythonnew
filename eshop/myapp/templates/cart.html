@@ -166,23 +166,38 @@
 function addaddress(){
     var address=$('#adr').val()
     $.get("{% url 'add_address' %}",{address},function(rt){
-        
+        $('#adr').val('');  
+        get_address()
     })
 }
+function delete_address(id){
+    $.get("{% url 'delete_address' %}",{id},function(rt){
+        alert(rt)
+        get_address()
+    })
+}
+
 
 function get_address(){
-    $.get("{% url 'get_address' %}",{},function(rt){
-
-        var adr=""
-        rt.adr.map(ele=>{
-            adr+=` <div class="border rounded p-3 mb-3">
+    $.get("{% url 'get_address' %}", {}, function(rt){
+        var adr = "";
+        rt.adr.map(ele => {
+            adr += `
+            <div class="border rounded p-3 mb-3 d-flex justify-content-between align-items-center">
+                <div>
                     <input type="radio" name="adr" value='${ele.id}'>
-                                <p class="mb-1">${ele.address}</p>
-                                
-                            </div>`
-        })
-        $("#alladr").html(adr)
-    })
+                    <span class="ms-2">${ele.address}</span>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-sm btn-warning" onclick="update_address(${ele.id}, '${ele.address.replace(/'/g,"\\'")}')">Update</button>
+                    <button class="btn btn-sm btn-danger" onclick="delete_address(${ele.id})">Delete</button>
+                </div>
+            </div>`;
+        });
+        $("#alladr").html(adr);
+    });
 }
+
 </script>
 {% endblock %}

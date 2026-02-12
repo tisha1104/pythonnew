@@ -26,7 +26,9 @@ urlpatterns=[
     path('get_address',get_addresses,name="get_address"),
     path('forgotpass',forgotpass,name="forgotpass"),
     path("password-sendemail",password_sendemail,name="password-sendemail"),
-    path('resetpass',resetpass,name="resetpass")
+    path('resetpass',resetpass,name="resetpass"),
+    path('delete_address',delete_address,name="delete_address"),
+    path('update_address',update_address,name="update_address")
 ]
 
 if settings.DEBUG:
