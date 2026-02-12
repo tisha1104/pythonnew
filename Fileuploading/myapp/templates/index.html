@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <input type="text" name="name" placeholder="Enter Your Product Name">
+        <br>
+        <br>
+        <input type="file" name="file" multiple>
+        <br>
+        <hr>
+        <input type="submit">
+    </form>
+
+    <br><br>
+    <hr>
+    <br><br>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Images</th>
+        </tr>
+        {%for p in products%}
+        <tr>
+            <td>{{p.id}}</td>
+            <td>{{p.name}}</td>
+            <td>
+                {%for i in p.images.all%}
+                <img src="{{i.image.url}}" alt="{{i.image}}" height="50px" width="50px">
+                {%endfor%}
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+</body>
+</html>

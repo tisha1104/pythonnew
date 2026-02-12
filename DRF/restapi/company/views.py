@@ -45,6 +45,7 @@ class DeptupdateAPI(APIView):
             return Response({"data":ser.data})
         
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def addEmp(request,id):
     data=request.data
     data.update({"dept":id})
@@ -56,7 +57,7 @@ def addEmp(request,id):
         return Response({"data":ser.data})
     
 @api_view(['GET'])
-@permission_classes([IsAdminUser])
+@permission_classes([AllowAny])
 def getemps(request):
         emps=Emp.objects.all()
         ser=EmpSerializer(emps,many=True)
@@ -78,7 +79,7 @@ def updateEmp(request,id,eid):
     
 
 
-
+@permission_classes([AllowAny])
 class EmpById(APIView):
     
 
