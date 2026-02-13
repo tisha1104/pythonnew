@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.validators import FileExtensionValidator
 # Create your models here.
 
 class Product(models.Model):
@@ -7,4 +7,4 @@ class Product(models.Model):
 
 class Images(models.Model):
     product=models.ForeignKey(Product,on_delete=models.CASCADE,related_name="images")
-    image=models.ImageField(upload_to="image")
+    image=models.ImageField(upload_to="image",validators=[FileExtensionValidator(allowed_extensions=['png'])])

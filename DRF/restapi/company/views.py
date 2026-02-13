@@ -48,6 +48,7 @@ class DeptupdateAPI(APIView):
 @permission_classes([AllowAny])
 def addEmp(request,id):
     data=request.data
+    id = int(str(id).strip())
     data.update({"dept":id})
     ser=EmpSerializer(data=data)
     if not ser.is_valid():
