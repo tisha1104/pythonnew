@@ -65,15 +65,11 @@ class CartItemSerializer(serializers.ModelSerializer):
     source='product',
     write_only=True
     )
-    total_price = serializers.SerializerMethodField()
-
 
     class Meta:
         model = CartItem
-        fields = ['id', 'cart', 'product', 'product_id', 'quantity', 'total_price']
+        fields = ['id', 'cart', 'product', 'product_id', 'quantity']
 
-def get_total_price(self, obj):
-    return obj.total_price()
 
 
 # ---------------- Cart ----------------
