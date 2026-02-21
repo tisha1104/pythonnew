@@ -68,13 +68,26 @@ def user_logout(request):
     return redirect("index")
 
 
-@login_required(login_url="login_register")
+# @login_required(login_url="login_register")
+# def cart_view(request):
+#     carts=Cart.objects.filter(user=request.user)
+#     sum=0
+#     for c in carts:
+#         sum+=c.get_total_price()
+#     return render(request, 'cart.html',{"carts":carts,"total":int(sum)})
+
+
 def cart_view(request):
-    carts=Cart.objects.filter(user=request.user)
-    sum=0
-    for c in carts:
-        sum+=c.get_total_price()
-    return render(request, 'cart.html',{"carts":carts,"total":int(sum)})
+    carts = Cart.objects.filter(user=request.user)
+    total = sum(i.get_total_price() for i in carts)
+    addresses = Address.objects.filter(user=request.user)
+
+    return render(request, 'cart.html', {
+        'carts': carts,
+        'total': int(total),
+        'addresses': addresses
+    })
+
 
 def addtocart(request):
     pid = request.GET['pid']
@@ -136,15 +149,137 @@ def search_product(request):
     return JsonResponse({"products":list(products.values())})
 
 
+# def payment(request):
+#     try:
+#         amt = request.GET.get('amt')
+
+#         if amt is None:
+#             return JsonResponse({"error": "Amount missing"}, status=400)
+
+#         amt = int(amt)          # ₹ Rupees from frontend
+#         amount = amt * 100      # ✅ convert to paise (MANDATORY)
+
+#         client = razorpay.Client(auth=("rzp_test_S1Hsg7YN8MlwDU", "ZKs1rK1XnjRDNd4uxjP2NcRJ"))
+
+#         data = {
+#             "amount": amount,
+#             "currency": "INR",
+#             "receipt": f"order_{datetime.datetime.now().timestamp()}",
+#             "payment_capture": 1
+#         }
+
+#         order = client.order.create(data=data)
+
+#         return JsonResponse({
+#             "id": order["id"],
+#             "amount": order["amount"]
+#         })
+
+#     except Exception as e:
+#         print("RAZORPAY ERROR 👉", e)   # 🔥 YOU WILL SEE REAL ERROR NOW
+#         return JsonResponse({"error": str(e)}, status=500)
+
+# def payment(request):
+#     amt = float(request.GET.get('amt'))
+#     amount = int(amt * 100)
+
+#     client = razorpay.Client(
+#         auth=("rzp_test_SF5R7ur5nvvYLR", "NgUDBnx9JpMGHTWixBznB0S3")
+#     )
+
+#     order = client.order.create({
+#         "amount": amount,
+#         "currency": "INR",
+#         "payment_capture": 1
+#     })
+#     print(order)
+#     # return HttpResponse("Order Created Successfully")
+#     return JsonResponse(order)
 def payment(request):
+
     amt = request.GET['amt']
-    client = razorpay.Client(auth=("rzp_test_S1Hsg7YN8MlwDU", "ZKs1rK1XnjRDNd4uxjP2NcRJ"))
+    client = razorpay.Client(auth=("rzp_test_SF5R7ur5nvvYLR", "NgUDBnx9JpMGHTWixBznB0S3"))
 
     
     data = { "amount": int(amt)*100, "currency": "INR", "receipt": "order_rcptid_11" }
     payment = client.order.create(data=data) # Amount is in currency subunits.
     
     return JsonResponse(payment)
+
+# def makeorder(request):
+#     try:
+#         payid = request.GET.get('payid')
+#         adr_id = request.GET.get('adr')
+
+#         adr = Address.objects.get(id=adr_id)
+#         user = request.user
+#         date = datetime.datetime.now()
+
+#         carts = Cart.objects.filter(user=user)
+
+#         total = sum(i.get_total_price() for i in carts)
+
+#         order = Order.objects.create(
+#             user=user,
+#             data=date,
+#             total=total,
+#             payid=payid,
+#             paytype="Razorpay",
+#             address=adr,
+#             status="Placed"
+#         )
+
+#         rows = ""
+#         count = 1
+
+#         for c in carts:
+#             OrderDetials.objects.create(
+#                 order=order,
+#                 product=c.product,
+#                 qty=c.qty,
+#                 price=c.product.price
+#             )
+
+#             rows += f"""
+#             <tr>
+#                 <td>{count}</td>
+#                 <td>{c.product.name}</td>
+#                 <td>{c.product.price}</td>
+#                 <td>{c.qty}</td>
+#                 <td>{c.get_total_price()}</td>
+#             </tr>
+#             """
+#             c.delete()
+#             count += 1
+
+#         html = f"""
+#         <h3>Delivery Address</h3>
+#         <p>{adr.address}</p>
+
+#         <table border="1" cellpadding="5">
+#             <tr><th colspan="5">Payment ID: {order.payid}</th></tr>
+#             <tr>
+#                 <th>#</th><th>Name</th><th>Price</th><th>Qty</th><th>Total</th>
+#             </tr>
+#             {rows}
+#         </table>
+#         <h4>Total Amount: ₹{order.total}</h4>
+#         """
+
+#         send_mail(
+#             "Order Confirmation",
+#             "Your order placed successfully",
+#             settings.EMAIL_HOST_USER,
+#             [user.email],
+#             html_message=html
+#         )
+
+#         return HttpResponse("Order placed successfully!")
+
+#     except Exception as e:
+#         print("ORDER ERROR:", e)
+#         return HttpResponse("Order failed")
+
 
 def makeorder(request):
     payid=request.GET['payid']
@@ -257,9 +392,77 @@ def delete_address(request):
     return HttpResponse("Your Address Deleted uccesfully!")
 
 def update_address(request):
-     id=request.GET.get('id')
-     address=request.GET.get('address')
-     adr=Address.objects.get(pk=id)
-     adr.address=address
-     adr.save()
-     return HttpResponse("Your Address Update Successfully!")
+    if request.method == "POST":
+        id = request.POST.get('id')
+        address = request.POST.get('address')
+
+        try:
+            adr = Address.objects.get(pk=id, user=request.user)
+            adr.address = address
+            adr.save()
+            return HttpResponse("Your Address Updated Successfully!")
+        except Address.DoesNotExist:
+            return HttpResponse("Address Not Found")
+
+    return HttpResponse("Invalid Request")
+
+# @login_required
+# def add_address(request):
+#     if request.method == "POST":
+#         Address.objects.create(
+#             user=request.user,
+#             address=request.POST['address']
+#         )
+#         return JsonResponse({"status": "saved"})
+#     return JsonResponse({"status": "error"})
+
+
+# @login_required
+# def get_addresse(request):
+#     addresses = Address.objects.filter(user=request.user)
+
+#     data = []
+#     for a in addresses:
+#         data.append({
+#             "id": a.id,
+#             "address": a.address
+#         })
+
+#     return JsonResponse({"adr": data})
+
+
+# @login_required
+# def update_address(request):
+#     if request.method == "POST":
+#         a = Address.objects.get(id=request.POST['id'], user=request.user)
+#         a.address = request.POST['address']
+#         a.save()
+#         return JsonResponse({"status": "updated"})
+#     return JsonResponse({"status": "error"})
+
+
+# @login_required
+# def delete_address(request):
+#     a = Address.objects.get(id=request.GET['id'], user=request.user)
+#     a.delete()
+#     return JsonResponse({"status": "deleted"})
+
+
+
+def user_profile(request):
+    profile, created = Userprofile.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        user = request.user
+        user.username = request.POST.get('username')
+        user.email = request.POST.get('email')
+        user.first_name = request.POST.get('first_name')
+        user.last_name = request.POST.get('last_name')
+        user.save()
+
+        image = request.FILES.get('photo')
+        if image:
+            profile.image = image
+            profile.save()
+    return render(request, 'profile.html')
+   

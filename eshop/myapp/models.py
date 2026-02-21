@@ -54,3 +54,9 @@ class OrderDetials(models.Model):
     def total_price(self):
         return self.price*self.qty
     
+class Userprofile(models.Model):
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    image=models.ImageField(upload_to='image',null=True,blank=True)
+
+    def __str__(self):
+        return self.user.username

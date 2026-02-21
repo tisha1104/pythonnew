@@ -136,3 +136,8 @@ EMAIL_HOST_USER = "tishapatel5412@gmail.com"
 EMAIL_HOST_PASSWORD= "nixv dwmb wuyn vbfz"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Razorpay Credentials
+RAZORPAY_KEY_ID = "rzp_test_S1Hsg7YN8MlwDU"
+RAZORPAY_KEY_SECRET = "ZKs1rK1XnjRDNd4uxjP2NcRJ"

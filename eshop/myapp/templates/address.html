@@ -43,7 +43,6 @@
                 </div>
 
                 <div class="card-body" id="alladr">
-                    <!-- Addresses will load here via AJAX -->
                 </div>
             </div>
 
@@ -56,43 +55,53 @@ $(document).ready(function(){
     get_address();
 });
 
-// Add new address
+// ================= ADD ADDRESS =================
 $('#addressForm').submit(function(e){
     e.preventDefault();
+
     var address = $('#adr').val().trim();
     if(address === "") return;
 
-    $.get('add_address', {address: address}, function(rt){
-        $('#adr').val(''); 
+    $.post("{% url 'add_address' %}", {
+        address: address,
+        csrfmiddlewaretoken: '{{ csrf_token }}'
+    }, function(rt){
+        $('#adr').val('');
         get_address();
     });
 });
 
-// Fetch and render addresses
+// ================= GET ADDRESS =================
 function get_address(){
-    $.get('get_address', {}, function(rt){
-        var adr = "";
-        rt.adr.map(ele => {
-            adr += `
-            <div class="border rounded p-3 mb-3 d-flex justify-content-between align-items-center flex-wrap gap-2" id="adr-box-${ele.id}">
-                <div class="d-flex align-items-center w-75 gap-2">
-                    <input type="radio" name="selectedAddress" value="${ele.id}" class="form-check-input">
+    $.get("{% url 'get_address' %}", function(rt){
 
-                    <input type="text" 
-                           id="adr_${ele.id}" 
-                           class="form-control border-0 bg-light" 
-                           value="${ele.address}" 
+        var adr = "";
+
+        rt.adr.forEach(function(ele){
+
+            adr += `
+            <div class="border rounded p-3 mb-3 d-flex justify-content-between align-items-center" id="adr-box-${ele.id}">
+
+                <div class="w-75">
+                    <input type="text"
+                           id="adr_${ele.id}"
+                           class="form-control"
+                           value="${ele.address}"
                            readonly>
                 </div>
 
-                <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-warning" onclick="editAddress(${ele.id}, this)">
+                <div>
+                    <button class="btn btn-sm btn-warning"
+                            onclick="editAddress(${ele.id}, this)">
                         Update
                     </button>
-                    <button class="btn btn-sm btn-danger" onclick="delete_address(${ele.id})">
+
+                    <button class="btn btn-sm btn-danger"
+                            onclick="delete_address(${ele.id})">
                         Delete
                     </button>
                 </div>
+
             </div>`;
         });
 
@@ -100,7 +109,7 @@ function get_address(){
     });
 }
 
-// Edit/update address
+// ================= UPDATE ADDRESS =================
 function editAddress(aid, btn){
     let input = $("#adr_" + aid);
 
@@ -108,8 +117,13 @@ function editAddress(aid, btn){
         input.prop("readonly", false).focus();
         $(btn).text("Save");
     } else {
-        $.get("{% url 'update_address' %}", {id: aid, address: input.val()}, function(rt){
-            alert(rt);
+
+        $.post("{% url 'update_address' %}", {
+            id: aid,
+            address: input.val(),
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+        }, function(rt){
+
             input.prop("readonly", true);
             $(btn).text("Update");
             get_address();
@@ -117,10 +131,9 @@ function editAddress(aid, btn){
     }
 }
 
-// Delete address 
+// ================= DELETE ADDRESS =================
 function delete_address(id){
     $.get("{% url 'delete_address' %}", {id:id}, function(rt){
-        alert(rt);
         get_address();
     });
 }
