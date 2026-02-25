@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block body %}
 
 <div class="fashion_section">
@@ -28,25 +29,89 @@
             <p class="shirt_text" style="color:#2c3e50 !important;"><strong>Description :</strong></p>
             <p class="shirt_text" style="color:#2c3e50 !important;">{{ product.desc}}</p>
 
-            <div class="btn_main" style="margin-top:20px;">
-
-               
-               <div class="buy_bt" style="margin-bottom:10px;">
-                  <a href="{% url 'cart'%}">Buy Now</a>
-               </div>
-
-               
-               <div class="seemore_bt">
-                  <a href="{% url 'index' %}">Back</a>
-               </div>
-
-            </div>
-
+            
          </div>
 
       </div>
 
    </div>
 </div>
+               <!-- ================= REVIEWS SECTION ================= -->
+
+<div class="container mt-5">
+
+    <h5 class="fw-bold mb-3">Customer Reviews</h5>
+
+    {% for r in product.reviews.all %}
+    <div class="border rounded p-3 mb-3 bg-light">
+        <div class="d-flex justify-content-between">
+            <strong>{{ r.user.username }}</strong>
+            <small class="text-muted">{{ r.created_at|date:"d M Y" }}</small>
+        </div>
+
+        <!-- Star Logic -->
+        <div class="text-warning mb-1 fs-5">
+            {% for i in "12345" %}
+                {% if forloop.counter <= r.rating %}
+                    ★
+                {% else %}
+                    ☆
+                {% endif %}
+            {% endfor %}
+        </div>
+
+               <p class="mb-0">{{ r.message }}</p>
+            </div>
+            {% empty %}
+               <p class="text-muted">No reviews yet. Be the first to review!</p>
+            {% endfor %}
+
+            <hr class="my-4">
+
+    <h5 class="fw-bold mb-3">Leave a Review</h5>
+
+    <form method="POST" action="{% url 'add_review' %}">
+        {% csrf_token %}
+        <input type="hidden" name="product_id" value="{{ product.id }}">
+
+        <div class="row g-3">
+
+            <div class="col-md-6">
+                <label class="form-label">Rating</label>
+                <select name="rating" class="form-select" required>
+                    <option value="">Select Rating</option>
+                    <option value="5">★★★★★ (5)</option>
+                    <option value="4">★★★★ (4)</option>
+                    <option value="3">★★★ (3)</option>
+                    <option value="2">★★ (2)</option>
+                    <option value="1">★ (1)</option>
+                </select>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">Your Review</label>
+                <textarea name="message"
+                          rows="4"
+                          class="form-control"
+                          required></textarea>
+            </div>
+
+            <div class="col-12 text-end">
+                <button type="submit" class="btn btn-success px-4">
+                    Submit Review
+                </button>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+
+ </div>
+ <br>
+ <br>
+ <hr>
+
+ <H1 align="center"><a href="{%url 'index'%}">Back</a></H1>
 
 {% endblock %}

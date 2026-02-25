@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="container mt-5 mb-5">
+
+    <h2 class="text-center mb-4">Contact Us</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="row">
+
+        <!-- Contact Form -->
+        <div class="col-md-6">
+            <div class="card shadow p-4">
+                <h4 class="mb-3">Send Message</h4>
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <input type="text"
+                               name="name"
+                               class="form-control"
+                               placeholder="Your Name"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="email"
+                               name="email"
+                               class="form-control"
+                               placeholder="Your Email"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <textarea name="message"
+                                  class="form-control"
+                                  rows="4"
+                                  placeholder="Your Message"
+                                  required></textarea>
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-primary w-100">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Google Map -->
+        <div class="col-md-6">
+            <div class="card shadow p-3">
+                <h4 class="mb-3">Our Location</h4>
+
+                <iframe
+                    src="https://www.google.com/maps?q=Surat,Gujarat&output=embed"
+                    width="100%"
+                    height="350"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

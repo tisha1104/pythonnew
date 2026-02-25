@@ -1,210 +1,59 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
-
-<!-- fashion section -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'js/cart.js' %}"></script>
 
 <div class="fashion_section">
-    <div id="main_slider" class="carousel slide">
+    <div class="container">
 
-        <div class="carousel-inner">
+        <h1 class="fashion_taital">Man & Woman Fashion</h1>
 
-            <!-- Slide 1 -->
-            <div class="carousel-item active">
-                <div class="container">
-                    <h1 class="fashion_taital">Man & Woman Fashion</h1>
+        <div class="fashion_section_2">
+            <div class="row">
 
-                    <div class="fashion_section_2">
-                        <div class="row">
+                {% for ele in products %}
 
-                            <div class="col-lg-4 col-sm-4">
-                                <div class="box_main">
-                                    <h4 class="shirt_text">Man T-shirt</h4>
-                                    <p class="price_text">Price <span>$30</span></p>
+                <div class="col-lg-4 col-sm-4">
+                    <div class="box_main">
 
-                                    <div class="tshirt_img">
-                                        <img src="{% static 'img/tshirt-img.png' %}" alt="Man T-shirt">
-                                    </div>
+                        <h4 class="shirt_text">{{ ele.name }}</h4>
 
-                                    <div class="btn_main">
-                                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                        <div class="seemore_bt"><a href="#">See More</a></div>
-                                    </div>
-                                </div>
+                        <p class="price_text">
+                            Price <span>₹ {{ ele.price }}</span>
+                        </p>
+
+                        <div class="tshirt_img">
+                            <img src="{{ ele.image.url }}" class="img-fluid">
+                        </div>
+
+                        <div class="btn_main">
+
+                            <!-- Buy Now -->
+                            <div class="buy_bt">
+                                <button type="button" onclick="addtocart('{{ ele.id }}')">
+                                    Buy Now
+                                </button>
                             </div>
 
-                            <div class="col-lg-4 col-sm-4">
-                                <div class="box_main">
-                                    <h4 class="shirt_text">Man Shirt</h4>
-                                    <p class="price_text">Price <span>$30</span></p>
-
-                                    <div class="tshirt_img">
-                                        <img src="{% static 'img/dress-shirt-img.png' %}" alt="Man Shirt">
-                                    </div>
-
-                                    <div class="btn_main">
-                                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                        <div class="seemore_bt"><a href="#">See More</a></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-sm-4">
-                                <div class="box_main">
-                                    <h4 class="shirt_text">Woman Skirt</h4>
-                                    <p class="price_text">Price <span>$30</span></p>
-
-                                    <div class="tshirt_img">
-                                        <img src="{% static 'img/women-clothes-img.png' %}" alt="Woman Skirt">
-                                    </div>
-
-                                    <div class="btn_main">
-                                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                        <div class="seemore_bt"><a href="#">See More</a></div>
-                                    </div>
-                                </div>
+                            <!-- See More -->
+                            <div class="seemore_bt">
+                                <a href="{% url 'details' %}?pid={{ ele.id }}">
+                                    See More
+                                </a>
                             </div>
 
                         </div>
+
                     </div>
-
                 </div>
+
+                {% empty %}
+                    <h4 class="text-center mt-4">No Fashion Products Available</h4>
+                {% endfor %}
+
             </div>
-
-            <!-- Slide 2 -->
-            <div class="carousel-item">
-                <div class="container">
-                    <h1 class="fashion_taital">Man & Woman Fashion</h1>
-
-                    <div class="fashion_section_2">
-                        <div class="row">
-
-                            <div class="col-lg-4 col-sm-4">
-                                <div class="box_main">
-                                    <h4 class="shirt_text">Man T-shirt</h4>
-                                    <p class="price_text">Price <span>$30</span></p>
-
-                                    <div class="tshirt_img">
-                                        <img src="{% static 'img/tshirt-img.png' %}">
-                                    </div>
-
-                                    <div class="btn_main">
-                                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                        <div class="seemore_bt"><a href="#">See More</a></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-sm-4">
-                                <div class="box_main">
-                                    <h4 class="shirt_text">Man Shirt</h4>
-                                    <p class="price_text">Price <span>$30</span></p>
-
-                                    <div class="tshirt_img">
-                                        <img src="{% static 'img/dress-shirt-img.png' %}">
-                                    </div>
-
-                                    <div class="btn_main">
-                                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                        <div class="seemore_bt"><a href="#">See More</a></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-sm-4">
-                                <div class="box_main">
-                                    <h4 class="shirt_text">Woman Skirt</h4>
-                                    <p class="price_text">Price <span>$30</span></p>
-
-                                    <div class="tshirt_img">
-                                        <img src="{% static 'img/women-clothes-img.png' %}">
-                                    </div>
-
-                                    <div class="btn_main">
-                                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                        <div class="seemore_bt"><a href="#">See More</a></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="carousel-item">
-                <div class="container">
-                    <h1 class="fashion_taital">Man & Woman Fashion</h1>
-
-                    <div class="fashion_section_2">
-                        <div class="row">
-
-                            <div class="col-lg-4 col-sm-4">
-                                <div class="box_main">
-                                    <h4 class="shirt_text">Man T-shirt</h4>
-                                    <p class="price_text">Price <span>$30</span></p>
-
-                                    <div class="tshirt_img">
-                                        <img src="{% static 'img/tshirt-img.png' %}">
-                                    </div>
-
-                                    <div class="btn_main">
-                                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                        <div class="seemore_bt"><a href="#">See More</a></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-sm-4">
-                                <div class="box_main">
-                                    <h4 class="shirt_text">Man Shirt</h4>
-                                    <p class="price_text">Price <span>$30</span></p>
-
-                                    <div class="tshirt_img">
-                                        <img src="{% static 'img/dress-shirt-img.png' %}">
-                                    </div>
-
-                                    <div class="btn_main">
-                                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                        <div class="seemore_bt"><a href="#">See More</a></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-sm-4">
-                                <div class="box_main">
-                                    <h4 class="shirt_text">Woman Skirt</h4>
-                                    <p class="price_text">Price <span>$30</span></p>
-
-                                    <div class="tshirt_img">
-                                        <img src="{% static 'img/women-clothes-img.png' %}">
-                                    </div>
-
-                                    <div class="btn_main">
-                                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                        <div class="seemore_bt"><a href="#">See More</a></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
         </div>
-
-        <!-- slider arrows -->
-        <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-            <i class="fa fa-angle-left"></i>
-        </a>
-
-        <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-            <i class="fa fa-angle-right"></i>
-        </a>
 
     </div>
 </div>

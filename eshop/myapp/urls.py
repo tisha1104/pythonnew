@@ -29,7 +29,9 @@ urlpatterns=[
     path('resetpass',resetpass,name="resetpass"),
     path('delete_address',delete_address,name="delete_address"),
     path('update_address',update_address,name="update_address"),
-    path('profile',user_profile,name="profile")
+    path('profile',user_profile,name="profile"),
+    path('contact',contact, name='contact'),
+    path('add_review',add_review,name='add_review')
 ]
 
 if settings.DEBUG:

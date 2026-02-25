@@ -125,13 +125,15 @@ def payment(request):
     payment=client.order.create(data=data)
 
     return Response(payment)
+
+
 @api_view(['post'])
 @permission_classes([IsAuthenticated])
 def create_order(request):
-    user=request.user
-    address =Address.objects.get(pk=request.data['address'])
-    paymethod=request.data['paymenthod']
-    total=request.data['total_amount']
+    user = request.user
+    address = Address.objects.get(pk=request.data['address'])
+    paymethod = request.data['paymethod']
+    total = request.data['total_amount']
 
     order = Order.objects.create(user=user,address=address,total_amount=total,payment_method=paymethod)
 
@@ -141,4 +143,4 @@ def create_order(request):
         c.delete()
     cart.delete()
 
-    return Response({"message":"Oreder Confirm"})
+    return Response({"message":"Order confirm"})

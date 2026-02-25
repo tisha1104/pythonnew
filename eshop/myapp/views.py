@@ -8,6 +8,7 @@ import razorpay
 import datetime
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib import messages
 # Create your views here.
 
 def index(request):
@@ -21,15 +22,20 @@ def index(request):
 
 @login_required(login_url="login_register")
 def jewellery(request):
-    return render(request,'jewellery.html')
+    category = Category.objects.get(name__iexact='jewellery')
+    products = Product.objects.filter(category=category)
+    return render(request, 'jewellery.html', {'products': products})
+
 
 @login_required(login_url="login_register")
 def fashion(request):
-    return render(request,'fashion.html')
+    products = Product.objects.filter(category__name="Fashion")
+    return render(request, 'fashion.html', {'products': products})
 
 @login_required(login_url="login_register")
 def electronic(request):
-    return render(request,'electronic.html')
+    products = Product.objects.filter(category__name="Electronic")
+    return render(request, 'electronic.html', {'products': products})
 
 def user_regierstation(request):
     if request.method=='POST':
@@ -143,10 +149,20 @@ def get_categories(request):
     categories=Category.objects.all()
     return JsonResponse({"categories":list(categories.values())})
 
+# def search_product(request):
+#     q=request.GET['q']
+#     products = Product.objects.filter(name__icontains=q)
+#     return JsonResponse({"products":list(products.values())})
 def search_product(request):
-    q=request.GET['q']
-    products=Product.objects.filter(name__startswith=q)
-    return JsonResponse({"products":list(products.values())})
+    q = request.GET.get('q')
+
+    if q:
+        products = Product.objects.filter(name__icontains=q)
+    else:
+        products = Product.objects.all()
+    print(q)
+    return JsonResponse({"products": list(products.values())})
+
 
 
 # def payment(request):
@@ -196,15 +212,23 @@ def search_product(request):
 #     # return HttpResponse("Order Created Successfully")
 #     return JsonResponse(order)
 def payment(request):
+    if request.method == "POST":
+        amt = request.POST.get("amt")
 
-    amt = request.GET['amt']
-    client = razorpay.Client(auth=("rzp_test_SF5R7ur5nvvYLR", "NgUDBnx9JpMGHTWixBznB0S3"))
+        client = razorpay.Client(auth=(
+            "rzp_test_SF5R7ur5nvvYLR",    # YOUR TEST KEY ID
+            "NgUDBnx9JpMGHTWixBznB0S3"          # PUT YOUR SECRET KEY HERE
+        ))
 
-    
-    data = { "amount": int(amt)*100, "currency": "INR", "receipt": "order_rcptid_11" }
-    payment = client.order.create(data=data) # Amount is in currency subunits.
-    
-    return JsonResponse(payment)
+        data = {
+            "amount": int(float(amt)) * 100,  # convert to paise
+            "currency": "INR",
+            "receipt": "order_rcptid_11"
+        }
+
+        order = client.order.create(data=data)
+
+        return JsonResponse(order)
 
 # def makeorder(request):
 #     try:
@@ -281,37 +305,84 @@ def payment(request):
 #         return HttpResponse("Order failed")
 
 
+# from django.http import JsonResponse, HttpResponse
+
+
+
 def makeorder(request):
-    payid=request.GET['payid']
-    adr=Address.objects.get(pk=request.GET['adr'])
+
+    if request.method != "POST":
+        return JsonResponse({"error": "Invalid request method"}, status=400)
+
+    payid = request.POST.get('payid')
+    adr_id = request.POST.get('adr')
+
+    if not payid:
+        return JsonResponse({"error": "Payment ID missing"}, status=400)
+
+    if not adr_id:
+        return JsonResponse({"error": "Address not selected"}, status=400)
+
+    try:
+        adr = Address.objects.get(pk=adr_id)
+    except Address.DoesNotExist:
+        return JsonResponse({"error": "Invalid address"}, status=400)
+
+    user = request.user
     date = datetime.datetime.now()
-    user=request.user
 
-    carts= Cart.objects.filter(user=user)
-    sum=0
+    carts = Cart.objects.filter(user=user)
+
+    if not carts.exists():
+        return JsonResponse({"error": "Cart is empty"}, status=400)
+
+    total_amount = 0
     for i in carts:
-        sum += i.get_total_price()
+        total_amount += i.get_total_price()
 
-    order=Order.objects.create(user=user,data=date,total=sum,payid=payid,address=adr)
-    rows=""
-    count=1
+    # Create Order
+    order = Order.objects.create(
+        user=user,
+        data=date,
+        total=total_amount,
+        payid=payid,
+        address=adr
+    )
+
+    rows = ""
+    count = 1
+
     for c in carts:
-        OrderDetials.objects.create(order=order,product=c.product,qty=c.qty,price=c.product.price)
-        rows+=f"<tr><td>{count}</td><td>{c.product.name}</td><td>{c.product.price}</td><td>{c.qty}</td><td>{c.get_total_price()}</td></tr>"
-        c.delete()
-        count+=1
+        OrderDetials.objects.create(
+            order=order,
+            product=c.product,
+            qty=c.qty,
+            price=c.product.price
+        )
 
-    tbl=f"""
+        rows += f"""
+        <tr>
+            <td>{count}</td>
+            <td>{c.product.name}</td>
+            <td>{c.product.price}</td>
+            <td>{c.qty}</td>
+            <td>{c.get_total_price()}</td>
+        </tr>
+        """
+
+        c.delete()
+        count += 1
+
+    # Email Table
+    tbl = f"""
     <h3>Delivery Address</h3>
     <p>{adr.address}</p>
 
     <table border='1'>
         <thead>
-            <tr><th>PayID:{order.payid}</th></tr>
-            <tr><th>PayType:{order.paytype}</th></tr>
-            <tr><th>Order Date:{order.data}</th></tr>
-            <tr><th>Status:{order.status}</th></tr>
-            <tr><th>Total:{order.total}</th></tr>
+            <tr><th colspan='5'>PayID: {order.payid}</th></tr>
+            <tr><th colspan='5'>Order Date: {order.data}</th></tr>
+            <tr><th colspan='5'>Total: ₹{order.total}</th></tr>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -328,17 +399,16 @@ def makeorder(request):
 
     try:
         send_mail(
-            "Order Conformation","Your Order Placed successfully",
+            "Order Confirmation",
+            "Your order placed successfully",
             settings.EMAIL_HOST_USER,
             [user.email],
             html_message=tbl
         )
     except Exception as e:
-        print(e)
+        print("Email Error:", e)
 
-    return HttpResponse("order placed successfully!")
-
-
+    return JsonResponse({"success": "Order placed successfully"})
 
 @login_required(login_url="login_register")
 def my_orders(request):
@@ -466,3 +536,37 @@ def user_profile(request):
             profile.save()
     return render(request, 'profile.html')
    
+
+def contact(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        Contact.objects.create(
+            name=name,
+            email=email,
+            message=message
+        )
+
+        messages.success(request, "Message sent successfully!")
+
+    return render(request, "contact.html")
+
+def add_review(request):
+    if request.method == "POST":
+        product_id = request.POST.get('product_id')
+        product = Product.objects.get(id=product_id)
+
+        Review.objects.create(
+            product=product,
+            user=request.user,
+            rating=request.POST.get('rating'),
+            message=request.POST.get('message')
+        )
+        return render(request, 'details.html', {
+            'product': product,
+            'success': 'Review submitted successfully!',
+            'active_tab': 'review'  
+        })
+    return redirect('/')
