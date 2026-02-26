@@ -418,6 +418,7 @@ def my_orders(request):
 def address(request):
     return render(request,"address.html")
 
+@login_required(login_url="login_register")
 def add_address(request):
     user=request.user
     adr=request.GET.get('address')
@@ -455,12 +456,14 @@ def resetpass(request):
 
     return render(request,"resetpass.html",{"email":email})
 
+@login_required(login_url="login_register")
 def delete_address(request):
     id=request.GET['id']
     adr=Address.objects.get(pk=id)
     adr.delete()
     return HttpResponse("Your Address Deleted uccesfully!")
 
+@login_required(login_url="login_register")
 def update_address(request):
     if request.method == "POST":
         id = request.POST.get('id')
@@ -518,7 +521,7 @@ def update_address(request):
 #     return JsonResponse({"status": "deleted"})
 
 
-
+@login_required(login_url="login_register")
 def user_profile(request):
     profile, created = Userprofile.objects.get_or_create(user=request.user)
 
@@ -536,7 +539,7 @@ def user_profile(request):
             profile.save()
     return render(request, 'profile.html')
    
-
+@login_required(login_url="login_register")
 def contact(request):
     if request.method == "POST":
         name = request.POST.get('name')
@@ -553,6 +556,7 @@ def contact(request):
 
     return render(request, "contact.html")
 
+@login_required(login_url="login_register")
 def add_review(request):
     if request.method == "POST":
         product_id = request.POST.get('product_id')
