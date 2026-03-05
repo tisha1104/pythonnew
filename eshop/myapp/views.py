@@ -149,79 +149,24 @@ def get_categories(request):
     categories=Category.objects.all()
     return JsonResponse({"categories":list(categories.values())})
 
-# def search_product(request):
-#     q=request.GET['q']
-#     products = Product.objects.filter(name__icontains=q)
-#     return JsonResponse({"products":list(products.values())})
 def search_product(request):
-    q = request.GET.get('q')
-
-    if q:
-        products = Product.objects.filter(name__icontains=q)
-    else:
-        products = Product.objects.all()
-    print(q)
-    return JsonResponse({"products": list(products.values())})
+    q=request.GET['q']
+    products = Product.objects.filter(name__icontains=q)
+    return JsonResponse({"products":list(products.values())})
 
 
 
-# def payment(request):
-#     try:
-#         amt = request.GET.get('amt')
-
-#         if amt is None:
-#             return JsonResponse({"error": "Amount missing"}, status=400)
-
-#         amt = int(amt)          # ₹ Rupees from frontend
-#         amount = amt * 100      # ✅ convert to paise (MANDATORY)
-
-#         client = razorpay.Client(auth=("rzp_test_S1Hsg7YN8MlwDU", "ZKs1rK1XnjRDNd4uxjP2NcRJ"))
-
-#         data = {
-#             "amount": amount,
-#             "currency": "INR",
-#             "receipt": f"order_{datetime.datetime.now().timestamp()}",
-#             "payment_capture": 1
-#         }
-
-#         order = client.order.create(data=data)
-
-#         return JsonResponse({
-#             "id": order["id"],
-#             "amount": order["amount"]
-#         })
-
-#     except Exception as e:
-#         print("RAZORPAY ERROR 👉", e)   # 🔥 YOU WILL SEE REAL ERROR NOW
-#         return JsonResponse({"error": str(e)}, status=500)
-
-# def payment(request):
-#     amt = float(request.GET.get('amt'))
-#     amount = int(amt * 100)
-
-#     client = razorpay.Client(
-#         auth=("rzp_test_SF5R7ur5nvvYLR", "NgUDBnx9JpMGHTWixBznB0S3")
-#     )
-
-#     order = client.order.create({
-#         "amount": amount,
-#         "currency": "INR",
-#         "payment_capture": 1
-#     })
-#     print(order)
-#     # return HttpResponse("Order Created Successfully")
-#     return JsonResponse(order)
 def payment(request):
     if request.method == "POST":
         amt = request.POST.get("amt")
 
         client = razorpay.Client(auth=(
-            "rzp_test_SF5R7ur5nvvYLR",    # YOUR TEST KEY ID
-            "NgUDBnx9JpMGHTWixBznB0S3"          # PUT YOUR SECRET KEY HERE
+            "rzp_test_SF5R7ur5nvvYLR",   
+            "NgUDBnx9JpMGHTWixBznB0S3"        
         ))
 
         data = {
-            "amount": int(float(amt)) * 100,  # convert to paise
+            "amount": int(float(amt)) * 100, 
             "currency": "INR",
             "receipt": "order_rcptid_11"
         }
@@ -303,9 +248,6 @@ def payment(request):
 #     except Exception as e:
 #         print("ORDER ERROR:", e)
 #         return HttpResponse("Order failed")
-
-
-# from django.http import JsonResponse, HttpResponse
 
 
 
@@ -479,47 +421,6 @@ def update_address(request):
 
     return HttpResponse("Invalid Request")
 
-# @login_required
-# def add_address(request):
-#     if request.method == "POST":
-#         Address.objects.create(
-#             user=request.user,
-#             address=request.POST['address']
-#         )
-#         return JsonResponse({"status": "saved"})
-#     return JsonResponse({"status": "error"})
-
-
-# @login_required
-# def get_addresse(request):
-#     addresses = Address.objects.filter(user=request.user)
-
-#     data = []
-#     for a in addresses:
-#         data.append({
-#             "id": a.id,
-#             "address": a.address
-#         })
-
-#     return JsonResponse({"adr": data})
-
-
-# @login_required
-# def update_address(request):
-#     if request.method == "POST":
-#         a = Address.objects.get(id=request.POST['id'], user=request.user)
-#         a.address = request.POST['address']
-#         a.save()
-#         return JsonResponse({"status": "updated"})
-#     return JsonResponse({"status": "error"})
-
-
-# @login_required
-# def delete_address(request):
-#     a = Address.objects.get(id=request.GET['id'], user=request.user)
-#     a.delete()
-#     return JsonResponse({"status": "deleted"})
-
 
 @login_required(login_url="login_register")
 def user_profile(request):
@@ -556,21 +457,3 @@ def contact(request):
 
     return render(request, "contact.html")
 
-@login_required(login_url="login_register")
-def add_review(request):
-    if request.method == "POST":
-        product_id = request.POST.get('product_id')
-        product = Product.objects.get(id=product_id)
-
-        Review.objects.create(
-            product=product,
-            user=request.user,
-            rating=request.POST.get('rating'),
-            message=request.POST.get('message')
-        )
-        return render(request, 'details.html', {
-            'product': product,
-            'success': 'Review submitted successfully!',
-            'active_tab': 'review'  
-        })
-    return redirect('/')

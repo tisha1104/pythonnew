@@ -92,7 +92,7 @@
                     </ul>
             </div>
 
-                <!-- <div class="main">
+                <div class="main">
                     <div class="input-group">
                        <input type="text" class="form-control" placeholder="Search this blog" onkeyup="search(this.value)">
                         <div class="input-group-append">
@@ -101,8 +101,9 @@
                             </button>
                         </div>
                     </div>
-                </div> -->
-                <form action="{% url 'searchproduct' %}" method="GET">
+                </div>
+                 
+                <!-- <form action="{% url 'searchproduct' %}" method="GET">
                         <div class="input-group">
                         <input type="text" name="q" class="form-control" placeholder="Search products..." required>
                             <div class="input-group-append">
@@ -111,7 +112,7 @@
                         </button>
                             </div>
                             </div>
-                        </form>
+                        </form> -->
 
                 <!-- ✅ THIS DIV MUST EXIST (IMPORTANT FOR BACKGROUND) -->
                 <div class="header_box">
@@ -164,69 +165,69 @@
 
 
 
-//     function search(q){
-//            $.get("{% url 'searchproduct' %}", { q: q }, function(rt){
+    function search(q){
+           $.get("{% url 'searchproduct' %}", { q: q }, function(rt){
          
-//          var pro=""
-//          rt.products.map(ele=>{
-//             pro+= `<div class="col-lg-4 col-sm-4">
-//                         <div class="box_main">
+         var pro=""
+         rt.products.map(ele=>{
+            pro+= `<div class="col-lg-4 col-sm-4">
+                        <div class="box_main">
 
-//                            <div class="tshirt_img">
-//                               <img src="media/${ele.image}">
-//                            </div>
+                           <div class="tshirt_img">
+                              <img src="/media/${ele.image}">
+                           </div>
 
-//                            <h4 class="shirt_text">${ ele.name}</h4>
-//                            <h1 class="price_text">₹ ${ ele.price }</h1>
+                           <h4 class="shirt_text">${ ele.name}</h4>
+                           <h1 class="price_text">₹ ${ ele.price }</h1>
 
-//                            <div class="btn_main">
-//                               <a href="{% url 'addtocart' %}?pid=${ele.id}">Buy Now</a>
-//                               <div class="seemore_bt">
-//                                  <a href="{% url 'details' %}?pid=${ele.id}">
-//                                     See More
-//                                  </a>
-//                               </div>
-//                            </div>
+                           <div class="btn_main">
+                              <a href="{% url 'addtocart' %}?pid=${ele.id}">Buy Now</a>
+                              <div class="seemore_bt">
+                                 <a href="{% url 'details' %}?pid=${ele.id}">
+                                    See More
+                                 </a>
+                              </div>
+                           </div>
 
-//                         </div>
-//                      </div>`
-//          })
-//          $("#prodata").html(pro)
-//       })
-//    }
-function search(q){
+                        </div>
+                     </div>`
+         })
+         $("#prodata").html(pro)
+      })
+   }
+// function search(q){
 
-    if ($("#prodata").length === 0) return;
+//     if ($("#prodata").length === 0) return;
 
-    if(q.trim() === ""){
-        getproducts()
-        return;
-    }
+//     if(q.trim() === ""){
+//         getproducts()
+//         return;
+//     }
 
-    $.get("{% url 'searchproduct' %}", { q: q }, function(rt){
+//     $.get("{% url 'searchproduct' %}", { q: q }, function(rt){
 
-        var pro=""
+//         var pro=""
 
-        rt.products.forEach(ele=>{
+//         rt.products.forEach(ele=>{
 
-            pro+= `
-            <div class="col-lg-4 col-sm-4">
-                <div class="box_main">
+//             pro+= `
+//             <div class="col-lg-4 col-sm-4">
+//                 <div class="box_main">
 
-                    <div class="tshirt_img">
-                        <img src="/media/${ele.image}">
-                    </div>
+//                     <div class="tshirt_img">
+//                         <img src="/media/${ele.image}">
+//                     </div>
 
-                    <h4 class="shirt_text">${ele.name}</h4>
-                    <h1 class="price_text">₹ ${ele.price}</h1>
+//                     <h4 class="shirt_text">${ele.name}</h4>
+//                     <h1 class="price_text">₹ ${ele.price}</h1>
 
-                </div>
-            </div>`
-        })
+//                 </div>
+//             </div>`
+//         })
 
-        $("#prodata").html(pro)
-    })
-}
+//         $("#prodata").html(pro)
+//     })
+// }
 
 </script>
 
