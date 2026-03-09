@@ -82,7 +82,7 @@ def user_logout(request):
 #         sum+=c.get_total_price()
 #     return render(request, 'cart.html',{"carts":carts,"total":int(sum)})
 
-
+@login_required(login_url="login_register")
 def cart_view(request):
     carts = Cart.objects.filter(user=request.user)
     total = sum(i.get_total_price() for i in carts)
