@@ -37,7 +37,7 @@ def fibonacci(n):
     
 num=input("enter the number")
 for i in range(n):
-    print(fibonacci(i),end=" ")
+    print(fibonacci(i))
 
 print("=============Factorial==========")
 
@@ -62,3 +62,35 @@ if flag==0:
     print("number is prime")
 else:
     print("numberis not prime")
+
+print("=============Armstrong==========")
+
+num=int(input("Enter The Number"))
+temp=num
+sum=0
+
+while num!=0:
+    rem=num%10
+    sum+=rem**3
+    num=num//10
+if(sum==temp):
+    print("number is Armstrong")
+else:
+    print("number is not Armstrong")
+
+
+print("=============Armstrong==========")
+
+for i in range(100,1000):
+    num=i
+    temp=num
+    sum=0
+    while num!=0:
+        rem=num%10
+        sum+=rem**3
+        num=num//10
+    if(sum==temp):
+        print(f"number {i} is Armstrong")
+    else:
+        # print("number is not Armstrong")
+        pass
