@@ -92,5 +92,92 @@ for i in range(100,1000):
     if(sum==temp):
         print(f"number {i} is Armstrong")
     else:
-        # print("number is not Armstrong")
-        pass
+        print("number is not Armstrong")
+        # pass
+
+# write a program to count the vowels and consonent
+print("=============count the vowels and consonent==========")
+
+sentence=input("Enter The Sentence :- ")
+
+volwes=['a','e','i','o','u']
+
+present_volwes=[]
+present_consonent=[]
+
+volwes_count=0
+consonent_count=0
+
+sentence=sentence.lower()
+
+for ch in sentence:
+    if ch.isalpha():
+        if ch in volwes:
+            volwes_count+=1
+
+            if ch not in present_volwes:
+                present_volwes.append(ch)
+            
+        else:
+            consonent_count+=1
+
+            if ch not in present_consonent:
+                present_consonent.append(ch)
+
+print("Present Volwes :- ",present_volwes)
+print("Total number of Volwes :- ",volwes_count)
+
+print("Present consonent :- ",present_consonent)
+print("Total number of consonent :- ",consonent_count)
+
+
+print("=============swapping Pythonic Method==========")
+
+
+a = int(input("Enter a: "))
+b = int(input("Enter b: "))
+
+a, b = b, a
+
+print("a:", a)
+print("b:", b)
+
+#swapping of two number without using theired varibale
+print("=============swapping Method==========")
+
+a=int(input("Enter The a :- "))
+b=int(input("Enter The b :- "))
+
+a=a+b
+b=a-b
+a=a-b
+print("After swapping value of a:", a)
+print("After swapping value of b:", b) 
+
+
+print("=============Reverse a string using slicing==========")
+
+string=input("Enter The String :- ")
+reverse=string[::-1]
+print("Reversed String :- ",reverse)
+
+
+print("=============Reverse a string without using slicing==========")
+
+string=input("Enter The String :- ")
+reverse=""
+for i in string:
+    reverse=i+reverse
+print(reverse)
+
+
+
+
+print("=============remove duplicate characters from a string in Python==========")
+
+string=input("Enter The String :- ")
+result=""
+for i in string:
+    if i not in result:
+        result=result+i
+print("String after removing duplicates:", result)
