@@ -181,3 +181,22 @@ for i in string:
     if i not in result:
         result=result+i
 print("String after removing duplicates:", result)
+
+
+
+
+print("=============Find Second Largest Number==========")
+
+numbers=[1,2,3,4,5,6,14,85,96,101,111,178]
+numbers.sort()
+print(numbers[-2])
+
+print("=============Check Anagram==========")
+
+s1=input("enter your word :- ")
+s2=input("enter your word :- ")
+
+if sorted(s1)== sorted(s2):
+    print("Anagram")
+else:
+    print("Not Anagram")
