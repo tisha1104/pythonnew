@@ -200,3 +200,39 @@ if sorted(s1)== sorted(s2):
     print("Anagram")
 else:
     print("Not Anagram")
+
+
+print("Write program to manuplate a version string")
+
+# version="1.0.0"
+version=input("Enetr Your version")
+a,b,c=map(int,version.split("."))
+c+=1
+
+if c==100:
+    c=0
+    b+=1
+
+if b==100:
+    b=0
+    a+=1
+
+print(a,".",b,".",c,sep="")
+
+
+print("Write program to decrement a version string")
+
+version="1.0.0"
+# version=input("Enetr Your version")
+a,b,c=map(int,version.split("."))
+c-=1
+
+if c<0:
+    c=99
+    b-=1
+
+if b<0:
+    b=99
+    a-=1
+
+print(a,".",b,".",c,sep="")
