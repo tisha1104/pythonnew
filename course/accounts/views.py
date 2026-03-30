@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import *
-from django.contrib.auth import login,authenticate
-
+from django.contrib.auth import login,authenticate,logout
+from django.contrib import messages
 # Create your views here.
 
 def register_view(request):
@@ -15,7 +15,7 @@ def register_view(request):
 
     return render(request, 'accounts/register.html', {'form': form})
 
-from django.contrib import messages
+
 
 def login_view(request):
     if request.method == "POST":
@@ -31,3 +31,7 @@ def login_view(request):
             messages.error(request, "Invalid username or password")
 
     return render(request, 'accounts/login.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')

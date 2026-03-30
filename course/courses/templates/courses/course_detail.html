@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+
+        <div class="card shadow p-4">
+
+            <h2 class="mb-3">{{ course.title }}</h2>
+
+            <p class="text-muted">{{ course.description }}</p>
+
+            <p><strong>Price:</strong> ₹{{ course.price }}</p>
+
+            <p><strong>Instructor:</strong> {{ course.instructor }}</p>
+
+            <hr>
+
+            {% if user.is_authenticated and user.role == 'student' %}
+
+                {% if is_enrolled %}
+                    <button class="btn btn-secondary" disabled>
+                        Already Enrolled
+                    </button>
+                {% else %}
+                    <form method="POST" action="/enroll/{{ course.id }}/">
+                        {% csrf_token %}
+                        <button class="btn btn-success">
+                            Enroll Now
+                        </button>
+                    </form>
+                {% endif %}
+
+            {% elif not user.is_authenticated %}
+                <p>
+                    <a href="/accounts/login/" class="btn btn-primary">
+                        Login to Enroll
+                    </a>
+                </p>
+            {% endif %}
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
