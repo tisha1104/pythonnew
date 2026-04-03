@@ -52,3 +52,42 @@ def course_detail(request, id):
         'course': course,
         'is_enrolled': is_enrolled   
     })
+
+
+@login_required
+def instructor_dashboard(request):
+
+    if request.user.role != 'instructor':
+        return redirect('home')
+
+    courses = Course.objects.filter(instructor=request.user)
+
+    return render(request, 'instructor_dashboard.html', {
+        'courses': courses
+    })
+
+
+@login_required
+def edit_course(request, id):
+    course = get_object_or_404(Course, id=id)
+
+    if course.instructor != request.user:
+        return redirect('home')
+
+    form = CourseForm(request.POST or None, instance=course)
+
+    if form.is_valid():
+        form.save()
+        return redirect('instructor_dashboard')
+
+    return render(request, 'courses/edit_course.html', {'form': form})
+
+@login_required
+def delete_course(request, id):
+    course = get_object_or_404(Course, id=id)
+
+    if course.instructor != request.user:
+        return redirect('home')
+
+    course.delete()
+    return redirect('instructor_dashboard')
