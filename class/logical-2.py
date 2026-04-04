@@ -206,7 +206,7 @@ else:
 print("Write program to manuplate a version string")
 
 # version="1.0.0"
-version=input("Enetr Your version")
+version=input("Enetr Your version :- ")
 a,b,c=map(int,version.split("."))
 c+=1
 
@@ -223,7 +223,7 @@ print(a,".",b,".",c,sep="")
 
 print("Write program to decrement a version string")
 
-version="1.0.0"
+version="1.0.1"
 # version=input("Enetr Your version")
 a,b,c=map(int,version.split("."))
 c-=1
@@ -237,3 +237,21 @@ if b<0:
     a-=1
 
 print(a,".",b,".",c,sep="")
+
+print("==========================================================")
+list=["apple","banana","apple","mango","orange","banana","mango","mango"]
+d={}
+for i in list:
+    d[i]=d.get(i,0)+1
+print(d)
+
+
+print("==========================================================")
+list=["apple","banana","apple","mango","orange","banana","mango","mango"]
+d={}
+for i in list:
+    if i in d:
+        d[i]+=1
+    else:
+        d[i]=1
+print(d)
