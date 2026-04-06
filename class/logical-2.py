@@ -255,3 +255,4 @@ for i in list:
     else:
         d[i]=1
 print(d)
+# I'm studying Python. Turn it into a game with characters, storylines, and challenges - so it feels like I'm leveling up instead of memorizing facts
