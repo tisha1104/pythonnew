@@ -35,7 +35,9 @@ result=square(2)
 print(result)
 
 # Modular Calculator
-a=int(input)
+a=int(input("Enter the a:- "))
+b=int(input("Enter the b:- "))
+
 def add(a,b):
     return a+b
 
@@ -46,4 +48,13 @@ def mul(a,b):
     return a*b
 
 def div(a,b):
-    return a/b
+    try:
+        return a/b
+    except ZeroDivisionError:
+        print("division by Zero")
+
+print("Modular Calculator")
+print(add(a,b))
+print(sub(a,b))
+print(mul(a,b))
+print(div(a,b))
