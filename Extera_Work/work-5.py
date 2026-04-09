@@ -24,12 +24,8 @@ def is_prime(n):
 
 
 num = 10
-
-
-
-
-
 if is_prime(num):
     print("Prime")
 else:
     print("Not Prime")
+
