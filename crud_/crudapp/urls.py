@@ -1,10 +1,13 @@
+import math as m
 from django.urls import *
 from crudapp.views import *
 from django.conf import settings
-from django.conf.urls import static
+from django.conf.urls.static import static
 
 urlpatterns=[
-    path("",home,name="home")
+    path("",home,name="home"),
+    path("delete",delete_product,name="delete"),
+    path("edit",edit_product,name="edit")
 ]
 
-# urlpatterns+= static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

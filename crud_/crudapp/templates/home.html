@@ -8,13 +8,64 @@
 </head>
 <body>
     <div class="contenier">
-        <div class="row">
-            <div class="col">
+        <div class="row mt-3">
+            <div class="col-5 card p-3">
                 <H1>Product Register</H1>
                 <hr>
                 <form action="" method="post" enctype="multipart/form-data">
-                    <input type="text" placeholder="enter Your Name" class="form-controal">
+                    {%csrf_token%}
+                    <span>{{msg}}</span>
+                    <select name="cat" id="cat" class="form-controal">
+                    {%for cat in category%}
+                    <option value="{{cat.id}}" {% if prod.Category_id == cat.id %}selected{% endif %}>{{cat.name}}</option>
+                    {%endfor%}
+                    </select>
+                    <br>
+                    <br>
+                    <input type="text" name="name" placeholder="enter Your Product Name" class="form-controal">
+                    <br>
+                    <br>
+                    <input type="text" name="price" placeholder="Enetr price" class="form-controal">
+                    <br>
+                    <br>
+                    <input type="text" name="qty" placeholder="Enter Qty" class="form-controal">
+                    <br>
+                    <br>
+                    <input type="file" name="photo" class="form-controal">
+                    <br>
+                    <br>
+                    <input type="submit" class="btn btn-success">
+                    <input type="reset" class="btn btn-primary">
                 </form>
+            </div>
+            <div class="col-1">
+
+            </div>
+            <div class="cOL-6 card p-3">
+                <H1>Product Details</H1>
+                <table class="table">
+                    <tr>
+                        <th>Id</th>
+                        <th>Category</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>image</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                    {%for prod in product%}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{prod.Category.name}}</td>
+                        <td>{{prod.name}}</td>
+                        <td>{{prod.price}}</td>
+                        <td>{{prod.qty}}</td>
+                        <td><img src="media/{{prod.image}}" alt="{{prod.image}}" height="50px" width="50px"></td>
+                        <td><a href="{%url 'edit'%}?id={{prod.id}}" class="btn btn-primary">Edit</a></td>
+                        <td><a href="{%url 'delete'%}?id={{prod.id}}" class="btn btn-danger">Delete</a></td>
+                    </tr>
+                    {%endfor%}
+                </table>
             </div>
         </div>
     </div>
