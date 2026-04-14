@@ -248,3 +248,52 @@ for i in range(6):
         else:
             print(" ",end=" ")
     print()
+
+print("====================================================================================")
+for i in range(1,6):
+    for k in range(6-i):
+        print(" ",end=" ")
+    for j in range(2*i-1):
+        if j==0 or j==2*i-2:
+            print("*",end=" ")
+        else:
+            print(" ",end=" ")
+    print()
+for i in range(5,0,-1):
+        for k in range(6-i):
+            print(" ",end=" ")
+        for j in range(2*i-1):
+            if j==0 or j==2*i-2:
+                print("*",end=" ")
+            else:
+                print(" ",end=" ")
+        print()
+print("====================================================================================")
+ch=1
+for i in range(1,5):
+    for j in  range(i):
+        print(chr(64+ch),end=" ")
+        ch+=1
+    print()
+print("====================================================================================")
+ch=1
+for i in range(1,5):
+    for j in  range(i):
+        print(chr(96+ch),end=" ")
+        ch+=1
+    print()
+print("====================================================================================")
+ch=10
+for i in range(4,0,-1):
+    start=ch-i+1
+    for j in range(start,ch+1):
+        print(chr(64+j),end=" ")
+    print()
+    ch-=i
+print("====================================================================================")
+for i in range(1,5):
+    for j in range(i):
+        print(chr(64+i),end=" ")
+        ch+=1
+    print()
+print("====================================================================================")
