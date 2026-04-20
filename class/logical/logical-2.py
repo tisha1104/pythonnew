@@ -36,8 +36,8 @@ def fibonacci(n):
     else:
         return fibonacci(n-1)+fibonacci(n-2)
     
-num=int(input("enter the number"))
-for i in range(num):
+num=input("enter the number")
+for i in range(n):
     print(fibonacci(i))
 
 print("=============Factorial==========")
