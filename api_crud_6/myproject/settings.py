@@ -42,11 +42,15 @@ INSTALLED_APPS = [
     'myapp',
     'django_filters'
 ]
+# REST_FRAMEWORK = {
+#     'DEFAULT_PAGINATION_CLASS': 'myapp.pagination.IncreasingPagination',
+# }
 REST_FRAMEWORK = {
     # Choose: PageNumberPagination, LimitOffsetPagination, or CursorPagination
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 1,  # Number of items per page
+    'PAGE_SIZE': 3,  # Number of items per page
 }
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
