@@ -150,7 +150,7 @@ def get_categories(request):
     return JsonResponse({"categories":list(categories.values())})
 
 def search_product(request):
-    q=request.GET['q']
+    q=request.GET.get('q','')
     products = Product.objects.filter(name__icontains=q)
     return JsonResponse({"products":list(products.values())})
 

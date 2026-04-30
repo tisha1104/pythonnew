@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-5 card p-3">
+                <h2>Student Data Ragister</h2>
+                <hr>
+                <span>{{msg}}</span>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {%csrf_token%}
+                    <input type="hidden" name="id" value="{{s.id}}">
+                    <input type="text" name="name" placeholder="Enter Your Name" class="form-control" value="{{s.name}}">
+                    <br>
+                    <br>
+                    <input type="text" name="emial" placeholder=" Enetr Your Email" class="form-control" value="{{s.emial}}">
+                    <br>
+                    <br>
+                    <input type="text" name="sub" placeholder="Enter Your Subject" class="form-control" value="{{s.sub}}">
+                    <br>
+                    <br>
+                    {%if s%}
+                    <img src="media/{{s.image}}" alt="" width="50px" height="50px">
+                    <span>{{s.image}}</span>
+                    {%endif%}
+                    <input type="file" name="image" class="form-control">
+                    <br>
+                    <br>
+                    <input type="submit" class="btn btn-success">
+                    <!-- <button type="submit">Submit</button> -->
+                    <input type="reset" class="btn btn-primary">
+                </form>
+
+            </div>
+            <div class="col-1">
+
+            </div>
+            <div class="col-6 card p-3">
+                <h2>STUDENT DETAILS</h2>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th>Image</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                    {%for s in student%}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{s.name}}</td>
+                        <td>{{s.emial}}</td>
+                        <td>{{s.sub}}</td>
+                        <td><img src="media/{{s.image}}" alt="{{s.image}}" height="50px" width="50px"></td>
+                        <td><a href="{%url 'edit'%}?id={{s.id}}">Edit</a></td>
+                        <td><a href="{%url 'delete'%}?id={{s.id}}">Delete</a></td>
+                    </tr>
+                    {%endfor%}
+                </table>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -5,17 +5,63 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required 
 # Create your views here.
 
+# def home(request):
+#     products=product.objects.all()
+#     if request.method=='POST':
+#         name=request.POST['name']
+#         price=request.POST['price']
+#         qty=request.POST['qty']
+#         image=request.FILES['image']
+#         product.objects.create(name=name,price=price,qty=qty,image=image)
+#         return render(request,"home.html",{"msg":"DONE REGISTRARTION!","products":products})
+#     else:
+#         return render(request,"home.html",{"products":products})
+
 def home(request):
-    products=product.objects.all()
-    if request.method=='POST':
-        name=request.POST['name']
-        price=request.POST['price']
-        qty=request.POST['qty']
-        image=request.FILES['image']
-        product.objects.create(name=name,price=price,qty=qty,image=image)
-        return render(request,"home.html",{"msg":"DONE REGISTRARTION!","products":products})
-    else:
-        return render(request,"home.html",{"products":products})
+    products = product.objects.all().order_by('-id')
+
+    # SEARCH + FILTER
+    q = request.GET.get('q', '')
+    min_price = request.GET.get('min_price')
+    max_price = request.GET.get('max_price')
+    min_qty = request.GET.get('min_qty')
+    max_qty = request.GET.get('max_qty')
+
+    # Search by name
+    if q:
+        products = products.filter(name__icontains=q)
+
+    # Filter by price
+    if min_price:
+        products = products.filter(price__gte=min_price)
+
+    if max_price:
+        products = products.filter(price__lte=max_price)
+
+    # Filter by quantity
+    if min_qty:
+        products = products.filter(qty__gte=min_qty)
+
+    if max_qty:
+        products = products.filter(qty__lte=max_qty)
+
+    # CREATE PRODUCT
+    if request.method == 'POST':
+        name = request.POST['name']
+        price = request.POST['price']
+        qty = request.POST['qty']
+        image = request.FILES['image']
+
+        product.objects.create(
+            name=name,
+            price=price,
+            qty=qty,
+            image=image
+        )
+
+        return redirect("home")
+
+    return render(request, "home.html", {"products": products})
     
 def edit_product(request):
        products=product.objects.all()
