@@ -7,13 +7,28 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url="login")
 def home(request):
-    student=Student.objects.all()
+    student=Student.objects.all().order_by("-id")
+
+    search=request.GET.get("search")
+    if search:
+        student=student.filter(name__icontains=search)
+
+    min_price=request.GET.get("min_price")
+    max_price=request.GET.get("max_prica")
+
+    if min_price:
+        student=student.filter(price__gte=min_price)
+
+    if max_price:
+        student=student.filter(price__lte=max_price)
+
     if request.method=='POST':
         name=request.POST['name']
         emial=request.POST['emial']
         sub=request.POST['sub']
         image=request.FILES['image']
-        Student.objects.create(name=name,emial=emial,sub=sub,image=image)
+        price=request.POST['price']
+        Student.objects.create(name=name,emial=emial,sub=sub,image=image,price=price)
         return render(request,"home.html",{"msg":"Stuudent Data Insert Successfully!","student":student})
     else:
         return render(request,"home.html",{"student":student})
@@ -31,10 +46,12 @@ def edit_student(request):
         name=request.POST['name']
         emial=request.POST['emial']
         sub=request.POST['sub']
+        price=request.POST['price']
         s=Student.objects.get(pk=id)
         s.name=name
         s.emial=emial
         s.sub=sub
+        s.price=price
         if request.FILES:
             s.image=request.FILES['image']
         s.save()
