@@ -12,6 +12,8 @@
             <div class="col-5 card p-3">
                 <h2>Student Data Ragister</h2>
                 <hr>
+                <h3>Welcome {{user}}</h3>
+                <hr>
                 <span>{{msg}}</span>
                 <form action="" method="post" enctype="multipart/form-data">
                     {%csrf_token%}
@@ -64,6 +66,11 @@
                     </tr>
                     {%endfor%}
                 </table>
+                <br>
+                <br>
+                <hr>
+                <a href="{%url 'logout'%}" class="btn btn-warning">Logout</a>
+                <hr>
 
             </div>
         </div>

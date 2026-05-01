@@ -1,8 +1,11 @@
 from django.shortcuts import render,redirect
 from myapp.models import *
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-
+@login_required(login_url="login")
 def home(request):
     student=Student.objects.all()
     if request.method=='POST':
@@ -42,3 +45,32 @@ def edit_student(request):
         s=Student.objects.get(pk=id)
         return render(request,"home.html",{"student":student,"s":s})
         # return redirect("home")
+
+
+def registration_user(request):
+    if request.method=='POST':
+        fname=request.POST['fname']
+        lname=request.POST['lname']
+        username=request.POST['username']
+        password=request.POST['password']
+        u=User(first_name=fname,last_name=lname,username=username)
+        u.set_password(password)
+        u.save()
+        return render(request,"registration.html",{"msg":"Registration Successfully Done!"})
+    return render(request,"registration.html")
+
+def user_login(request):
+    if request.method=='POST':
+        username=request.POST['username']
+        password=request.POST['password']
+        u=authenticate(username=username,password=password)
+        if u is None:
+            return render(request,"login.html",{"err":"Invalid credentials"})
+        else:
+            login(request,u)
+            return redirect("home")
+    return render (request,"login.html")
+
+def user_logout(request):
+    logout(request)
+    return render(request,"login.html")
