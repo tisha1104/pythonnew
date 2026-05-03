@@ -22,6 +22,8 @@ def home(request):
     if max_price:
         student=student.filter(price__lte=max_price)
 
+  
+
     if request.method=='POST':
         name=request.POST['name']
         emial=request.POST['emial']
