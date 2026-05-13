@@ -255,4 +255,23 @@ for i in list:
     else:
         d[i]=1
 print(d)
-# I'm studying Python. Turn it into a game with characters, storylines, and challenges - so it feels like I'm leveling up instead of memorizing facts
+
+print("=======================================================")
+import random
+
+# Input from user
+first_name = input("Enter First Name: ")
+last_name = input("Enter Last Name: ")
+
+# Validation
+if len(first_name) < 2 or len(last_name) < 2:
+    print("Please enter at least 2 characters in both names.")
+else:
+    part1 = first_name[:2]
+    part2 = last_name[-2:]
+
+    random_number = random.randint(1000, 9999)
+
+    password = part1 + part2 + str(random_number)
+
+    print("Generated Password:", password)
